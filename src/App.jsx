@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 import { useEffect, useState } from "react";
-import { sanityClient, urlFor } from "../lib/sanityClient";
+
+import { sanityClient, urlFor } from "../../studio/lib/sanityClient";
 
 function App() {
   const [data, setData] = useState(null);
@@ -35,7 +35,7 @@ function App() {
 }
 
 export default App;
-=======
+
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -71,4 +71,3 @@ function App() {
 }
 
 export default App
->>>>>>> 6f606b2c15a4299ded9325ed96ed186c49e7e173
