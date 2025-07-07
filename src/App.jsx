@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { sanityClient, urlFor } from "../../studio/lib/sanityClient";
+import { sanityClient, urlFor } from "../lib/sanityClient";
 
 function App() {
   const [data, setData] = useState(null);
@@ -12,7 +12,7 @@ function App() {
         setData(res);
       })
       .catch((err) => {
-        console.error("❌ Error al traer datos:", err);
+        console.error(" Error al traer datos:", err);
       });
   }, []);
 
