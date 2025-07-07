@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "church",
+=======
+  "name": "frontend",
+>>>>>>> 6f606b2c15a4299ded9325ed96ed186c49e7e173
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +14,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@sanity/client": "^7.6.0",
     "@sanity/image-url": "^1.1.0",
+=======
+>>>>>>> 6f606b2c15a4299ded9325ed96ed186c49e7e173
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
@@ -24,6 +31,10 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.2.0",
+<<<<<<< HEAD
     "vite": "^7.0.2"
+=======
+    "vite": "^7.0.0"
+>>>>>>> 6f606b2c15a4299ded9325ed96ed186c49e7e173
   }
 }
