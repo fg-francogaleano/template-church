@@ -1,38 +1,41 @@
-import { useEffect, useState } from "react";
-
-import { sanityClient, urlFor } from "../lib/sanityClient";
+import React from "react";
+import NavBar from "./components/NavBar";
+import { Box } from "@mui/material";
+import Home from "./views/Home";
+import About from "./views/About";
+import Sermons from "./views/Sermons";
+import Donate from "./views/Donate";
+import Contact from "./views/Contact";
+import Footer from "./components/Footer";
 
 function App() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    sanityClient
-      .fetch(`*[_type == "landing"][0]`)
-      .then((res) => {
-        console.log("📦 Datos recibidos:", res);
-        setData(res);
-      })
-      .catch((err) => {
-        console.error(" Error al traer datos:", err);
-      });
-  }, []);
-
-  if (!data) return <p>Cargando...</p>;
-
   return (
-    <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      <h1>{data.title}</h1>
-      <p>{data.subtitle}</p>
-      {data.mainImage && (
-        <img
-          src={urlFor(data.mainImage).width(800).url()}
-          alt="Imagen principal"
-          style={{ maxWidth: "100%", height: "auto" }}
-        />
-      )}
-    </div>
+    <>
+      <Box component="header">
+        <NavBar />
+      </Box>
+      <Box component="main">
+        <Box component="section">
+          <Home />
+        </Box>
+        <Box component="section">
+          <About />
+        </Box>
+        <Box component="section">
+          <Sermons />
+        </Box>
+        <Box component="section">
+          <Donate />
+        </Box>
+        <Box component="section">
+          <Contact />
+        </Box>
+      </Box>
+      <Box component="footer">
+        <Footer />
+      </Box>
+    </>
   );
 }
 
 export default App;
-

@@ -1,7 +1,7 @@
 import React from "react";
 
-function NavBAr() {
-  return <div>NavBAr</div>;
+function NavBar() {
+  return <div>NavBar</div>;
 }
 
-export default NavBAr;
+export default NavBar;

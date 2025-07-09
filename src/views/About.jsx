@@ -1,7 +1,11 @@
 import React from "react";
 
 function About() {
-  return <div>About</div>;
+  return (
+    <div style={{ height: "100vh", width: "100%", background: "grey" }}>
+      About
+    </div>
+  );
 }
 
 export default About;
