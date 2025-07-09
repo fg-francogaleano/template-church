@@ -1,5 +1,4 @@
 import React from "react";
-import NavBar from "./components/NavBar";
 import { Box } from "@mui/material";
 import Home from "./views/Home";
 import About from "./views/About";
@@ -7,6 +6,7 @@ import Sermons from "./views/Sermons";
 import Donate from "./views/Donate";
 import Contact from "./views/Contact";
 import Footer from "./components/Footer";
+import NavBar from "./components/NavBAr";
 
 function App() {
   return (
