@@ -29,8 +29,14 @@ const Footer = () => {
       <Container maxWidth="lg">
         <Grid container spacing={4} justifyContent="space-between">
           {/* Redes Sociales */}
-          <Grid item xs={12} sm={4} md={3}>
-            <Box sx={{ textAlign: { xs: "center", sm: "left" } }}>
+          <Grid item xs={12} md={4} sx={{ width: { xs: "100%", md: "auto" } }}>
+            <Box
+              sx={{
+                textAlign: { xs: "center", md: "left" },
+
+                width: "100%",
+              }}
+            >
               <Typography variant="h6" gutterBottom>
                 Puerta de Paz
               </Typography>
@@ -43,7 +49,7 @@ const Footer = () => {
               <Box
                 sx={{
                   display: "flex",
-                  justifyContent: { xs: "center", sm: "flex-start" },
+                  justifyContent: { xs: "center", md: "flex-start" }, // Asegura que los íconos estén centrados en móviles
                   gap: 1,
                 }}
               >
@@ -92,84 +98,82 @@ const Footer = () => {
           </Grid>
 
           {/* Información de contacto */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h6">Contacto</Typography>
-            <List dense>
-              <ListItem disablePadding>
-                <WhatsAppIcon fontSize="small" sx={{ marginRight: "10px" }} />
-                <ListItemText primary="+54 9 11 0000 0000" />
-              </ListItem>
-              <ListItem disablePadding>
-                <LocationOnIcon fontSize="small" sx={{ marginRight: "10px" }} />
-
-                <ListItemText primary="Av. Fe 1234, Buenos Aires" />
-              </ListItem>
-              <ListItem disablePadding>
-                <EmailIcon fontSize="small" sx={{ marginRight: "10px" }} />
-
-                <ListItemText primary="contacto@iglesiaejemplo.org" />
-              </ListItem>
-            </List>
+          <Grid item xs={12} md={4} sx={{ width: { xs: "100%", md: "auto" } }}>
+            <Box
+              sx={{
+                textAlign: { xs: "center", sm: "left" },
+                display: "flex",
+                flexDirection: "column",
+                alignItems: { xs: "center", md: "flex-start" },
+              }}
+            >
+              <Typography variant="h6">Contacto</Typography>
+              <List dense sx={{ padding: 0 }}>
+                <ListItem
+                  disablePadding
+                  sx={{ justifyContent: { xs: "center", sm: "flex-start" } }}
+                >
+                  {" "}
+                  {/* Centra el ListItem en móviles */}
+                  <WhatsAppIcon fontSize="small" sx={{ marginRight: "10px" }} />
+                  <ListItemText primary="+54 9 11 0000 0000" />
+                </ListItem>
+                <ListItem
+                  disablePadding
+                  sx={{ justifyContent: { xs: "center", sm: "flex-start" } }}
+                >
+                  <LocationOnIcon
+                    fontSize="small"
+                    sx={{ marginRight: "10px" }}
+                  />
+                  <ListItemText primary="Av. Fe 1234, Buenos Aires" />
+                </ListItem>
+                <ListItem
+                  disablePadding
+                  sx={{ justifyContent: { xs: "center", sm: "flex-start" } }}
+                >
+                  <EmailIcon fontSize="small" sx={{ marginRight: "10px" }} />
+                  <ListItemText primary="contacto@iglesiaejemplo.org" />
+                </ListItem>
+              </List>
+            </Box>
           </Grid>
 
           {/* Horarios */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h6" gutterBottom>
-              Reuniones
-            </Typography>
-            <Typography variant="body2" gutterBottom>
-              Domingos - 10:00 hs (Celebración)
-            </Typography>
-            <Typography variant="body2" gutterBottom>
-              martes - 17:00 hs (Mujeres)
-            </Typography>
-            <Typography variant="body2" gutterBottom>
-              Miércoles - 19:30 hs (Reu. Familia)
-            </Typography>
-            <Typography variant="body2" gutterBottom>
-              Jueves - 20:00 hs (Varones)
-            </Typography>
+          <Grid item xs={12} md={4} sx={{ width: { xs: "100%", md: "auto" } }}>
+            <Box
+              sx={{
+                textAlign: { xs: "center", sm: "left" },
+                display: "flex",
+                flexDirection: "column",
+                alignItems: { xs: "center", md: "flex-start" },
+              }}
+            >
+              <Typography variant="h6" gutterBottom>
+                Reuniones
+              </Typography>
+              <Typography variant="body2" gutterBottom>
+                Domingos - 10:00 hs (Celebración)
+              </Typography>
+              <Typography variant="body2" gutterBottom>
+                Martes - 17:00 hs (Mujeres)
+              </Typography>
+              <Typography variant="body2" gutterBottom>
+                Miércoles - 19:30 hs (Reu. Familia)
+              </Typography>
+              <Typography variant="body2" gutterBottom>
+                Jueves - 20:00 hs (Varones)
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
         {/* Copyright */}
-        <Box mt={1} textAlign={"center"}>
-          <Typography variant="caption" color="inherit" alignSelf={"center"}>
+        <Box mt={4} textAlign={"center"}>
+          {" "}
+          {/* Aumenté el mt para más espacio */}
+          <Typography variant="caption" color="inherit">
             Copyright © 2025 Iglesia | Made with ♥️ by Franco Galeano
           </Typography>
-          {/* <Stack direction="row" spacing={0}>
-            <IconButton
-              color="inherit"
-              aria-label="Facebook"
-              href="https://facebook.com"
-              target="_blank"
-            >
-              <FacebookIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              color="inherit"
-              aria-label="Instagram"
-              href="https://instagram.com"
-              target="_blank"
-            >
-              <InstagramIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              color="inherit"
-              aria-label="TikTok"
-              href="https://tiktok.com"
-              target="_blank"
-            >
-              <TikTokIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              color="inherit"
-              aria-label="YouTube"
-              href="https://youtube.com"
-              target="_blank"
-            >
-              <YouTubeIcon fontSize="small" />
-            </IconButton>
-          </Stack> */}
         </Box>
       </Container>
     </Box>
