@@ -15,19 +15,19 @@ function App() {
         <NavBar />
       </Box>
       <Box component="main">
-        <Box component="section">
+        <Box component="section" id="inicio">
           <Home />
         </Box>
-        <Box component="section">
+        <Box component="section" id="nosotros">
           <About />
         </Box>
-        <Box component="section">
+        <Box component="section" id="predicas">
           <Sermons />
         </Box>
-        <Box component="section">
+        <Box component="section" id="ofrendar">
           <Donate />
         </Box>
-        <Box component="section">
+        <Box component="section" id="contacto">
           <Contact />
         </Box>
       </Box>
