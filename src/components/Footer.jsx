@@ -9,6 +9,9 @@ import {
   ListItemText,
   Link,
 } from "@mui/material";
+import { useEffect, useState } from "react";
+import { sanityClient } from "../../lib/sanityClient";
+
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
@@ -18,6 +21,30 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 
 const Footer = () => {
+  const [footerData, setFooterData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const query = `*[_type == "footer"][0]`;
+      const data = await sanityClient.fetch(query);
+      setFooterData(data);
+    };
+    fetchData();
+  }, []);
+
+  if (!footerData) return null;
+
+  const {
+    telefono,
+    email,
+    calle,
+    numero,
+    localidad,
+    provincia,
+    horarios,
+    redes,
+  } = footerData;
+
   return (
     <Box
       sx={{
@@ -31,11 +58,7 @@ const Footer = () => {
           {/* Redes Sociales */}
           <Grid sx={{ width: { xs: "100%", md: "auto" } }}>
             <Box
-              sx={{
-                textAlign: { xs: "center", md: "left" },
-
-                width: "100%",
-              }}
+              sx={{ textAlign: { xs: "center", md: "left" }, width: "100%" }}
             >
               <Typography variant="h6" gutterBottom>
                 Puerta de Paz
@@ -49,50 +72,54 @@ const Footer = () => {
               <Box
                 sx={{
                   display: "flex",
-                  justifyContent: { xs: "center", md: "flex-start" }, // Asegura que los íconos estén centrados en móviles
+                  justifyContent: { xs: "center", md: "flex-start" },
                   gap: 1,
                 }}
               >
-                <IconButton
-                  color="inherit"
-                  aria-label="Instagram"
-                  component={Link}
-                  href="https://www.instagram.com/tu_instagram"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <InstagramIcon fontSize="large" />
-                </IconButton>
-                <IconButton
-                  color="inherit"
-                  aria-label="Facebook"
-                  component={Link}
-                  href="https://www.facebook.com/tu_facebook"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <FacebookIcon fontSize="large" />
-                </IconButton>
-                <IconButton
-                  color="inherit"
-                  aria-label="TikTok"
-                  component={Link}
-                  href="https://www.tiktok.com/@tu_tiktok"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <TikTokIcon fontSize="large" />
-                </IconButton>
-                <IconButton
-                  color="inherit"
-                  aria-label="YouTube"
-                  component={Link}
-                  href="https://www.youtube.com/tu_youtube"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <YouTubeIcon fontSize="large" />
-                </IconButton>
+                {redes?.instagram && (
+                  <IconButton
+                    color="inherit"
+                    component={Link}
+                    href={redes.instagram}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <InstagramIcon fontSize="large" />
+                  </IconButton>
+                )}
+                {redes?.facebook && (
+                  <IconButton
+                    color="inherit"
+                    component={Link}
+                    href={redes.facebook}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <FacebookIcon fontSize="large" />
+                  </IconButton>
+                )}
+                {redes?.tiktok && (
+                  <IconButton
+                    color="inherit"
+                    component={Link}
+                    href={redes.tiktok}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <TikTokIcon fontSize="large" />
+                  </IconButton>
+                )}
+                {redes?.youtube && (
+                  <IconButton
+                    color="inherit"
+                    component={Link}
+                    href={redes.youtube}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <YouTubeIcon fontSize="large" />
+                  </IconButton>
+                )}
               </Box>
             </Box>
           </Grid>
@@ -113,10 +140,8 @@ const Footer = () => {
                   disablePadding
                   sx={{ justifyContent: { xs: "center", sm: "flex-start" } }}
                 >
-                  {" "}
-                  {/* Centra el ListItem en móviles */}
                   <WhatsAppIcon fontSize="small" sx={{ marginRight: "10px" }} />
-                  <ListItemText primary="+54 9 11 0000 0000" />
+                  <ListItemText primary={telefono} />
                 </ListItem>
                 <ListItem
                   disablePadding
@@ -126,14 +151,16 @@ const Footer = () => {
                     fontSize="small"
                     sx={{ marginRight: "10px" }}
                   />
-                  <ListItemText primary="Av. Fe 1234, Buenos Aires" />
+                  <ListItemText
+                    primary={`${calle} ${numero}, ${localidad}, ${provincia}`}
+                  />
                 </ListItem>
                 <ListItem
                   disablePadding
                   sx={{ justifyContent: { xs: "center", sm: "flex-start" } }}
                 >
                   <EmailIcon fontSize="small" sx={{ marginRight: "10px" }} />
-                  <ListItemText primary="contacto@iglesiaejemplo.org" />
+                  <ListItemText primary={email} />
                 </ListItem>
               </List>
             </Box>
@@ -152,25 +179,18 @@ const Footer = () => {
               <Typography variant="h6" gutterBottom>
                 Reuniones
               </Typography>
-              <Typography variant="body2" gutterBottom>
-                Domingos - 10:00 hs (Celebración)
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-                Martes - 17:00 hs (Mujeres)
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-                Miércoles - 19:30 hs (Reu. Familia)
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-                Jueves - 20:00 hs (Varones)
-              </Typography>
+              {horarios?.map((item, idx) => (
+                <Typography variant="body2" gutterBottom key={idx}>
+                  {item.dia} - {item.hora} hs
+                  {item.descripcion ? ` (${item.descripcion})` : ""}
+                </Typography>
+              ))}
             </Box>
           </Grid>
         </Grid>
+
         {/* Copyright */}
         <Box mt={4} textAlign={"center"}>
-          {" "}
-          {/* Aumenté el mt para más espacio */}
           <Typography variant="caption" color="inherit">
             Copyright © 2025 Iglesia | Made with ♥️ by Franco Galeano
           </Typography>
