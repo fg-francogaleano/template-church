@@ -29,7 +29,7 @@ const Footer = () => {
       <Container maxWidth="lg">
         <Grid container spacing={4} justifyContent="space-between">
           {/* Redes Sociales */}
-          <Grid item xs={12} md={4} sx={{ width: { xs: "100%", md: "auto" } }}>
+          <Grid sx={{ width: { xs: "100%", md: "auto" } }}>
             <Box
               sx={{
                 textAlign: { xs: "center", md: "left" },
@@ -98,7 +98,7 @@ const Footer = () => {
           </Grid>
 
           {/* Información de contacto */}
-          <Grid item xs={12} md={4} sx={{ width: { xs: "100%", md: "auto" } }}>
+          <Grid sx={{ width: { xs: "100%", md: "auto" } }}>
             <Box
               sx={{
                 textAlign: { xs: "center", sm: "left" },
@@ -140,7 +140,7 @@ const Footer = () => {
           </Grid>
 
           {/* Horarios */}
-          <Grid item xs={12} md={4} sx={{ width: { xs: "100%", md: "auto" } }}>
+          <Grid sx={{ width: { xs: "100%", md: "auto" } }}>
             <Box
               sx={{
                 textAlign: { xs: "center", sm: "left" },
