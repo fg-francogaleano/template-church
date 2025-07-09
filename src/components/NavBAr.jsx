@@ -11,9 +11,7 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  Fade,
   useScrollTrigger,
-  Slide, // Para una posible animación de la barra de navegación al scroll
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu"; // Icono de hamburguesa
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"; // Icono para el botón "volver arriba"
@@ -45,7 +43,6 @@ function ScrollTop(props) {
   // Si trigger es false, el Box no se renderiza, haciéndolo desaparecer.
   return (
     <>
-      {" "}
       {/* Usamos un Fragment para envolver */}
       {trigger && ( // Condición para renderizar el botón solo si se ha scrolleado
         <Box
@@ -87,7 +84,7 @@ function NavBar(props) {
   });
 
   return (
-    <React.Fragment>
+    <>
       {/* back-to-top-anchor es el punto al que el botón de scroll volverá */}
       <Toolbar
         id="back-to-top-anchor"
@@ -202,7 +199,7 @@ function NavBar(props) {
           <KeyboardArrowUpIcon />
         </Button>
       </ScrollTop>
-    </React.Fragment>
+    </>
   );
 }
 
