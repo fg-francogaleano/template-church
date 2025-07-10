@@ -144,7 +144,6 @@ const Footer = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: { xs: "center", md: "flex-start" },
-                border: "solid red 1px",
               }}
             >
               <Typography variant="h6">Contacto</Typography>
@@ -155,7 +154,6 @@ const Footer = () => {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: { xs: "center", md: "flex-start" },
-                  border: "solid 1px red", // Probablemente para depuración, puedes quitarlo
                 }}
               >
                 <ListItem
@@ -179,7 +177,6 @@ const Footer = () => {
                     fontSize="small"
                     sx={{ marginRight: "10px" }}
                   />
-                  {/* Reemplazado ListItemText con Typography */}
                   <Typography variant="body1">
                     {`${calle} ${numero}, ${localidad}, ${provincia}`}
                   </Typography>
@@ -189,7 +186,6 @@ const Footer = () => {
                   sx={{
                     justifyContent: { xs: "center", sm: "flex-start" },
                     gap: "10px",
-                    border: "solid blue 1px",
                   }}
                 >
                   <MailOutlineIcon fontSize="small" />
