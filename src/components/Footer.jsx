@@ -12,13 +12,14 @@ import {
 import { useEffect, useState } from "react";
 import { sanityClient } from "../../lib/sanityClient";
 
-import FacebookIcon from "@mui/icons-material/Facebook";
+import FacebookIcon from "../icons/FacebookIcon";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import TikTokIcon from "@mui/icons-material/MusicNote";
+import TikTokIcon from "../icons/TiktokIcon";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import EmailIcon from "@mui/icons-material/Email";
+import LocationOnIcon from "../icons/LocationOnIcon";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import XIcon from "@mui/icons-material/X";
 
 const Footer = () => {
   const [footerData, setFooterData] = useState(null);
@@ -84,7 +85,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener"
                   >
-                    <InstagramIcon fontSize="large" />
+                    <InstagramIcon fontSize="small" />
                   </IconButton>
                 )}
                 {redes?.facebook && (
@@ -95,7 +96,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener"
                   >
-                    <FacebookIcon fontSize="large" />
+                    <FacebookIcon fontSize="small" />
                   </IconButton>
                 )}
                 {redes?.tiktok && (
@@ -106,7 +107,18 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener"
                   >
-                    <TikTokIcon fontSize="large" />
+                    <TikTokIcon fontSize="small" />
+                  </IconButton>
+                )}
+                {redes?.x && (
+                  <IconButton
+                    color="inherit"
+                    component={Link}
+                    href={redes.x}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <XIcon fontSize="small" />
                   </IconButton>
                 )}
                 {redes?.youtube && (
@@ -117,7 +129,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener"
                   >
-                    <YouTubeIcon fontSize="large" />
+                    <YouTubeIcon fontSize="small" />
                   </IconButton>
                 )}
               </Box>
@@ -132,35 +144,57 @@ const Footer = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: { xs: "center", md: "flex-start" },
+                border: "solid red 1px",
               }}
             >
               <Typography variant="h6">Contacto</Typography>
-              <List dense sx={{ padding: 0 }}>
+              <List
+                dense
+                sx={{
+                  padding: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: { xs: "center", md: "flex-start" },
+                  border: "solid 1px red", // Probablemente para depuración, puedes quitarlo
+                }}
+              >
                 <ListItem
                   disablePadding
-                  sx={{ justifyContent: { xs: "center", sm: "flex-start" } }}
+                  sx={{
+                    justifyContent: { xs: "center", sm: "flex-start" },
+                    gap: "10px",
+                  }}
                 >
-                  <WhatsAppIcon fontSize="small" sx={{ marginRight: "10px" }} />
-                  <ListItemText primary={telefono} />
+                  <WhatsAppIcon fontSize="small" />
+                  <Typography variant="body1">{telefono}</Typography>
                 </ListItem>
                 <ListItem
                   disablePadding
-                  sx={{ justifyContent: { xs: "center", sm: "flex-start" } }}
+                  sx={{
+                    justifyContent: { xs: "center", sm: "flex-start" },
+                    gap: "10px",
+                  }}
                 >
                   <LocationOnIcon
                     fontSize="small"
                     sx={{ marginRight: "10px" }}
                   />
-                  <ListItemText
-                    primary={`${calle} ${numero}, ${localidad}, ${provincia}`}
-                  />
+                  {/* Reemplazado ListItemText con Typography */}
+                  <Typography variant="body1">
+                    {`${calle} ${numero}, ${localidad}, ${provincia}`}
+                  </Typography>
                 </ListItem>
                 <ListItem
                   disablePadding
-                  sx={{ justifyContent: { xs: "center", sm: "flex-start" } }}
+                  sx={{
+                    justifyContent: { xs: "center", sm: "flex-start" },
+                    gap: "10px",
+                    border: "solid blue 1px",
+                  }}
                 >
-                  <EmailIcon fontSize="small" sx={{ marginRight: "10px" }} />
-                  <ListItemText primary={email} />
+                  <MailOutlineIcon fontSize="small" />
+                  {/* Reemplazado ListItemText con Typography */}
+                  <Typography variant="body1">{email}</Typography>
                 </ListItem>
               </List>
             </Box>
