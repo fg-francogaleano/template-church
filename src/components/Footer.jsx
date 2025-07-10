@@ -159,7 +159,7 @@ const Footer = () => {
                 <ListItem
                   disablePadding
                   sx={{
-                    justifyContent: { xs: "center", sm: "flex-start" },
+                    justifyContent: { xs: "center", md: "flex-start" },
                     gap: "10px",
                   }}
                 >
@@ -169,7 +169,7 @@ const Footer = () => {
                 <ListItem
                   disablePadding
                   sx={{
-                    justifyContent: { xs: "center", sm: "flex-start" },
+                    justifyContent: { xs: "center", md: "flex-start" },
                     gap: "10px",
                   }}
                 >
@@ -184,7 +184,7 @@ const Footer = () => {
                 <ListItem
                   disablePadding
                   sx={{
-                    justifyContent: { xs: "center", sm: "flex-start" },
+                    justifyContent: { xs: "center", md: "flex-start" },
                     gap: "10px",
                   }}
                 >
