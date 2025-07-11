@@ -1,19 +1,20 @@
 import React from "react";
+import Form from "../components/Form";
+import { Box } from "@mui/material";
 
 function Contact() {
   return (
-    <div
-      style={{
-        height: "100vh",
+    <Box
+      sx={{
+        minHeight: "100vh",
         width: "100%",
-        background: "green",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      Contact
-    </div>
+      <Form />
+    </Box>
   );
 }
 
