@@ -44,9 +44,11 @@ function Form() {
   const handleSubmit = () => {
     console.log(refForm.current);
     setLoading(true);
-    const serviceId = "service_x1taarf";
-    const templateId = "template_7oua2tr";
-    const apiKey = "pxGg36sd8xaftbeW3";
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const apiKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
     emailjs
       .sendForm(serviceId, templateId, refForm.current, apiKey)
       .then((res) => {
