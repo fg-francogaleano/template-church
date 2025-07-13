@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Formik } from "formik"; // Asegúrate de que Formik esté instalado
+import { Formik } from "formik";
+import MuiAlert from "@mui/material/Alert";
 
 import {
   Box,
@@ -9,11 +10,14 @@ import {
   Snackbar,
   Alert,
   Stack,
-  useMediaQuery,
-  useTheme,
+  CircularProgress,
 } from "@mui/material";
 import validations from "../utils/validations";
 import emailjs from "@emailjs/browser";
+
+// const Alert = React.forwardRef(function Alert(props, ref) {
+//   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+// });
 
 function Form() {
   const initialValues = {
@@ -23,11 +27,23 @@ function Form() {
     message: "",
   };
 
+  const alertSuccess = "Mensaje enviado con éxito";
+  const alertError = "Ocurrió un error vuelva a intertar";
+
+  const [open, setOpen] = useState(false);
+  const [success, setSuccess] = useState(true);
+  const [loading, setLoading] = useState(false);
   const refForm = useRef();
 
-  const handleSubmit = (values) => {
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+  const handleSubmit = () => {
     console.log(refForm.current);
-
+    setLoading(true);
     const serviceId = "service_x1taarf";
     const templateId = "template_7oua2tr";
     const apiKey = "pxGg36sd8xaftbeW3";
@@ -35,9 +51,20 @@ function Form() {
       .sendForm(serviceId, templateId, refForm.current, apiKey)
       .then((res) => {
         console.log(res.text);
+        setLoading(false);
+        setOpen(true);
+        setTimeout(() => {
+          setOpen(false);
+        }, 3000);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
+        setSuccess(false);
+        setOpen(true);
+        setTimeout(() => {
+          setOpen(false);
+        }, 3000);
       });
   };
 
@@ -159,27 +186,29 @@ function Form() {
                 />
                 <Box>
                   <Button variant="contained" type="submit" fullWidth>
-                    Enviar
+                    {loading ? (
+                      <CircularProgress sx={{ color: "white" }} size="24px" />
+                    ) : (
+                      "Enviar"
+                    )}
                   </Button>
                 </Box>
               </Box>
-
-              {/* Snackbar */}
-              {/* <Stack spacing={2} sx={{ width: "100%" }}>
-                  <Snackbar
-                    open={openSnackbar} // Usar el estado interno
-                    autoHideDuration={6000}
-                    onClose={handleCloseSnackbar} // Usar el handler interno
+              <Stack spacing={2} sx={{ width: "100%" }}>
+                <Snackbar
+                  open={open}
+                  autoHideDuration={6000}
+                  onClose={handleClose}
+                >
+                  <Alert
+                    onClose={handleClose}
+                    severity={success ? "success" : "error"}
+                    sx={{ width: "100%" }}
                   >
-                    <Alert
-                      onClose={handleCloseSnackbar}
-                      severity={success ? "success" : "error"}
-                      sx={{ width: "100%" }}
-                    >
-                      {success ? alertSuccess : alertError}
-                    </Alert>
-                  </Snackbar>
-                </Stack> */}
+                    {success ? alertSuccess : alertError}
+                  </Alert>
+                </Snackbar>
+              </Stack>
             </Box>
           </Box>
         )}
