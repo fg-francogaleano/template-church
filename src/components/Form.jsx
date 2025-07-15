@@ -101,7 +101,7 @@ function Form() {
                 margin: "auto",
                 borderRadius: "3px",
                 outline: "1px solid",
-                width: "300px",
+                minWidth: "380px",
               }}
             >
               <Box

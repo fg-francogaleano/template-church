@@ -6,7 +6,6 @@ import {
   IconButton,
   List,
   ListItem,
-  ListItemText,
   Link,
 } from "@mui/material";
 import { useEffect, useState } from "react";
