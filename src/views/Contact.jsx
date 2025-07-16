@@ -10,7 +10,7 @@ import {
 } from "@mui/material"; // Importa CssBaseline
 import Grid from "@mui/material/Grid";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import FacebookIcon from "@mui/icons-material/Facebook";
+import FacebookIcon from "../icons/FacebookIcon";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import XIcon from "@mui/icons-material/X";
 import TikTokIcon from "../icons/TiktokIcon"; // Asegúrate de que este componente exista y funcione
@@ -201,7 +201,6 @@ function Contact() {
             {/* Lado Derecho: Formulario */}
             <Grid
               size={{ xs: 12, sm: 6 }}
-              // sx={{ border: "yellow solid 1px", width: "40%" }}
               justifyContent={"center"}
               alignItems={"center"}
             >

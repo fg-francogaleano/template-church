@@ -100,8 +100,9 @@ function Form() {
               sx={{
                 margin: "auto",
                 borderRadius: "3px",
-                outline: "1px solid",
-                minWidth: "380px",
+                width: "90%",
+                minWidth: { xs: "350px", md: "400px" },
+                maxWidth: { xs: "500px", md: "550px" },
               }}
             >
               <Box
@@ -128,7 +129,7 @@ function Form() {
                   error={touched.name && Boolean(errors.name)}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  variant="standard"
+                  variant="filled"
                   required
                   fullWidth
                   margin="normal"
@@ -145,7 +146,7 @@ function Form() {
                   error={touched.email && Boolean(errors.email)}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  variant="standard"
+                  variant="filled"
                   required
                   fullWidth
                   margin="normal"
@@ -162,7 +163,7 @@ function Form() {
                   error={touched.subject && Boolean(errors.subject)}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  variant="standard"
+                  variant="filled"
                   required
                   fullWidth
                   margin="normal"
@@ -181,13 +182,18 @@ function Form() {
                   onBlur={handleBlur}
                   multiline
                   rows={4}
-                  variant="standard"
+                  variant="filled"
                   required
                   fullWidth
                   margin="normal"
                 />
                 <Box>
-                  <Button variant="contained" type="submit" fullWidth>
+                  <Button
+                    variant="outlined"
+                    type="submit"
+                    fullWidth
+                    sx={{ marginTop: "10px" }}
+                  >
                     {loading ? (
                       <CircularProgress sx={{ color: "white" }} size="24px" />
                     ) : (
