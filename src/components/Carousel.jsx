@@ -56,13 +56,13 @@ const DotContainer = styled(Box)({
 });
 
 const Dot = styled(Box)(({ theme, active }) => ({
-  width: active ? "25px" : "10px",
-  height: "10px",
+  width: active ? "25px" : "5px",
+  height: "5px",
   borderRadius: active ? "8px" : "30px",
   outline: "solid 1px grey",
   margin: "0 4px",
   cursor: "pointer",
-  transition: "width 0.3s ease-in-out",
+  transition: "width 0.5s ease-in-out",
 }));
 
 // --- Componente principal del carrusel ---

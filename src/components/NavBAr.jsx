@@ -102,7 +102,7 @@ function NavBar(props) {
           backgroundImage: trigger ? "none" : gradientBackground, // Aplica el gradiente solo cuando no hay scroll
           boxShadow: trigger ? 3 : 0, // Sombra cuando hay scroll
           transition:
-            "background-color 0.8s ease-in-out, background-image 0.8s ease-in-out, box-shadow 0.3s ease-in-out", // Transición para el fondo y la sombra
+            "background-color 1s ease-in-out, background-image 1s ease-in-out, box-shadow 1s ease-in-out", // Transición para el fondo y la sombra
           position: "fixed",
           top: 0,
           left: 0,
@@ -124,7 +124,7 @@ function NavBar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            Mi Aplicación
+            Iglesia
           </Typography>
           <IconButton
             color="inherit"

@@ -5,10 +5,10 @@ import ImageCarousel from "../components/Carousel"; // Asegúrate de que la ruta
 
 // Tus imágenes de ejemplo (pueden ser URLs o importaciones si están en tu proyecto)
 const carouselImages = [
-  "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGa7Kcri3BdGzts3SUv8f-Ji76zmKO02z8QnQuMQDdfhbZ9UsEhsyGxaKwtDCLe4n7XcdFtrSLKkiufmGJysY3CWln1vpuchKaq2lN4IFeCkQxBlV3v41s7n_Fe35keT_w-wkN6sgPhhQ/s1600/adorando2-520x245.jpg",
-  "https://www.bibliatodo.com/Reflexiones-Cristianas/wp-content/uploads/2024/06/Que-prioridad-debe-tener-la-adoracion-en-la-iglesia.jpg",
-  "https://noticiacristiana.com/wp-content/uploads/2021/07/es-la-adoracion-en-las-iglesias-mas-pagana-que-cristiana.jpg",
-  "https://casadediosoasisdebendicion.com/wp-content/uploads/2023/05/bible-worship-christian-1948778-1024x682.jpg",
+  "https://images.unsplash.com/photo-1579975096649-e773152b04cb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YWRvcmFjaSVDMyVCM24lMjBkZSUyMGxhJTIwaWdsZXNpYXxlbnwwfHwwfHx8MA%3D%3D",
+  "https://i.pinimg.com/originals/8b/e8/60/8be86059e88824b17e1bacc0619d0b77.jpg",
+  "https://w7.pngwing.com/pngs/947/809/png-transparent-people-inside-the-building-dancing-worship-church-service-christian-church-pastor-event-christianity-performance-stage.png",
+  "https://images.unsplash.com/photo-1503978581482-e06dc278d5c2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Zm9uZG8lMjBkZSUyMGFkb3JhY2lvbnxlbnwwfHwwfHx8MA%3D%3D",
 ];
 
 function Home() {
