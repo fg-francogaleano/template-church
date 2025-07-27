@@ -13,38 +13,33 @@ import {
   ListItemText,
   useScrollTrigger,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu"; // Icono de hamburguesa
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"; // Icono para el botón "volver arriba"
-import HomeIcon from "@mui/icons-material/Home"; // Icono para la parte izquierda de la barra
+import MenuIcon from "@mui/icons-material/Menu";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import HomeIcon from "@mui/icons-material/Home";
 
-// --- Componente auxiliar para el botón "volver arriba" ---
-// Se muestra u oculta según el scroll y te lleva al inicio de la página
 function ScrollTop(props) {
   const { children } = props;
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 100, // El botón aparece cuando se scrollean 100px o más
+    threshold: 100,
   });
 
   const handleClick = (event) => {
     const anchor = (event.target.ownerDocument || document).querySelector(
-      "#back-to-top-anchor" // Este ID debe coincidir con un elemento en tu layout
+      "#back-to-top-anchor"
     );
 
     if (anchor) {
       anchor.scrollIntoView({
-        behavior: "smooth", // Desplazamiento suave (se mantiene)
+        behavior: "smooth",
         block: "center",
       });
     }
   };
 
-  // Solo renderizamos el Box si 'trigger' es true
-  // Si trigger es false, el Box no se renderiza, haciéndolo desaparecer.
   return (
     <>
-      {/* Usamos un Fragment para envolver */}
-      {trigger && ( // Condición para renderizar el botón solo si se ha scrolleado
+      {trigger && (
         <Box
           onClick={handleClick}
           role="presentation"
@@ -61,31 +56,35 @@ function ScrollTop(props) {
     </>
   );
 }
-// --- Componente principal NavBar ---
+
 function NavBar(props) {
-  const [mobileOpen, setMobileOpen] = useState(false); // Estado para el menú hamburguesa
+  const [mobileOpen, setMobileOpen] = useState(false);
   const navItems = [
     { name: "Inicio", href: "#inicio" },
     { name: "Nosotros", href: "#nosotros" },
     { name: "Predicas", href: "#predicas" },
     { name: "Ofrendar", href: "#ofrendar" },
     { name: "Contacto", href: "#contacto" },
-  ]; // Elementos de navegación con sus hrefs
+  ];
 
-  // Función para abrir/cerrar el menú móvil
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  // useScrollTrigger para detectar el scroll y cambiar el estilo de la barra
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 0, // Cambia el estilo tan pronto como se hace scroll
+    threshold: 0, // El umbral 0 significa que se activa tan pronto como el scroll no es 0
   });
+
+  // Define los colores para el gradiente y el fondo oscuro
+  const transparentBackground = "transparent";
+  const darkSolidBackground = "rgba(0, 0, 0, 0.9)"; // Un negro casi opaco
+
+  // Define el gradiente para cuando no hay scroll
+  const gradientBackground = `linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0) 100%)`; // De negro opaco a transparente
 
   return (
     <>
-      {/* back-to-top-anchor es el punto al que el botón de scroll volverá */}
       <Toolbar
         id="back-to-top-anchor"
         sx={{ minHeight: "0px !important", height: "0px !important" }}
@@ -93,21 +92,25 @@ function NavBar(props) {
 
       <AppBar
         component="nav"
+        // Aquí aplicamos el fondo condicionalmente
         sx={{
-          // Estilo condicional basado en el scroll
-          backgroundColor: trigger ? "primary.main" : "transparent", // Por ejemplo, azul primario cuando scrolleas, transparente al inicio
-          boxShadow: trigger ? 3 : 0, // Sombra cuando scrolleas
+          // Si hay scroll (trigger es true), usa el fondo sólido oscuro.
+          // Si no hay scroll (trigger es false), usa el gradiente.
+          backgroundColor: trigger
+            ? darkSolidBackground
+            : transparentBackground,
+          backgroundImage: trigger ? "none" : gradientBackground, // Aplica el gradiente solo cuando no hay scroll
+          boxShadow: trigger ? 3 : 0, // Sombra cuando hay scroll
           transition:
-            "background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out", // Transición suave
-          position: "fixed", // Asegura que la barra se quede fija
+            "background-color 0.8s ease-in-out, background-image 0.8s ease-in-out, box-shadow 0.3s ease-in-out", // Transición para el fondo y la sombra
+          position: "fixed",
           top: 0,
           left: 0,
           right: 0,
-          zIndex: 1100, // Z-index estándar para AppBar en Material-UI
+          zIndex: 1100,
         }}
       >
         <Toolbar>
-          {/* Icono en la parte izquierda */}
           <IconButton
             color="inherit"
             aria-label="home icon"
@@ -116,8 +119,6 @@ function NavBar(props) {
           >
             <HomeIcon />
           </IconButton>
-
-          {/* Título de la aplicación o logo */}
           <Typography
             variant="h6"
             component="div"
@@ -125,22 +126,51 @@ function NavBar(props) {
           >
             Mi Aplicación
           </Typography>
-
-          {/* Botón de hamburguesa para móviles */}
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            edge="end" // Alineado a la derecha
+            edge="end"
             onClick={handleDrawerToggle}
-            sx={{ ml: "auto", display: { sm: "none" } }} // Solo visible en pantallas pequeñas
+            sx={{ ml: "auto", display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
 
           {/* Botones de navegación para pantallas grandes */}
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              gap: "15px",
+              marginRight: { sm: "20px" },
+            }}
+          >
             {navItems.map((item) => (
-              <Button key={item.name} sx={{ color: "#fff" }} href={item.href}>
+              <Button
+                key={item.name}
+                sx={{
+                  color: "#fff",
+                  position: "relative",
+                  padding: "6px 0px", // Ajustado para un mejor espaciado y subrayado
+                  minWidth: "auto",
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    width: "0%",
+                    height: "1px",
+                    bottom: 0,
+                    left: 0,
+                    backgroundColor: "currentColor",
+                    transition: "width 0.4s ease-in-out",
+                  },
+                  "&:hover::after": {
+                    width: "100%",
+                  },
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                  },
+                }}
+                href={item.href}
+              >
                 {item.name}
               </Button>
             ))}
@@ -155,11 +185,11 @@ function NavBar(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Para un mejor rendimiento en móviles
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 }, // Ancho del drawer
+            "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
           }}
         >
           <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -179,18 +209,17 @@ function NavBar(props) {
         </Drawer>
       </nav>
 
-      {/* Botón "Volver Arriba" */}
       <ScrollTop {...props}>
         <Button
           variant="contained"
-          color="secondary" // Puedes elegir el color que prefieras
+          color="secondary"
           size="large"
           aria-label="scroll back to top"
           sx={{
-            minWidth: 0, // Para que el botón sea cuadrado
-            width: 56, // Ancho y alto para que sea un círculo con border-radius
+            minWidth: 0,
+            width: 56,
             height: 56,
-            borderRadius: "50%", // Para que sea un círculo
+            borderRadius: "50%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",

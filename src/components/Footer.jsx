@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { sanityClient } from "../../lib/sanityClient";
 import {
   Box,
   Container,
@@ -8,42 +10,50 @@ import {
   ListItem,
   Link,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import { sanityClient } from "../../lib/sanityClient";
-
-import FacebookIcon from "../icons/FacebookIcon";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "../icons/FacebookIcon";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import TikTokIcon from "../icons/TiktokIcon";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import XIcon from "@mui/icons-material/X";
 import LocationOnIcon from "../icons/LocationOnIcon";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import XIcon from "@mui/icons-material/X";
 
 const Footer = () => {
-  const [footerData, setFooterData] = useState(null);
+  const [schedulesData, setSchedulesData] = useState(null);
+  const [contactData, setContactData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const query = `*[_type == "footer"][0]`;
-      const data = await sanityClient.fetch(query);
-      setFooterData(data);
+      try {
+        const contactQuery = '*[_type == "contact"][0]';
+        const schedulesQuery = '*[_type == "schedules"][0]';
+
+        const [schedulesResult, contactResult] = await Promise.all([
+          sanityClient.fetch(schedulesQuery),
+          sanityClient.fetch(contactQuery),
+        ]);
+
+        setSchedulesData(schedulesResult);
+        setContactData(contactResult);
+      } catch (error) {
+        console.error("Error al obtener los datos:", error);
+      }
     };
+
     fetchData();
   }, []);
 
-  if (!footerData) return null;
+  // Si contactData o schedulesData son null (aún cargando o error), no renderizamos el contenido
+  // del footer que depende de ellos. Podríamos mostrar un spinner o un esqueleto si quisiéramos.
+  if (!contactData) {
+    return null; // O un componente de carga si lo prefieres
+  }
 
-  const {
-    telefono,
-    email,
-    calle,
-    numero,
-    localidad,
-    provincia,
-    horarios,
-    redes,
-  } = footerData;
+  // Desestructuración segura: solo si los datos están presentes
+  const { telefono, email, calle, numero, localidad, provincia, redes } =
+    contactData || {}; // Usamos un objeto vacío por defecto para evitar errores si contactData es null/undefined
+  const { horarios } = schedulesData || {}; // Igual aquí
 
   return (
     <Box
@@ -60,12 +70,10 @@ const Footer = () => {
             <Box
               sx={{ textAlign: { xs: "center", md: "left" }, width: "100%" }}
             >
-              <Typography variant="h6" gutterBottom>
-                Puerta de Paz
-              </Typography>
+              <Typography variant="h6">Puerta de Paz</Typography>
               <Typography
                 variant="body2"
-                sx={{ mb: 2, color: "rgba(255,255,255,0.7)" }}
+                sx={{ color: "rgba(255,255,255,0.7)" }}
               >
                 Seguinos en nuestras redes.
               </Typography>
@@ -83,6 +91,7 @@ const Footer = () => {
                     href={redes.instagram}
                     target="_blank"
                     rel="noopener"
+                    sx={{ padding: "0px" }}
                   >
                     <InstagramIcon fontSize="small" />
                   </IconButton>
@@ -94,6 +103,7 @@ const Footer = () => {
                     href={redes.facebook}
                     target="_blank"
                     rel="noopener"
+                    sx={{ padding: "0px" }}
                   >
                     <FacebookIcon fontSize="small" />
                   </IconButton>
@@ -105,6 +115,7 @@ const Footer = () => {
                     href={redes.tiktok}
                     target="_blank"
                     rel="noopener"
+                    sx={{ padding: "0px" }}
                   >
                     <TikTokIcon fontSize="small" />
                   </IconButton>
@@ -116,6 +127,7 @@ const Footer = () => {
                     href={redes.x}
                     target="_blank"
                     rel="noopener"
+                    sx={{ padding: "0px" }}
                   >
                     <XIcon fontSize="small" />
                   </IconButton>
