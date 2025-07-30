@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import HomeIcon from "@mui/icons-material/Home";
+import Logo from "../icons/Logo";
 
 function ScrollTop(props) {
   const { children } = props;
@@ -63,8 +63,8 @@ function NavBar(props) {
     { name: "Inicio", href: "#inicio" },
     { name: "Nosotros", href: "#nosotros" },
     { name: "Predicas", href: "#predicas" },
-    { name: "Ofrendar", href: "#ofrendar" },
     { name: "Contacto", href: "#contacto" },
+    { name: "Ofrendar", href: "#ofrendar" },
   ];
 
   const handleDrawerToggle = () => {
@@ -73,14 +73,12 @@ function NavBar(props) {
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 0, // El umbral 0 significa que se activa tan pronto como el scroll no es 0
+    threshold: 0,
   });
 
-  // Define los colores para el gradiente y el fondo oscuro
   const transparentBackground = "transparent";
-  const darkSolidBackground = "rgba(0, 0, 0, 0.9)"; // Un negro casi opaco
+  const darkSolidBackground = "rgba(0, 0, 0, 0.9)";
 
-  // Define el gradiente para cuando no hay scroll
   const gradientBackground = `linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0) 100%)`; // De negro opaco a transparente
 
   return (
@@ -92,17 +90,14 @@ function NavBar(props) {
 
       <AppBar
         component="nav"
-        // Aquí aplicamos el fondo condicionalmente
         sx={{
-          // Si hay scroll (trigger es true), usa el fondo sólido oscuro.
-          // Si no hay scroll (trigger es false), usa el gradiente.
           backgroundColor: trigger
             ? darkSolidBackground
             : transparentBackground,
-          backgroundImage: trigger ? "none" : gradientBackground, // Aplica el gradiente solo cuando no hay scroll
-          boxShadow: trigger ? 3 : 0, // Sombra cuando hay scroll
+          backgroundImage: trigger ? "none" : gradientBackground,
+          boxShadow: trigger ? 3 : 0,
           transition:
-            "background-color 1s ease-in-out, background-image 1s ease-in-out, box-shadow 1s ease-in-out", // Transición para el fondo y la sombra
+            "background-color 1s ease-in-out, background-image 1s ease-in-out, box-shadow 1s ease-in-out",
           position: "fixed",
           top: 0,
           left: 0,
@@ -115,33 +110,26 @@ function NavBar(props) {
             color="inherit"
             aria-label="home icon"
             edge="start"
-            sx={{ mr: 2 }}
+            sx={{ ml: 3 }}
           >
-            <HomeIcon />
+            <Logo />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            Iglesia
-          </Typography>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="end"
             onClick={handleDrawerToggle}
-            sx={{ ml: "auto", display: { sm: "none" } }}
+            sx={{ ml: "auto", display: { sm: "none" }, border: "solid black" }}
           >
             <MenuIcon />
           </IconButton>
-
           {/* Botones de navegación para pantallas grandes */}
           <Box
             sx={{
               display: { xs: "none", sm: "flex" },
               gap: "15px",
               marginRight: { sm: "20px" },
+              ml: "auto",
             }}
           >
             {navItems.map((item) => (

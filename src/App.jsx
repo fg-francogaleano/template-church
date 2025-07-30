@@ -24,11 +24,11 @@ function App() {
         <Box component="section" id="predicas">
           <Sermons />
         </Box>
-        <Box component="section" id="ofrendar">
-          <Donate />
-        </Box>
         <Box component="section" id="contacto">
           <Contact />
+        </Box>
+        <Box component="section" id="ofrendar">
+          <Donate />
         </Box>
       </Box>
       <Box component="footer">
