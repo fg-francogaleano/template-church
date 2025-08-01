@@ -55,7 +55,9 @@ const DotContainer = styled(Box)({
   padding: "5px 10px", // Padding interno
 });
 
-const Dot = styled(Box)(({ theme, active }) => ({
+const Dot = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "active", // Evita que 'active' se pase al DOM
+})(({ theme, active }) => ({
   width: active ? "25px" : "5px",
   height: "5px",
   borderRadius: active ? "8px" : "30px",

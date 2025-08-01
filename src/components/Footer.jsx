@@ -18,6 +18,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import XIcon from "@mui/icons-material/X";
 import LocationOnIcon from "../icons/LocationOnIcon";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import Logo from "../icons/Logo";
 
 const Footer = () => {
   const [schedulesData, setSchedulesData] = useState(null);
@@ -70,7 +71,7 @@ const Footer = () => {
             <Box
               sx={{ textAlign: { xs: "center", md: "left" }, width: "100%" }}
             >
-              <Typography variant="h6">Puerta de Paz</Typography>
+              <Logo />
               <Typography
                 variant="body2"
                 sx={{ color: "rgba(255,255,255,0.7)" }}

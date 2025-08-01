@@ -119,7 +119,7 @@ function NavBar(props) {
             aria-label="open drawer"
             edge="end"
             onClick={handleDrawerToggle}
-            sx={{ ml: "auto", display: { sm: "none" }, border: "solid black" }}
+            sx={{ ml: "auto", display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
@@ -177,17 +177,29 @@ function NavBar(props) {
           }}
           sx={{
             display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: 240,
+              backgroundColor: "rgba(0, 0, 0, 0.9)", // <--- Aquí se agrega el color de fondo
+            },
           }}
         >
           <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-            <Typography variant="h6" sx={{ my: 2 }}>
-              Navegación
-            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Logo />
+            </Box>
             <List>
               {navItems.map((item) => (
                 <ListItem key={item.name} disablePadding>
-                  <ListItemButton sx={{ textAlign: "center" }} href={item.href}>
+                  <ListItemButton
+                    sx={{ textAlign: "center", color: "white" }}
+                    href={item.href}
+                  >
                     <ListItemText primary={item.name} />
                   </ListItemButton>
                 </ListItem>
