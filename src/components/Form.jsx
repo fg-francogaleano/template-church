@@ -11,6 +11,7 @@ import {
   Alert,
   Stack,
   CircularProgress,
+  Grid,
 } from "@mui/material";
 import validations from "../utils/validations";
 import emailjs from "@emailjs/browser";
@@ -22,6 +23,8 @@ import emailjs from "@emailjs/browser";
 function Form() {
   const initialValues = {
     name: "",
+
+    lastName: "",
     email: "",
     subject: "",
     message: "",
@@ -117,23 +120,45 @@ function Form() {
                 component="form"
                 onSubmit={handleSubmit}
               >
-                {/* NAME */}
-                <TextField
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={values.name}
-                  autoComplete="off"
-                  label="Nombre"
-                  helperText={touched.name && errors.name}
-                  error={touched.name && Boolean(errors.name)}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  variant="filled"
-                  required
-                  fullWidth
-                  margin="normal"
-                />
+                <Grid container spacing={1} sx={{ flexGrow: 1 }}>
+                  <Grid size={{ xs: 12, sm: 6 }}>
+                    {/* NAME */}
+                    <TextField
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={values.name}
+                      autoComplete="off"
+                      label="Nombre"
+                      helperText={touched.name && errors.name}
+                      error={touched.name && Boolean(errors.name)}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      variant="filled"
+                      required
+                      fullWidth
+                      margin="normal"
+                    />
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6 }}>
+                    {/* LAST NAME */}
+                    <TextField
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      value={values.lastName}
+                      label="Apellido"
+                      helperText={touched.lastName && errors.lastName}
+                      error={touched.lastName && Boolean(errors.lastName)}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      variant="filled"
+                      required
+                      fullWidth
+                      margin="normal"
+                    />
+                  </Grid>
+                </Grid>
 
                 {/* EMAIL */}
                 <TextField

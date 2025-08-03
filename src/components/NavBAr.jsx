@@ -85,7 +85,11 @@ function NavBar(props) {
     <>
       <Toolbar
         id="back-to-top-anchor"
-        sx={{ minHeight: "0px !important", height: "0px !important" }}
+        sx={{
+          minHeight: "0px !important",
+          height: "0px !important",
+          zIndex: "1000",
+        }}
       />
 
       <AppBar

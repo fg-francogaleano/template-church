@@ -100,45 +100,47 @@ function Carousel({ images, autoPlay = true, autoPlayInterval = 3000 }) {
   }
 
   return (
-    <Box sx={{ width: "100%", minHeight: "100vh" }}>
-      <CarouselImageWrapper>
-        {/* Botón de navegación anterior */}
-        <NavigationButton onClick={goToPrevious} sx={{ left: 8 }}>
-          <ArrowBackIosNewIcon />
-        </NavigationButton>
+    <>
+      <Box sx={{ width: "100%", minHeight: "100vh" }}>
+        <CarouselImageWrapper>
+          {/* Botón de navegación anterior */}
+          <NavigationButton onClick={goToPrevious} sx={{ left: 8 }}>
+            <ArrowBackIosNewIcon />
+          </NavigationButton>
 
-        {/* Imagen actual del carrusel */}
-        {images.map((image, index) => (
-          <CarouselImage
-            key={index}
-            src={image}
-            alt={`Carousel Image ${index + 1}`}
-            sx={{
-              position: "absolute", // Superpone todas las imágenes
-              opacity: currentIndex === index ? 1 : 0, // Solo la imagen actual es visible
-            }}
-          />
-        ))}
-
-        {/* Botón de navegación siguiente */}
-        <NavigationButton onClick={goToNext} sx={{ right: 8 }}>
-          <ArrowForwardIosIcon />
-        </NavigationButton>
-      </CarouselImageWrapper>
-
-      {/* Indicadores de puntos (dots) */}
-      {images.length > 1 && (
-        <DotContainer>
-          {images.map((_, index) => (
-            <Dot
+          {/* Imagen actual del carrusel */}
+          {images.map((image, index) => (
+            <CarouselImage
               key={index}
-              active={currentIndex === index}
-              onClick={() => setCurrentIndex(index)}
+              src={image}
+              alt={`Carousel Image ${index + 1}`}
+              sx={{
+                position: "absolute", // Superpone todas las imágenes
+                opacity: currentIndex === index ? 1 : 0, // Solo la imagen actual es visible
+              }}
             />
           ))}
-        </DotContainer>
-      )}
-    </Box>
+
+          {/* Botón de navegación siguiente */}
+          <NavigationButton onClick={goToNext} sx={{ right: 8 }}>
+            <ArrowForwardIosIcon />
+          </NavigationButton>
+        </CarouselImageWrapper>
+
+        {/* Indicadores de puntos (dots) */}
+        {images.length > 1 && (
+          <DotContainer>
+            {images.map((_, index) => (
+              <Dot
+                key={index}
+                active={currentIndex === index}
+                onClick={() => setCurrentIndex(index)}
+              />
+            ))}
+          </DotContainer>
+        )}
+      </Box>
+    </>
   );
 }
 

@@ -40,12 +40,30 @@ function Home() {
   }, []);
   return (
     <Box>
-      <Box>
+      <Box sx={{ position: "relative" }}>
         <ImageCarousel
           images={carouselImages}
           autoPlay={true}
           autoPlayInterval={4000}
         />
+      </Box>
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          minHeight: "100vh",
+          zIndex: "999",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "rgba(0, 0, 0, 0.4)",
+        }}
+      >
+        <Typography variant="h2" sx={{ color: "white" }}>
+          Bienvenido
+        </Typography>
       </Box>
     </Box>
   );

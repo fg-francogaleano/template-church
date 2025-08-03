@@ -19,6 +19,24 @@ export default function validations(values) {
     errors.name = "No debe tener menos de 3 carácteres";
   }
 
+  /* LAST NAME */
+  if (!values.lastName) {
+    errors.lastName = "Ingrese un apellido";
+  }
+  if (values.lastName && values.name.length > 30) {
+    errors.lastName = "No debe tener más de 30 carácteres";
+  }
+  if (
+    values.lastName &&
+    values.lastName &&
+    !regexLetters.test(values.lastName)
+  ) {
+    errors.lastName = "No debe contener números ni símbolos";
+  }
+  if (values.lastName && values.lastName.length < 3) {
+    errors.lastName = "No debe tener menos de 3 carácteres";
+  }
+
   /* EMAIL */
   if (!values.email) {
     errors.email = "Ingrese un correo electrónico";
