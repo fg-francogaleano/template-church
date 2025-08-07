@@ -105,7 +105,7 @@ function Form() {
                 borderRadius: "3px",
                 width: "90%",
                 minWidth: { xs: "350px", md: "400px" },
-                maxWidth: { xs: "500px", md: "550px" },
+                maxWidth: { xs: "500px", md: "800px" },
               }}
             >
               <Box
