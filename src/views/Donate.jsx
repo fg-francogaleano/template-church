@@ -17,8 +17,6 @@ import QrCodeIcon from "@mui/icons-material/QrCode";
 import PersonIcon from "@mui/icons-material/Person";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import MuiAlert from "@mui/material/Alert";
-
-// Reemplaza con las rutas correctas de tus imágenes
 import qrImage from "../assets/qrImage.png";
 
 const style = {
@@ -54,17 +52,6 @@ function Donate() {
 
   const handleOpenBank = () => setOpenBank(true);
   const handleCloseBank = () => setOpenBank(false);
-
-  const handleRedirectToContact = () => {
-    // Reemplaza 'contacto' con el ID de la sección de contacto en tu página
-    const contactSection = document.getElementById("contacto");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    } else {
-      // Opcional: si la sección no existe, puedes redirigir a una página de contacto
-      window.location.href = "#contacto";
-    }
-  };
 
   const handleCloseSnackbar = (event, reason) => {
     if (reason === "clickaway") {
@@ -103,8 +90,8 @@ function Donate() {
         container
         spacing={2}
         justifyContent="center"
-        alignItems="stretch"
-        sx={{ flexGrow: 1 }}
+        // alignItems="stretch"
+        flexGrow={1}
       >
         {/* Método 1: Transferencia Bancaria */}
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
@@ -120,10 +107,12 @@ function Donate() {
             <Box>
               <CardHeader
                 avatar={<AccountBalanceIcon color="primary" />}
-                title="Transferencia Bancaria"
-                subheader="Una forma directa de apoyar"
+                title={
+                  <Typography variant="h6">Transferencia Bancaria</Typography>
+                }
+                subheader="Podes enviar tu siembra de forma segura con una transferencia bancaria a nuestra cuenta."
               />
-              <CardContent
+              {/* <CardContent
                 sx={{
                   display: "flex",
                   alignItems: "center",
@@ -134,7 +123,7 @@ function Donate() {
                 <Typography variant="body1" color="">
                   Transferí tu siembra de forma segura desde tu banco.
                 </Typography>
-              </CardContent>
+              </CardContent> */}
             </Box>
             <CardContent
               sx={{
@@ -165,10 +154,10 @@ function Donate() {
             <Box>
               <CardHeader
                 avatar={<QrCodeIcon sx={{ color: "#00a650" }} />}
-                title="Mercado Pago"
-                subheader="Doná de forma segura, fácil y rápida"
+                title={<Typography variant="h6">Mercado Pago</Typography>}
+                subheader="Para ofrendar con Mercado Pago, abrí la aplicación y escaneá el código QR."
               />
-              <CardContent
+              {/* <CardContent
                 sx={{
                   display: "flex",
                   alignItems: "center",
@@ -179,7 +168,7 @@ function Donate() {
                 <Typography variant="body2" color="text.secondary">
                   Abrí la app de Mercado Pago y escaneá.
                 </Typography>
-              </CardContent>
+              </CardContent> */}
             </Box>
 
             <CardContent
@@ -206,7 +195,7 @@ function Donate() {
         </Grid>
 
         {/* Método 3: En Persona */}
-        <Grid size={{ xs: 12, sm: 6, md: 4 }} xs={12}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Card
             raised
             sx={{
@@ -219,10 +208,10 @@ function Donate() {
             <Box>
               <CardHeader
                 avatar={<PersonIcon color="action" />}
-                title="Donación en Persona"
-                subheader="Tu apoyo presencial hace la diferencia"
+                title={<Typography variant="h6">Ofrendá en Persona</Typography>}
+                subheader="Acercate, conocenos y trae tu ofrenda. Nos encantará darte la bienvenida en persona."
               />
-              <CardContent>
+              {/* <CardContent>
                 <Typography variant="body1">
                   Te invitamos a visitarnos en nuestras oficinas para realizar
                   tu donación.
@@ -234,17 +223,18 @@ function Donate() {
                 >
                   Ponte en contacto para coordinar tu visita.
                 </Typography>
-              </CardContent>
+              </CardContent> */}
             </Box>
             <CardContent
               sx={{
+                flexGrow: 1,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <Button variant="outlined" onClick={handleRedirectToContact}>
-                Ir a Contacto
+              <Button variant="outlined" href="#contacto">
+                conocenos
               </Button>
             </CardContent>
           </Card>
@@ -270,15 +260,19 @@ function Donate() {
           >
             <CloseIcon />
           </IconButton>
-          <Typography id="modal-bank-title" variant="h5" component="h2" mb={2}>
-            Datos para Transferencia Bancaria
+          <Typography
+            id="modal-bank-title"
+            variant="h4"
+            component="h2"
+            textAlign="center"
+            mb={2}
+          >
+            Datos bancarios
           </Typography>
           <Box display="flex" justifyContent="space-between" gap={1}>
-            <Typography variant="body1">
+            <Typography variant="body1" fontWeight="bold">
               CBU:{" "}
-              <Typography component="span" fontWeight="bold">
-                1234567890123456789012
-              </Typography>
+              <Typography component="span">1234567890123456789012</Typography>
             </Typography>
             <IconButton
               onClick={() =>
@@ -292,7 +286,9 @@ function Donate() {
             </IconButton>
           </Box>
           <Box display="flex" justifyContent="space-between">
-            <Typography variant="body1">Alias: puertadepaz</Typography>
+            <Typography variant="body1" fontWeight="bold">
+              ALIAS: <Typography component="span">puertadepaz</Typography>{" "}
+            </Typography>
             <IconButton
               onClick={() => handleCopyToClipboard("puertadepaz", "Alias")}
               size="small"
@@ -302,17 +298,18 @@ function Donate() {
               <ContentCopyIcon fontSize="small" />
             </IconButton>
           </Box>
-          <Typography variant="body1" gutterBottom>
-            Beneficiario: Puerta de Paz
+          <Typography variant="body1" fontWeight="bold" gutterBottom>
+            Titular de cuenta:{" "}
+            <Typography component="span">Puerta de Paz</Typography>
           </Typography>
-          <Typography variant="body1" gutterBottom>
-            Cuit: 20-99999999-6
+          <Typography variant="body1" fontWeight="bold" gutterBottom>
+            Cuit: <Typography component="span">20-99999999-6</Typography>
           </Typography>
-          <Typography variant="body1" gutterBottom>
-            Nº de Cuenta: 987654321
+          <Typography variant="body1" fontWeight="bold" gutterBottom>
+            Nº de Cuenta: <Typography component="span">987654321</Typography>
           </Typography>
-          <Typography variant="body1" gutterBottom>
-            Banco: Banco Nacion
+          <Typography variant="body1" fontWeight="bold" gutterBottom>
+            Banco: <Typography component="span">Banco Nacion</Typography>
           </Typography>
         </Box>
       </Modal>

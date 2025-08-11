@@ -171,7 +171,7 @@ function NavBar(props) {
       </AppBar>
 
       {/* Drawer (menú lateral) para dispositivos móviles */}
-      <nav>
+      <Box component="nav" >
         <Drawer
           variant="temporary"
           open={mobileOpen}
@@ -211,7 +211,7 @@ function NavBar(props) {
             </List>
           </Box>
         </Drawer>
-      </nav>
+      </Box>
 
       <ScrollTop {...props}>
         <Button
