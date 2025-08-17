@@ -151,7 +151,7 @@ function NavBar(props) {
                     height: "1px",
                     bottom: 0,
                     left: 0,
-                    backgroundColor: "currentColor",
+                    backgroundColor: "#ba835a",
                     transition: "width 0.4s ease-in-out",
                   },
                   "&:hover::after": {

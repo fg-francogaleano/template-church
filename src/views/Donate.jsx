@@ -12,10 +12,10 @@ import {
   Snackbar,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import QrCodeIcon from "@mui/icons-material/QrCode";
-import PersonIcon from "@mui/icons-material/Person";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import AccountBalanceIcon from "../icons/AccountBalanceIcon";
+import QrCodeIcon from "../icons/QrCodeIcon";
+import PersonIcon from "../icons/PersonIcon";
+import ContentCopyIcon from "../icons/ContentCopyIcon";
 import MuiAlert from "@mui/material/Alert";
 import qrImage from "../assets/qrImage.png";
 
@@ -70,31 +70,41 @@ function Donate() {
   return (
     <Box
       sx={{
-        width: "100%",
+        width: "90%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         p: 3,
-        bgcolor: "#f0f2f5",
+        margin: "auto",
       }}
     >
-      <Typography variant="h3" component="h1" gutterBottom>
-        ¡Apoya nuestra causa!
-      </Typography>
-      <Typography variant="h6" align="center" color="text.secondary" mb={4}>
-        Elige tu método de donación preferido.
-      </Typography>
+      <Box margin="auto" width="80%">
+        <Typography
+          variant="h3"
+          component="h1"
+          textAlign="center"
+          fontWeight="bold "
+          gutterBottom
+        >
+          Ofrendas y Diezmos
+        </Typography>
+        <Typography variant="h6" align="center" color="text.secondary" mb={4}>
+          Tu generosidad nos permite continuar con nuestra misión de servir a la
+          comunidad y extender el amor de Dios. Elige el método que más te
+          convenga.
+        </Typography>
+      </Box>
 
       <Grid
         container
         spacing={2}
         justifyContent="center"
-        // alignItems="stretch"
         flexGrow={1}
+        marginTop={0}
       >
         {/* Método 1: Transferencia Bancaria */}
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Card
             raised
             sx={{
@@ -106,24 +116,12 @@ function Donate() {
           >
             <Box>
               <CardHeader
-                avatar={<AccountBalanceIcon color="primary" />}
+                avatar={<AccountBalanceIcon fontSize="small" />}
                 title={
                   <Typography variant="h6">Transferencia Bancaria</Typography>
                 }
-                subheader="Podes enviar tu siembra de forma segura con una transferencia bancaria a nuestra cuenta."
+                subheader="Realiza tu ofrenda mediante transferencia bancaria."
               />
-              {/* <CardContent
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography variant="body1" color="">
-                  Transferí tu siembra de forma segura desde tu banco.
-                </Typography>
-              </CardContent> */}
             </Box>
             <CardContent
               sx={{
@@ -133,7 +131,7 @@ function Donate() {
                 justifyContent: "center",
               }}
             >
-              <Button variant="contained" onClick={handleOpenBank}>
+              <Button variant="outlined" onClick={handleOpenBank}>
                 Ver Detalles
               </Button>
             </CardContent>
@@ -141,7 +139,7 @@ function Donate() {
         </Grid>
 
         {/* Método 2: Mercado Pago */}
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Card
             raised
             sx={{
@@ -153,22 +151,10 @@ function Donate() {
           >
             <Box>
               <CardHeader
-                avatar={<QrCodeIcon sx={{ color: "#00a650" }} />}
+                avatar={<QrCodeIcon fontSize="small" />}
                 title={<Typography variant="h6">Mercado Pago</Typography>}
-                subheader="Para ofrendar con Mercado Pago, abrí la aplicación y escaneá el código QR."
+                subheader="Escanea el código QR para ofrendar digitalmente."
               />
-              {/* <CardContent
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography variant="body2" color="text.secondary">
-                  Abrí la app de Mercado Pago y escaneá.
-                </Typography>
-              </CardContent> */}
             </Box>
 
             <CardContent
@@ -180,13 +166,9 @@ function Donate() {
               }}
             >
               <Button
-                variant="contained"
+                variant="outlined"
+                sx={{ borderRadius: "1px" }}
                 onClick={handleOpenMp}
-                sx={{
-                  backgroundColor: "#00a650",
-                  "&:hover": { backgroundColor: "#008f44" },
-                  color: "white",
-                }}
               >
                 Ver Código QR
               </Button>
@@ -195,7 +177,7 @@ function Donate() {
         </Grid>
 
         {/* Método 3: En Persona */}
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Card
             raised
             sx={{
@@ -209,21 +191,8 @@ function Donate() {
               <CardHeader
                 avatar={<PersonIcon color="action" />}
                 title={<Typography variant="h6">Ofrendá en Persona</Typography>}
-                subheader="Acercate, conocenos y trae tu ofrenda. Nos encantará darte la bienvenida en persona."
+                subheader="Entrega tu ofrenda durante nuestras celebraciones."
               />
-              {/* <CardContent>
-                <Typography variant="body1">
-                  Te invitamos a visitarnos en nuestras oficinas para realizar
-                  tu donación.
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{ mt: 2 }}
-                >
-                  Ponte en contacto para coordinar tu visita.
-                </Typography>
-              </CardContent> */}
             </Box>
             <CardContent
               sx={{
@@ -241,13 +210,55 @@ function Donate() {
         </Grid>
       </Grid>
 
+      <Box sx={{ textAlign: 'center', py: 4, mt:4 }}> 
+      <Box
+        sx={{
+          outline:`solid 1px grey`,
+          p: 4, 
+          maxWidth: { xs: '90%', sm: 500, md: 900 },
+          mx: 'auto', 
+          borderRadius:"1px"
+        }}
+      >
+        <Typography
+          variant="h5" 
+          component="h4"
+          sx={{ fontWeight: 'bold', mb: 2 }} 
+        >
+          Palabra de Gratitud
+        </Typography>
+        <Typography variant="body1" color="text.secondary" fontStyle="italic" sx={{ mb: 2 }}> 
+          "Cada uno dé como propuso en su corazón: no con tristeza, ni por necesidad,
+          porque Dios ama al dador alegre." - 2 Corintios 9:7
+        </Typography>
+        <Typography variant="body2" color="text.secondary"> 
+          Todas las ofrendas son voluntarias y se utilizan para el mantenimiento del templo,
+          programas comunitarios y obras de caridad.
+        </Typography>
+      </Box>
+    </Box>
+
       {/* Modal para Transferencia Bancaria */}
       <Modal
         open={openBank}
         onClose={handleCloseBank}
         aria-labelledby="modal-bank-title"
       >
-        <Box sx={bankDetailsStyle}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: { xs: "90%", sm: "450px" },
+            bgcolor: "background.paper",
+            borderRadius: "3px",
+            boxShadow: 24,
+            p: 4,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <IconButton
             aria-label="close"
             onClick={handleCloseBank}
@@ -255,64 +266,143 @@ function Donate() {
               position: "absolute",
               right: 8,
               top: 8,
-              color: (theme) => theme.palette.grey[500],
+              color: "grey.700",
             }}
           >
-            <CloseIcon />
+            <CloseIcon fontSize="small" />
           </IconButton>
+          <Typography variant="h5" component="span" textAlign="center">
+            Transferencia Bancaria
+          </Typography>
+          <Typography
+            variant="caption"
+            textAlign="center"
+            gutterBottom
+            color="text.secondary"
+          >
+            Información para realizar tu ofrenda
+          </Typography>
           <Typography
             id="modal-bank-title"
-            variant="h4"
-            component="h2"
-            textAlign="center"
-            mb={2}
+            variant="h6"
+            textAlign="start"
+            color="text.primary"
+            gutterBottom
           >
-            Datos bancarios
+            Datos Bancarios
           </Typography>
-          <Box display="flex" justifyContent="space-between" gap={1}>
-            <Typography variant="body1" fontWeight="bold">
-              CBU:{" "}
-              <Typography component="span">1234567890123456789012</Typography>
-            </Typography>
-            <IconButton
-              onClick={() =>
-                handleCopyToClipboard("1234567890123456789012", "CBU")
-              }
-              size="small"
-              sx={{ mb: 1 }}
-              aria-label="copiar CBU"
+
+          <Box
+            sx={{
+              background: (theme) => theme.palette.grey[200],
+              borderRadius: "3px",
+              padding: "30px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "15px",
+            }}
+          >
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
             >
-              <ContentCopyIcon fontSize="small" />
-            </IconButton>
-          </Box>
-          <Box display="flex" justifyContent="space-between">
-            <Typography variant="body1" fontWeight="bold">
-              ALIAS: <Typography component="span">puertadepaz</Typography>{" "}
-            </Typography>
-            <IconButton
-              onClick={() => handleCopyToClipboard("puertadepaz", "Alias")}
-              size="small"
-              sx={{ ml: 1 }}
-              aria-label="copiar Alias"
+              <Typography variant="body2" color="text.secondary">
+                Banco:
+              </Typography>
+              <Box display="flex" alignItems="center" gap={1}>
+                <Typography variant="body1">Banco Nacional</Typography>
+                <IconButton
+                  size="small"
+                  onClick={() =>
+                    handleCopyToClipboard("Banco Nacional", "Banco")
+                  }
+                  aria-label="copiar banco"
+                >
+                  <ContentCopyIcon fontSize="small" />
+                </IconButton>
+              </Box>
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
             >
-              <ContentCopyIcon fontSize="small" />
-            </IconButton>
+              <Typography variant="body2" color="text.secondary">
+                Cuenta:
+              </Typography>
+              <Box display="flex" alignItems="center" gap={1}>
+                <Typography variant="body1" fontWeight="bold">
+                  1234567890
+                </Typography>
+                <IconButton
+                  size="small"
+                  onClick={() =>
+                    handleCopyToClipboard("1234567890", "Número de cuenta")
+                  }
+                  aria-label="copiar número de cuenta"
+                >
+                  <ContentCopyIcon fontSize="small" />
+                </IconButton>
+              </Box>
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                fontWeight="medium"
+              >
+                CBU:
+              </Typography>
+              <Box display="flex" alignItems="center" gap={1}>
+                <Typography variant="body1" fontWeight="bold">
+                  1234567890123456789012
+                </Typography>
+                <IconButton
+                  size="small"
+                  onClick={() =>
+                    handleCopyToClipboard("1234567890123456789012", "CBU")
+                  }
+                  aria-label="copiar CBU"
+                >
+                  <ContentCopyIcon fontSize="small" />
+                </IconButton>
+              </Box>
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography variant="body2" color="text.secondary">
+                Titular:
+              </Typography>
+              <Box display="flex" alignItems="center" gap={1}>
+                <Typography variant="body1" fontWeight="medium">
+                  Iglesia Nueva Esperanza
+                </Typography>
+                <IconButton
+                  size="small"
+                  onClick={() =>
+                    handleCopyToClipboard("Iglesia Nueva Esperanza", "Titular")
+                  }
+                  aria-label="copiar titular"
+                >
+                  <ContentCopyIcon fontSize="small" />
+                </IconButton>
+              </Box>
+            </Box>
           </Box>
-          <Typography variant="body1" fontWeight="bold" gutterBottom>
-            Titular de cuenta:{" "}
-            <Typography component="span">Puerta de Paz</Typography>
-          </Typography>
-          <Typography variant="body1" fontWeight="bold" gutterBottom>
-            Cuit: <Typography component="span">20-99999999-6</Typography>
-          </Typography>
-          <Typography variant="body1" fontWeight="bold" gutterBottom>
-            Nº de Cuenta: <Typography component="span">987654321</Typography>
-          </Typography>
-          <Typography variant="body1" fontWeight="bold" gutterBottom>
-            Banco: <Typography component="span">Banco Nacion</Typography>
+          <Typography variant="caption" color="text.secondary" mt={2}>
+            Por favor, incluye tu nombre en el concepto de la transferencia.
           </Typography>
         </Box>
       </Modal>
+
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}
@@ -332,36 +422,60 @@ function Donate() {
       <Modal
         open={openMp}
         onClose={handleCloseMp}
-        aria-labelledby="modal-qr-title"
-        aria-describedby="modal-qr-description"
+        aria-labelledby="qr-modal-title"
+        aria-describedby="qr-modal-description"
       >
         <Box sx={style}>
-          <IconButton
-            aria-label="close"
-            onClick={handleCloseMp}
-            sx={{
-              position: "absolute",
-              right: 8,
-              top: 8,
-              color: (theme) => theme.palette.grey[500],
-            }}
+          <Box sx={{ textAlign: "center", mb: 2 }}>
+            <IconButton
+              aria-label="close"
+              onClick={handleCloseMp}
+              sx={{
+                position: "absolute",
+                right: 8,
+                top: 8,
+                color: "grey.700",
+              }}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+            <Typography
+              id="qr-modal-title"
+              variant="h6"
+              component="h4"
+              sx={{ color: "primary.main" }}
+            >
+              Código QR
+            </Typography>
+            <Typography
+              id="qr-modal-description"
+              variant="body2"
+              color="text.secondary"
+            >
+              Escaneá este código con la app de Mercado Pago
+            </Typography>
+          </Box>
+
+          <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+            <Box
+              component="img"
+              src={qrImage}
+              alt="Código QR Mercado Pago"
+              sx={{
+                width: 256, // Equivalente a w-64
+                height: 256, // Equivalente a h-64
+                border: "1px solid #e0e0e0", // Equivalente a border
+                borderRadius: "8px", // Equivalente a rounded-lg
+              }}
+            />
+          </Box>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ textAlign: "center" }}
           >
-            <CloseIcon />
-          </IconButton>
-          <Typography id="modal-qr-title" variant="h5" component="h2" mb={2}>
-            Escanea para Donar con Mercado Pago
+            También puedes buscar: iglesia.nuevaesperanza@gmail.com
           </Typography>
-          <Box
-            component="img"
-            src={qrImage}
-            alt="Código QR de Mercado Pago"
-            sx={{
-              width: { xs: "100%", sm: 250 },
-              height: "auto",
-              alignSelf: "center",
-              margin: "auto",
-            }}
-          />
         </Box>
       </Modal>
     </Box>

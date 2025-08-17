@@ -60,20 +60,21 @@ function Contact() {
               <Form />
             </Box>
             <Box sx={{ p: 2 }}>
-              <Typography variant="h4" gutterBottom>
+              {/* <Typography variant="h4" gutterBottom>
                 Ubicación
               </Typography>
               <Typography variant="body1" paragraph>
                 Blas Parera 1206, Castelar, Buenos Aires
-              </Typography>
+              </Typography> */}
               <Box
                 sx={{
-                  width: "100%",
+                  width: "85%",
                   height: 300,
                   bgcolor: "grey.300",
-                  mb: 4,
+                  mb: 8,
                   overflow: "hidden",
                   borderRadius: 1,
+                  margin:"auto"
                 }}
               >
                 <iframe
