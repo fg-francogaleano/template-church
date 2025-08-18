@@ -250,13 +250,14 @@ function Donate() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: { xs: "90%", sm: "450px" },
+            width: { xs: "95%", sm: "450px" },
             bgcolor: "background.paper",
             borderRadius: "3px",
             boxShadow: 24,
-            p: 4,
+            p: { xs: 2, sm: 4 },
             display: "flex",
             flexDirection: "column",
+            border:"solid 1px red"
           }}
         >
           <IconButton
@@ -296,10 +297,10 @@ function Donate() {
             sx={{
               background: (theme) => theme.palette.grey[200],
               borderRadius: "3px",
-              padding: "30px",
+              padding:{xs: 2, sm: 4},
               display: "flex",
               flexDirection: "column",
-              gap: "15px",
+              gap: 3,
             }}
           >
             <Box
@@ -368,6 +369,33 @@ function Donate() {
                     handleCopyToClipboard("1234567890123456789012", "CBU")
                   }
                   aria-label="copiar CBU"
+                >
+                  <ContentCopyIcon fontSize="small" />
+                </IconButton>
+              </Box>
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                fontWeight="medium"
+              >
+                Alias:
+              </Typography>
+              <Box display="flex" alignItems="center" gap={1}>
+                <Typography variant="body1" fontWeight="bold">
+                  puertadepaz
+                </Typography>
+                <IconButton
+                  size="small"
+                  onClick={() =>
+                    handleCopyToClipboard("1234567890123456789012", "Alias")
+                  }
+                  aria-label="copiar Alias"
                 >
                   <ContentCopyIcon fontSize="small" />
                 </IconButton>
