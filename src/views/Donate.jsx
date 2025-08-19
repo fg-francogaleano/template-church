@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -18,6 +18,8 @@ import PersonIcon from "../icons/PersonIcon";
 import ContentCopyIcon from "../icons/ContentCopyIcon";
 import MuiAlert from "@mui/material/Alert";
 import qrImage from "../assets/qrImage.png";
+import { sanityClient } from "../../lib/sanityClient";
+import imageUrlBuilder from "@sanity/image-url";
 
 const style = {
   position: "absolute",
@@ -46,6 +48,33 @@ function Donate() {
   const [openBank, setOpenBank] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [bankDetail, setBankDetail] = useState(null);
+  const [mpDetail, setMpDetail] = useState(null);
+
+  const builder = imageUrlBuilder(sanityClient);
+  function urlFor(source) {
+    return builder.image(source);
+  }
+
+  useEffect(() => {
+    // Obtener datos bancarios
+    sanityClient
+      .fetch(`*[_type == "bankDetail"][0]`)
+      .then((data) => setBankDetail(data)
+      )
+      .catch((err) => console.error(err));
+
+    // Obtener datos de MercadoPago
+    sanityClient
+      .fetch(`*[_type == "MercadoPago"][0]`)
+      .then((data) => {
+         const url = urlFor(data.qrImage)
+         setMpDetail(url)
+      }
+      
+      )
+      .catch((err) => console.error(err));
+  }, []);
 
   const handleOpenMp = () => setOpenMp(true);
   const handleCloseMp = () => setOpenMp(false);
@@ -66,6 +95,7 @@ function Donate() {
       setSnackbarOpen(true);
     });
   };
+  if (!bankDetail && !mpDetail) return <p>Cargando...</p>;
 
   return (
     <Box
@@ -210,33 +240,38 @@ function Donate() {
         </Grid>
       </Grid>
 
-      <Box sx={{ textAlign: 'center', py: 4, mt:4 }}> 
-      <Box
-        sx={{
-          outline:`solid 1px grey`,
-          p: 4, 
-          maxWidth: { xs: '90%', sm: 500, md: 900 },
-          mx: 'auto', 
-          borderRadius:"1px"
-        }}
-      >
-        <Typography
-          variant="h5" 
-          component="h4"
-          sx={{ fontWeight: 'bold', mb: 2 }} 
+      <Box sx={{ textAlign: "center", py: 4, mt: 4 }}>
+        <Box
+          sx={{
+            outline: `solid 1px grey`,
+            p: 4,
+            maxWidth: { xs: "90%", sm: 500, md: 900 },
+            mx: "auto",
+            borderRadius: "1px",
+          }}
         >
-          Palabra de Gratitud
-        </Typography>
-        <Typography variant="body1" color="text.secondary" fontStyle="italic" sx={{ mb: 2 }}> 
-          "Cada uno dé como propuso en su corazón: no con tristeza, ni por necesidad,
-          porque Dios ama al dador alegre." - 2 Corintios 9:7
-        </Typography>
-        <Typography variant="body2" color="text.secondary"> 
-          Todas las ofrendas son voluntarias y se utilizan para el mantenimiento del templo,
-          programas comunitarios y obras de caridad.
-        </Typography>
+          <Typography
+            variant="h5"
+            component="h4"
+            sx={{ fontWeight: "bold", mb: 2 }}
+          >
+            Palabra de Gratitud
+          </Typography>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            fontStyle="italic"
+            sx={{ mb: 2 }}
+          >
+            "Cada uno dé como propuso en su corazón: no con tristeza, ni por
+            necesidad, porque Dios ama al dador alegre." - 2 Corintios 9:7
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Todas las ofrendas son voluntarias y se utilizan para el
+            mantenimiento del templo, programas comunitarios y obras de caridad.
+          </Typography>
+        </Box>
       </Box>
-    </Box>
 
       {/* Modal para Transferencia Bancaria */}
       <Modal
@@ -257,7 +292,7 @@ function Donate() {
             p: { xs: 2, sm: 4 },
             display: "flex",
             flexDirection: "column",
-            border:"solid 1px red"
+            border: "solid 1px red",
           }}
         >
           <IconButton
@@ -297,7 +332,7 @@ function Donate() {
             sx={{
               background: (theme) => theme.palette.grey[200],
               borderRadius: "3px",
-              padding:{xs: 2, sm: 4},
+              padding: { xs: 2, sm: 4 },
               display: "flex",
               flexDirection: "column",
               gap: 3,
@@ -312,7 +347,7 @@ function Donate() {
                 Banco:
               </Typography>
               <Box display="flex" alignItems="center" gap={1}>
-                <Typography variant="body1">Banco Nacional</Typography>
+                <Typography variant="body1">{bankDetail.bank}</Typography>
                 <IconButton
                   size="small"
                   onClick={() =>
@@ -334,7 +369,7 @@ function Donate() {
               </Typography>
               <Box display="flex" alignItems="center" gap={1}>
                 <Typography variant="body1" fontWeight="bold">
-                  1234567890
+                  {bankDetail.accountNumber}
                 </Typography>
                 <IconButton
                   size="small"
@@ -361,7 +396,7 @@ function Donate() {
               </Typography>
               <Box display="flex" alignItems="center" gap={1}>
                 <Typography variant="body1" fontWeight="bold">
-                  1234567890123456789012
+                  {bankDetail.cbu}
                 </Typography>
                 <IconButton
                   size="small"
@@ -388,7 +423,7 @@ function Donate() {
               </Typography>
               <Box display="flex" alignItems="center" gap={1}>
                 <Typography variant="body1" fontWeight="bold">
-                  puertadepaz
+                  {bankDetail.alias}
                 </Typography>
                 <IconButton
                   size="small"
@@ -411,7 +446,7 @@ function Donate() {
               </Typography>
               <Box display="flex" alignItems="center" gap={1}>
                 <Typography variant="body1" fontWeight="medium">
-                  Iglesia Nueva Esperanza
+                  {bankDetail.holder}
                 </Typography>
                 <IconButton
                   size="small"
@@ -485,17 +520,19 @@ function Donate() {
           </Box>
 
           <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
-            <Box
-              component="img"
-              src={qrImage}
-              alt="Código QR Mercado Pago"
-              sx={{
-                width: 256, // Equivalente a w-64
-                height: 256, // Equivalente a h-64
-                border: "1px solid #e0e0e0", // Equivalente a border
-                borderRadius: "8px", // Equivalente a rounded-lg
-              }}
-            />
+            {mpDetail && (
+              <Box
+                component="img"
+                src={mpDetail}
+                alt="Código QR Mercado Pago"
+                sx={{
+                  width: 256,
+                  height: 256,
+                  border: "1px solid #e0e0e0",
+                  borderRadius: "8px",
+                }}
+              />
+            )}
           </Box>
           <Typography
             variant="caption"
