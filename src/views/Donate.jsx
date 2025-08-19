@@ -60,19 +60,16 @@ function Donate() {
     // Obtener datos bancarios
     sanityClient
       .fetch(`*[_type == "bankDetail"][0]`)
-      .then((data) => setBankDetail(data)
-      )
+      .then((data) => setBankDetail(data))
       .catch((err) => console.error(err));
 
     // Obtener datos de MercadoPago
     sanityClient
       .fetch(`*[_type == "MercadoPago"][0]`)
       .then((data) => {
-         const url = urlFor(data.qrImage)
-         setMpDetail(url)
-      }
-      
-      )
+        const url = urlFor(data.qrImage);
+        setMpDetail(url);
+      })
       .catch((err) => console.error(err));
   }, []);
 
@@ -100,7 +97,7 @@ function Donate() {
   return (
     <Box
       sx={{
-        width: "90%",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -109,17 +106,18 @@ function Donate() {
         margin: "auto",
       }}
     >
-      <Box margin="auto" width="80%">
+      <Box margin="auto" width={{ xs: "100%", md: "70%" }}>
         <Typography
           variant="h3"
-          component="h1"
+          component="h4"
           textAlign="center"
           fontWeight="bold "
           gutterBottom
+          marginTop={6}
         >
           Ofrendas y Diezmos
         </Typography>
-        <Typography variant="h6" align="center" color="text.secondary" mb={4}>
+        <Typography align="center" fontSize={{xs:"16px", md:"18px"}} color="text.secondary" mb={4}>
           Tu generosidad nos permite continuar con nuestra misión de servir a la
           comunidad y extender el amor de Dios. Elige el método que más te
           convenga.
@@ -128,10 +126,10 @@ function Donate() {
 
       <Grid
         container
-        spacing={2}
+        spacing={3}
         justifyContent="center"
         flexGrow={1}
-        marginTop={0}
+        marginTop={2}
       >
         {/* Método 1: Transferencia Bancaria */}
         <Grid size={{ xs: 12, md: 4 }}>
@@ -243,11 +241,11 @@ function Donate() {
       <Box sx={{ textAlign: "center", py: 4, mt: 4 }}>
         <Box
           sx={{
-            outline: `solid 1px grey`,
+            background: (theme) => theme.palette.grey[300],
+            borderRadius: "5px",
             p: 4,
-            maxWidth: { xs: "90%", sm: 500, md: 900 },
+            maxWidth: { xs: "100%", sm: 500, md: 900 },
             mx: "auto",
-            borderRadius: "1px",
           }}
         >
           <Typography
@@ -292,7 +290,6 @@ function Donate() {
             p: { xs: 2, sm: 4 },
             display: "flex",
             flexDirection: "column",
-            border: "solid 1px red",
           }}
         >
           <IconButton
@@ -368,7 +365,7 @@ function Donate() {
                 Cuenta:
               </Typography>
               <Box display="flex" alignItems="center" gap={1}>
-                <Typography variant="body1" fontWeight="bold">
+                <Typography variant="body1">
                   {bankDetail.accountNumber}
                 </Typography>
                 <IconButton
@@ -395,7 +392,7 @@ function Donate() {
                 CBU:
               </Typography>
               <Box display="flex" alignItems="center" gap={1}>
-                <Typography variant="body1" fontWeight="bold">
+                <Typography variant="body1" fontWeight="semibold">
                   {bankDetail.cbu}
                 </Typography>
                 <IconButton
@@ -422,9 +419,7 @@ function Donate() {
                 Alias:
               </Typography>
               <Box display="flex" alignItems="center" gap={1}>
-                <Typography variant="body1" fontWeight="bold">
-                  {bankDetail.alias}
-                </Typography>
+                <Typography variant="body1">{bankDetail.alias}</Typography>
                 <IconButton
                   size="small"
                   onClick={() =>
