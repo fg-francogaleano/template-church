@@ -66,9 +66,9 @@ function Donate() {
     // Obtener datos de MercadoPago
     sanityClient
       .fetch(`*[_type == "MercadoPago"][0]`)
-      .then((data) => {
+      .then((data) => {        
         const url = urlFor(data.qrImage);
-        setMpDetail(url);
+        setMpDetail({url, email:data.mpEmail});
       })
       .catch((err) => console.error(err));
   }, []);
@@ -518,7 +518,7 @@ function Donate() {
             {mpDetail && (
               <Box
                 component="img"
-                src={mpDetail}
+                src={mpDetail.url}
                 alt="Código QR Mercado Pago"
                 sx={{
                   width: 256,
@@ -534,7 +534,7 @@ function Donate() {
             color="text.secondary"
             sx={{ textAlign: "center" }}
           >
-            También puedes buscar: iglesia.nuevaesperanza@gmail.com
+            También puedes buscar: {mpDetail.email}
           </Typography>
         </Box>
       </Modal>
