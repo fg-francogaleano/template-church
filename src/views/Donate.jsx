@@ -17,7 +17,6 @@ import QrCodeIcon from "../icons/QrCodeIcon";
 import PersonIcon from "../icons/PersonIcon";
 import ContentCopyIcon from "../icons/ContentCopyIcon";
 import MuiAlert from "@mui/material/Alert";
-import qrImage from "../assets/qrImage.png";
 import { sanityClient } from "../../lib/sanityClient";
 import imageUrlBuilder from "@sanity/image-url";
 
@@ -115,7 +114,7 @@ function Donate() {
           gutterBottom
           marginTop={6}
         >
-          Ofrendas y Diezmos
+          Generosidad
         </Typography>
         <Typography align="center" fontSize={{xs:"16px", md:"18px"}} color="text.secondary" mb={4}>
           Tu generosidad nos permite continuar con nuestra misión de servir a la
@@ -244,7 +243,7 @@ function Donate() {
             background: (theme) => theme.palette.grey[300],
             borderRadius: "5px",
             p: 4,
-            maxWidth: { xs: "100%", sm: 500, md: 900 },
+            // maxWidth: { xs: "100%", sm: 500, md: 900 },
             mx: "auto",
           }}
         >

@@ -18,9 +18,9 @@ import FacebookIcon from "../icons/FacebookIcon";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import XIcon from "@mui/icons-material/X";
 import TikTokIcon from "../icons/TiktokIcon";
-import EmailIcon from "@mui/icons-material/Email";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import LocationOnIcon from "../icons/LocationOnIcon";
 
 function Contact() {
   const [redes, setRedes] = useState({});
@@ -81,7 +81,7 @@ function Contact() {
           </Typography>
         </Box>
 
-        <Grid container spacing={4} flexGrow={1} mt={2} width={"100%"}>
+        <Grid container spacing={6} flexGrow={1} mt={2} width={"100%"}>
           {/* Grid Izquierdo: Información de Contacto */}
           <Grid size={{ xs: 12, md: 6 }}>
             <Box>
@@ -110,7 +110,7 @@ function Contact() {
                 </Card>
                 <Card>
                   <CardHeader
-                    avatar={<EmailIcon color="primary" />}
+                    avatar={<MailOutlineIcon fontSize="small" />}
                     title={<Typography variant="h6">Email</Typography>}
                     subheader="puertadepaz@gmail.com"
                   />
