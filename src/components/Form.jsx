@@ -23,7 +23,6 @@ import emailjs from "@emailjs/browser";
 function Form() {
   const initialValues = {
     name: "",
-
     lastName: "",
     email: "",
     subject: "",
@@ -74,7 +73,7 @@ function Form() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", }}>
       <Formik
         initialValues={initialValues}
         validate={(values) => validations(values)}
@@ -101,18 +100,14 @@ function Form() {
           >
             <Box
               sx={{
-                margin: "auto",
                 borderRadius: "3px",
-                width: "90%",
-                minWidth: { xs: "350px", md: "400px" },
-                maxWidth: { xs: "500px", md: "800px" },
+                width: "100%",          
               }}
             >
               <Box
                 sx={{
                   height: "100%",
                   margin: "auto",
-                  padding: "20px",
                   display: "flex",
                   flexDirection: "column",
                 }}

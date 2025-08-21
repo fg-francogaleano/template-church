@@ -109,7 +109,7 @@ function Donate() {
       <Box margin="auto" width={{ xs: "100%", md: "70%" }}>
         <Typography
           variant="h3"
-          component="h4"
+          component="h1"
           textAlign="center"
           fontWeight="bold "
           gutterBottom
@@ -126,10 +126,10 @@ function Donate() {
 
       <Grid
         container
-        spacing={3}
-        justifyContent="center"
+        spacing={3}        
         flexGrow={1}
-        marginTop={2}
+        mt={2}
+        justifyContent="center"
       >
         {/* Método 1: Transferencia Bancaria */}
         <Grid size={{ xs: 12, md: 4 }}>
