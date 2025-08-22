@@ -45,7 +45,6 @@ function Contact() {
     fetchInfo();
   }, []);
 
-  console.log(info);
   if (!info) return <Typography>Cargando...</Typography>;
   
 
@@ -178,6 +177,8 @@ function Contact() {
             <Form />
           </Grid>
         </Grid>
+
+        <Box sx={{ width: "100%", height: 300, bgcolor: "grey.300", mt: 8, overflow: "hidden", borderRadius: 1, }} > <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.411641042557!2d-58.64756598476149!3d-34.61315188046187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbee5c546e8c7%3A0xc3b446f2e245b63!2sBlas%20Parera%201206%2C%20B1712GUD%20Castelar%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1628178123456!5m2!1ses-419!2sar" width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Ubicación de la iglesia" ></iframe> </Box>
       </Box>
     </>
   );
