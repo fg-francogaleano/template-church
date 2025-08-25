@@ -143,7 +143,7 @@ function Donate() {
           >
             <Box>
               <CardHeader
-                avatar={<AccountBalanceIcon fontSize="small" />}
+                avatar={<AccountBalanceIcon fontSize="small" color="grey" />}
                 title={
                   <Typography variant="h6">Transferencia Bancaria</Typography>
                 }
@@ -178,7 +178,7 @@ function Donate() {
           >
             <Box>
               <CardHeader
-                avatar={<QrCodeIcon fontSize="small" />}
+                avatar={<QrCodeIcon fontSize="small" color="grey" />}
                 title={<Typography variant="h6">Mercado Pago</Typography>}
                 subheader="Escanea el código QR para ofrendar digitalmente."
               />
@@ -216,7 +216,7 @@ function Donate() {
           >
             <Box>
               <CardHeader
-                avatar={<PersonIcon color="action" />}
+                avatar={<PersonIcon color="grey"  />}
                 title={<Typography variant="h6">Ofrendá en Persona</Typography>}
                 subheader="Entrega tu ofrenda durante nuestras celebraciones."
               />
@@ -347,7 +347,7 @@ function Donate() {
                 <IconButton
                   size="small"
                   onClick={() =>
-                    handleCopyToClipboard("Banco Nacional", "Banco")
+                    handleCopyToClipboard(bankDetail.bank, "Banco")
                   }
                   aria-label="copiar banco"
                 >
@@ -370,7 +370,7 @@ function Donate() {
                 <IconButton
                   size="small"
                   onClick={() =>
-                    handleCopyToClipboard("1234567890", "Número de cuenta")
+                    handleCopyToClipboard(bankDetail.accountNumber, "Número de cuenta")
                   }
                   aria-label="copiar número de cuenta"
                 >
@@ -397,7 +397,7 @@ function Donate() {
                 <IconButton
                   size="small"
                   onClick={() =>
-                    handleCopyToClipboard("1234567890123456789012", "CBU")
+                    handleCopyToClipboard(bankDetail.cbu, "CBU")
                   }
                   aria-label="copiar CBU"
                 >
@@ -422,7 +422,7 @@ function Donate() {
                 <IconButton
                   size="small"
                   onClick={() =>
-                    handleCopyToClipboard("1234567890123456789012", "Alias")
+                    handleCopyToClipboard(bankDetail.alias, "Alias")
                   }
                   aria-label="copiar Alias"
                 >
@@ -445,7 +445,7 @@ function Donate() {
                 <IconButton
                   size="small"
                   onClick={() =>
-                    handleCopyToClipboard("Iglesia Nueva Esperanza", "Titular")
+                    handleCopyToClipboard(bankDetail.holder, "Titular")
                   }
                   aria-label="copiar titular"
                 >

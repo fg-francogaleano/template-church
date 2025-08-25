@@ -1,6 +1,6 @@
 import { useTheme } from '@mui/material';
 
-function PersonIcon({ fontSize = "medium" }) {
+function PersonIcon({ fontSize = "medium", color }) {
     const theme = useTheme();
   const iconSizes = {
     small: "18px",
@@ -8,7 +8,7 @@ function PersonIcon({ fontSize = "medium" }) {
     large: "32px",
   };
   const finalSize = iconSizes[fontSize] || iconSizes.medium;
-  return <i className="bi bi-person" style={{ fontSize: finalSize, color:"grey" }}></i>;
+  return <i className="bi bi-person" style={{ fontSize: finalSize, color }}></i>;
 }
 
 export default PersonIcon;

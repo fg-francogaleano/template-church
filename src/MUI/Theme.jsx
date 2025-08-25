@@ -8,6 +8,17 @@ const theme = createTheme({
     mode: 'light',
     primary: {
       main: '#000000',
+      light: '#434343',
+      dark: '#262626',
+      800: '#262626',
+      700: '#434343',
+      600: '#555555',
+      500: '#7b7b7b',
+      400: '#9d9d9d',
+      300: '#c4c4c4',
+      200: '#d9d9d9',
+      100: '#e9e9e9',
+      50:  '#f5f5f5'
     },
     secondary: {
       main: '#ba835a',

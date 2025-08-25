@@ -10,24 +10,30 @@ import {
   ListItem,
   Link,
 } from "@mui/material";
-import InstagramIcon from "@mui/icons-material/Instagram";
+import { useTheme } from "@mui/material/styles";
+import InstagramIcon from "../icons/InstagramIcon";
 import FacebookIcon from "../icons/FacebookIcon";
-import YouTubeIcon from "@mui/icons-material/YouTube";
+import YouTubeIcon from "../icons/YouTubeIcon";
 import TikTokIcon from "../icons/TiktokIcon";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import XIcon from "@mui/icons-material/X";
 import LocationOnIcon from "../icons/LocationOnIcon";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import SpotifyIcon from "../icons/SpotifyIcon";
 import Logo from "../icons/Logo";
 
 const Footer = () => {
   const [schedulesData, setSchedulesData] = useState(null);
   const [contactData, setContactData] = useState(null);
 
+  const theme = useTheme();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const contactQuery = '*[_type == "contact"][0]';
+        const contactQuery = `*[_type == "contact"][0]{
+          numero, calle, localidad, provincia, whatsapp, email, redes
+        }`;
         const schedulesQuery = '*[_type == "schedules"][0]';
 
         const [schedulesResult, contactResult] = await Promise.all([
@@ -52,99 +58,81 @@ const Footer = () => {
   }
 
   // Desestructuración segura: solo si los datos están presentes
-  const { telefono, email, calle, numero, localidad, provincia, redes } =
+  const { whatsapp, email, calle, numero, localidad, provincia, redes } =
     contactData || {}; // Usamos un objeto vacío por defecto para evitar errores si contactData es null/undefined
   const { horarios } = schedulesData || {}; // Igual aquí
+  console.log(contactData);
 
   return (
     <Box
       sx={{
-        backgroundColor: "#1c1c1c",
+        backgroundColor: "#000000",
         color: "#ffffff",
         padding: "10px 0 5px 0px",
+        // Aquí se aplica el clip-path para el triángulo en la parte superior
+        clipPath: "polygon(0 3vw, 50% 0, 100% 3vw, 100% 100%, 0 100%)",
       }}
     >
-      <Container maxWidth="lg">
-        <Grid container spacing={4} justifyContent="space-between">
+      <Container maxWidth="lg" sx={{ marginTop: "20px" }}>
+        <Grid container spacing={4} mt={5} justifyContent="space-between">
           {/* Redes Sociales */}
           <Grid sx={{ width: { xs: "100%", md: "auto" } }}>
             <Box
               sx={{ textAlign: { xs: "center", md: "left" }, width: "100%" }}
             >
-              <Logo />
-              <Typography
-                variant="body2"
-                sx={{ color: "rgba(255,255,255,0.7)" }}
-              >
-                Seguinos en nuestras redes.
+              <Typography variant="h6" color={theme.palette.primary[100]}>
+                VISITÁ NUESTRAS REDES
               </Typography>
               <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: { xs: "center", md: "flex-start" },
-                  gap: 1,
-                }}
+                display={"flex"}
+                justifyContent={{ xs: "center", md: "flex-start" }}
+                gap={1}
               >
-                {redes?.instagram && (
-                  <IconButton
-                    color="inherit"
-                    component={Link}
-                    href={redes.instagram}
-                    target="_blank"
-                    rel="noopener"
-                    sx={{ padding: "0px" }}
-                  >
-                    <InstagramIcon fontSize="small" />
-                  </IconButton>
-                )}
-                {redes?.facebook && (
-                  <IconButton
-                    color="inherit"
-                    component={Link}
-                    href={redes.facebook}
-                    target="_blank"
-                    rel="noopener"
-                    sx={{ padding: "0px" }}
-                  >
-                    <FacebookIcon fontSize="small" />
-                  </IconButton>
-                )}
-                {redes?.tiktok && (
-                  <IconButton
-                    color="inherit"
-                    component={Link}
-                    href={redes.tiktok}
-                    target="_blank"
-                    rel="noopener"
-                    sx={{ padding: "0px" }}
-                  >
-                    <TikTokIcon fontSize="small" />
-                  </IconButton>
-                )}
-                {redes?.x && (
-                  <IconButton
-                    color="inherit"
-                    component={Link}
-                    href={redes.x}
-                    target="_blank"
-                    rel="noopener"
-                    sx={{ padding: "0px" }}
-                  >
-                    <XIcon fontSize="small" />
-                  </IconButton>
-                )}
-                {redes?.youtube && (
-                  <IconButton
-                    color="inherit"
-                    component={Link}
-                    href={redes.youtube}
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <YouTubeIcon fontSize="small" />
-                  </IconButton>
-                )}
+                {contactData.redes?.map((red, index) => {
+                  const iconMap = {
+                    instagram: (
+                      <InstagramIcon
+                        fontSize="medium"
+                        color={theme.palette.primary[700]}
+                      />
+                    ),
+                    facebook: (
+                      <FacebookIcon
+                        fontSize="medium"
+                        color={theme.palette.primary[700]}
+                      />
+                    ),
+                    tiktok: (
+                      <SpotifyIcon
+                        fontSize="medium"
+                        color={theme.palette.primary[700]}
+                      />
+                    ),
+                    // x: <XIcon fontSize="medium" color="inherit" />,
+                    youtube: (
+                      <YouTubeIcon
+                        fontSize="medium"
+                        color={theme.palette.primary[700]}
+                      />
+                    ),
+                  };
+
+                  return (
+                    <IconButton
+                      key={index}
+                      color="inherit"
+                      aria-label={red.nombre}
+                      component={Link}
+                      href={red.url}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      {iconMap[red.nombre.toLowerCase()] || null}
+                    </IconButton>
+                  );
+                })}
               </Box>
+              {/* <Logo /> */}
             </Box>
           </Grid>
 
@@ -158,7 +146,13 @@ const Footer = () => {
                 alignItems: { xs: "center", md: "flex-start" },
               }}
             >
-              <Typography variant="h6">Contacto</Typography>
+              <Typography
+                variant="h6"
+                color={theme.palette.primary[100]}
+                gutterBottom
+              >
+                CONTACTO
+              </Typography>
               <List
                 dense
                 sx={{
@@ -175,8 +169,16 @@ const Footer = () => {
                     gap: "10px",
                   }}
                 >
-                  <WhatsAppIcon fontSize="small" />
-                  <Typography variant="body1">{telefono}</Typography>
+                  <WhatsAppIcon
+                    fontSize="small"
+                    sx={{ color: theme.palette.primary[400] }}
+                  />
+                  <Typography
+                    variant="subtitle2"
+                    color={theme.palette.primary[400]}
+                  >
+                    {whatsapp}
+                  </Typography>
                 </ListItem>
                 <ListItem
                   disablePadding
@@ -187,9 +189,13 @@ const Footer = () => {
                 >
                   <LocationOnIcon
                     fontSize="small"
+                    color={theme.palette.primary[400]}
                     sx={{ marginRight: "10px" }}
                   />
-                  <Typography variant="body1">
+                  <Typography
+                    variant="subtitle2"
+                    color={theme.palette.primary[400]}
+                  >
                     {`${calle} ${numero}, ${localidad}, ${provincia}`}
                   </Typography>
                 </ListItem>
@@ -200,9 +206,17 @@ const Footer = () => {
                     gap: "10px",
                   }}
                 >
-                  <MailOutlineIcon fontSize="small" />
+                  <MailOutlineIcon
+                    fontSize="small"
+                    sx={{ color: theme.palette.primary[400] }}
+                  />
                   {/* Reemplazado ListItemText con Typography */}
-                  <Typography variant="body1">{email}</Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color={theme.palette.primary[400]}
+                  >
+                    {email}
+                  </Typography>
                 </ListItem>
               </List>
             </Box>
@@ -219,12 +233,17 @@ const Footer = () => {
               }}
             >
               <Typography variant="h6" gutterBottom>
-                Reuniones
+                CELEBRACIONES
               </Typography>
               {horarios?.map((item, idx) => (
-                <Typography variant="body2" gutterBottom key={idx}>
-                  {item.dia} - {item.hora} hs
-                  {item.descripcion ? ` (${item.descripcion})` : ""}
+                <Typography
+                  variant="subtitle2"
+                  gutterBottom
+                  key={idx}
+                  color={theme.palette.primary[400]}
+                >
+                  {item.dia} {item.hora} hs
+                  {/* {item.descripcion ? ` (${item.descripcion})` : ""} */}
                 </Typography>
               ))}
             </Box>
@@ -233,8 +252,30 @@ const Footer = () => {
 
         {/* Copyright */}
         <Box mt={4} textAlign={"center"}>
-          <Typography variant="caption" color="inherit">
-            Copyright © 2025 Iglesia | Made with ♥️ by Franco Galeano
+          <Typography
+            variant="caption"
+            color={[theme.palette.primary[500]]}
+            display={{ xs: "block", sm: "inline" }}
+            mt={{ xs: 1, sm: 0 }}
+          >
+            Copyright © 2025 Puerta de Paz
+          </Typography>
+          <Typography
+            variant="caption"
+            color={[theme.palette.primary[500]]}
+            display={{ xs: "none", sm: "inline" }}
+            mx={{ sm: 1 }}
+          >
+            |
+          </Typography>
+          <Typography
+            variant="caption"
+            color={[theme.palette.primary[500]]}
+            display={{ xs: "block", sm: "inline" }}
+            mt={{ xs: 1, sm: 0 }}
+            letterSpacing={{ xs: 1, sm: 0 }}
+          >
+            Made with ❤ by Franco Galeano
           </Typography>
         </Box>
       </Container>

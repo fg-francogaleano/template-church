@@ -1,6 +1,6 @@
 import { useTheme } from '@mui/material';
 
-function AccountBalanceIcon({ fontSize = "medium", color }) {
+function InstagramIcon({ fontSize = "medium", color }) {
     const theme = useTheme();
   const iconSizes = {
     small: "18px",
@@ -8,7 +8,7 @@ function AccountBalanceIcon({ fontSize = "medium", color }) {
     large: "32px",
   };
   const finalSize = iconSizes[fontSize] || iconSizes.medium;
-  return <i className="bi bi-bank" style={{ fontSize: finalSize, color }}></i>;
+  return <i className="bi bi-instagram" style={{ fontSize: finalSize, color }}></i>;
 }
 
-export default AccountBalanceIcon;
+export default InstagramIcon;

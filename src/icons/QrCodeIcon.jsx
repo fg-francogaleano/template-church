@@ -1,4 +1,4 @@
-function QrCodeIcon({ fontSize = "medium" }) {
+function QrCodeIcon({ fontSize = "medium", color }) {
   const iconSizes = {
     small: "18px",
     medium: "24px",
@@ -6,7 +6,7 @@ function QrCodeIcon({ fontSize = "medium" }) {
   };
   const finalSize = iconSizes[fontSize] || iconSizes.medium;
   <i class="bi bi-qr-code"></i>
-  return <i className="bi bi-qr-code" style={{ fontSize: finalSize, color:"grey" }}></i>
+  return <i className="bi bi-qr-code" style={{ fontSize: finalSize, color }}></i>
 }
 
 export default QrCodeIcon;

@@ -102,21 +102,21 @@ function Contact() {
               <Box display={"flex"} flexDirection={"column"} gap={1}>
                 <Card>
                   <CardHeader
-                    avatar={<LocationOnIcon fontSize="small" />}
+                    avatar={<LocationOnIcon fontSize="small" color={"grey"} />}
                     title={<Typography variant="h6">Dirección</Typography>}
                     subheader={`${info.calle} ${info.numero}, ${info.localidad}, ${info.provincia}`}
                   />
                 </Card>
                 <Card>
                   <CardHeader
-                    avatar={<WhatsAppIcon fontSize="small" />}
+                    avatar={<WhatsAppIcon fontSize="small" color="action" />}
                     title={<Typography variant="h6">WhatsApp</Typography>}
                     subheader={info.whatsapp}
                   />
                 </Card>
                 <Card>
                   <CardHeader
-                    avatar={<MailOutlineIcon fontSize="small" />}
+                    avatar={<MailOutlineIcon fontSize="small" color="action"/>}
                     title={<Typography variant="h6">Email</Typography>}
                     subheader={info.email}
                   />
@@ -137,11 +137,11 @@ function Contact() {
                   <Box>
                     {info.redes?.map((red, index) => {
                       const iconMap = {
-                        instagram: <InstagramIcon fontSize="medium" />,
-                        facebook: <FacebookIcon fontSize="medium" />,
-                        tiktok: <TikTokIcon fontSize="medium" />,
-                        x: <XIcon fontSize="medium" />,
-                        youtube: <YouTubeIcon fontSize="medium" />,
+                        instagram: <InstagramIcon fontSize="medium" color="action"/>,
+                        facebook: <FacebookIcon fontSize="medium" color="grey" />,
+                        tiktok: <TikTokIcon fontSize="medium" color="grey" />,
+                        x: <XIcon fontSize="medium" color="action" />,
+                        youtube: <YouTubeIcon fontSize="medium"  color="action"/>,
                       };
 
                       return (
