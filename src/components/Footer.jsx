@@ -40,7 +40,7 @@ const Footer = () => {
           sanityClient.fetch(schedulesQuery),
           sanityClient.fetch(contactQuery),
         ]);
-
+        console.log(schedulesResult);
         setSchedulesData(schedulesResult);
         setContactData(contactResult);
       } catch (error) {
@@ -68,9 +68,7 @@ const Footer = () => {
       sx={{
         backgroundColor: "#000000",
         color: "#ffffff",
-        padding: "10px 0 5px 0px",
-        // Aquí se aplica el clip-path para el triángulo en la parte superior
-        clipPath: "polygon(0 3vw, 50% 0, 100% 3vw, 100% 100%, 0 100%)",
+        pt:4,
       }}
     >
       <Container maxWidth="lg" sx={{ marginTop: "20px" }}>
@@ -85,7 +83,7 @@ const Footer = () => {
               </Typography>
               <Box
                 display={"flex"}
-                justifyContent={{ xs: "center", md: "flex-start" }}
+                justifyContent={{ xs: "center", md: "center" }}
                 gap={1}
               >
                 {contactData.redes?.map((red, index) => {

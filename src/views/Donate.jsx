@@ -17,6 +17,7 @@ import QrCodeIcon from "../icons/QrCodeIcon";
 import PersonIcon from "../icons/PersonIcon";
 import ContentCopyIcon from "../icons/ContentCopyIcon";
 import MuiAlert from "@mui/material/Alert";
+import { useTheme } from "@mui/material/styles";
 import { sanityClient } from "../../lib/sanityClient";
 import imageUrlBuilder from "@sanity/image-url";
 
@@ -43,6 +44,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 function Donate() {
+  const theme = useTheme();
   const [openMp, setOpenMp] = useState(false);
   const [openBank, setOpenBank] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -65,9 +67,9 @@ function Donate() {
     // Obtener datos de MercadoPago
     sanityClient
       .fetch(`*[_type == "MercadoPago"][0]`)
-      .then((data) => {        
+      .then((data) => {
         const url = urlFor(data.qrImage);
-        setMpDetail({url, email:data.mpEmail});
+        setMpDetail({ url, email: data.mpEmail });
       })
       .catch((err) => console.error(err));
   }, []);
@@ -116,20 +118,19 @@ function Donate() {
         >
           Generosidad
         </Typography>
-        <Typography align="center" fontSize={{xs:"16px", md:"18px"}} color="text.secondary" mb={4}>
+        <Typography
+          align="center"
+          fontSize={{ xs: "16px", md: "18px" }}
+          color="text.secondary"
+          mb={4}
+        >
           Tu generosidad nos permite continuar con nuestra misión de servir a la
           comunidad y extender el amor de Dios. Elige el método que más te
           convenga.
         </Typography>
       </Box>
 
-      <Grid
-        container
-        spacing={3}        
-        flexGrow={1}
-        mt={2}
-        justifyContent="center"
-      >
+      <Grid container spacing={3} flexGrow={1} mt={2} justifyContent="center">
         {/* Método 1: Transferencia Bancaria */}
         <Grid size={{ xs: 12, md: 4 }}>
           <Card
@@ -216,7 +217,7 @@ function Donate() {
           >
             <Box>
               <CardHeader
-                avatar={<PersonIcon color="grey"  />}
+                avatar={<PersonIcon color="grey" />}
                 title={<Typography variant="h6">Ofrendá en Persona</Typography>}
                 subheader="Entrega tu ofrenda durante nuestras celebraciones."
               />
@@ -240,10 +241,10 @@ function Donate() {
       <Box sx={{ textAlign: "center", py: 4, mt: 4 }}>
         <Box
           sx={{
-            background: (theme) => theme.palette.grey[300],
-            borderRadius: "5px",
+            border: `solid 1px ${theme.palette.primary[300]}`,
+            bgcolor: "background.paper",
+            borderRadius: "3px",
             p: 4,
-            // maxWidth: { xs: "100%", sm: 500, md: 900 },
             mx: "auto",
           }}
         >
@@ -326,7 +327,7 @@ function Donate() {
 
           <Box
             sx={{
-              background: (theme) => theme.palette.grey[200],
+              border: `solid 1px ${theme.palette.primary[200]}`,
               borderRadius: "3px",
               padding: { xs: 2, sm: 4 },
               display: "flex",
@@ -370,7 +371,10 @@ function Donate() {
                 <IconButton
                   size="small"
                   onClick={() =>
-                    handleCopyToClipboard(bankDetail.accountNumber, "Número de cuenta")
+                    handleCopyToClipboard(
+                      bankDetail.accountNumber,
+                      "Número de cuenta"
+                    )
                   }
                   aria-label="copiar número de cuenta"
                 >
@@ -396,9 +400,7 @@ function Donate() {
                 </Typography>
                 <IconButton
                   size="small"
-                  onClick={() =>
-                    handleCopyToClipboard(bankDetail.cbu, "CBU")
-                  }
+                  onClick={() => handleCopyToClipboard(bankDetail.cbu, "CBU")}
                   aria-label="copiar CBU"
                 >
                   <ContentCopyIcon fontSize="small" />
@@ -522,8 +524,8 @@ function Donate() {
                 sx={{
                   width: 256,
                   height: 256,
-                  border: "1px solid #e0e0e0",
-                  borderRadius: "8px",
+                  border: `solid 1px ${theme.palette.primary[200]}`,
+                  borderRadius: "3px",
                 }}
               />
             )}
