@@ -89,40 +89,41 @@ const Events = () => {
 
   const [events, setEvents] = useState([]);
 
-  useEffect(() => {
-    const query = `*[_type == "event" && date >= now()] | order(date asc) {
-      _id,
-      title,
-      date,
-      time,
-      location,
-      description,
-      attendees,
-      featured
-    }`;
+useEffect(() => {
+    const query = `*[_type == "event" && date >= now()] 
+      | order(featured desc, date asc)[0...4] {
+        _id,
+        title,
+        date,
+        time,
+        location,
+        description,
+        attendees,
+        featured
+      }`;
 
     sanityClient.fetch(query).then((data) => {
-      // Tomamos los primeros 4
-      let nextFour = data.slice(0, 4);
-
-      // Si hay un evento destacado, lo ponemos primero
-      const featured = nextFour.find((ev) => ev.featured);
-      if (featured) {
-        nextFour = [featured, ...nextFour.filter((ev) => ev._id !== featured._id)];
-      }
-
-      setEvents(nextFour);
+      setEvents(data);
     });
   }, []);
 
+  // ✅ Aseguramos que no reste días
   function formatDate(dateString) {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("es-ES", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric"
-  });
-}
+    if (!dateString) return "";
+    // Si Sanity guarda "YYYY-MM-DD"
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+      const [y, m, d] = dateString.split("-");
+      return `${d}/${m}/${y}`; // dd/mm/aaaa
+    }
+    // fallback: datetime ISO → UTC
+    const date = new Date(dateString + "T00:00:00Z");
+    return date.toLocaleDateString("es-ES", {
+      timeZone: "UTC",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  }
 
   return (
     <StyledSection id="eventos">
