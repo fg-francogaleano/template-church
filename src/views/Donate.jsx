@@ -112,7 +112,6 @@ function Donate() {
           variant="h3"
           component="h1"
           textAlign="center"
-          fontWeight="bold "
           gutterBottom
           marginTop={6}
         >

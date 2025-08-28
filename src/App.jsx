@@ -7,6 +7,7 @@ import Donate from "./views/Donate";
 import Contact from "./views/Contact";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBAr";
+import Events from "./views/Events";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Box>
         <Box component="section" id="nosotros">
           <About />
+        </Box>
+        <Box component="section" id="eventos">
+          <Events />
         </Box>
         <Box component="section" id="predicas">
           <Sermons />

@@ -36,7 +36,6 @@ function Contact() {
           numero, calle, localidad, provincia, whatsapp, email, redes
         }`;
         const result = await sanityClient.fetch(query);
-        console.log(result);
         setInfo(result);
       } catch (error) {
         console.error("Error fetching contact info:", error);
@@ -46,7 +45,6 @@ function Contact() {
   }, []);
 
   if (!info) return <Typography>Cargando...</Typography>;
-  
 
   const gridPaddingCompensation = isMobile ? 2 : 4;
 
@@ -70,7 +68,6 @@ function Contact() {
             variant="h3"
             component="h1"
             textAlign="center"
-            fontWeight="bold "
             gutterBottom
             marginTop={6}
           >
@@ -116,15 +113,13 @@ function Contact() {
                 </Card>
                 <Card>
                   <CardHeader
-                    avatar={<MailOutlineIcon fontSize="small" color="action"/>}
+                    avatar={<MailOutlineIcon fontSize="small" color="action" />}
                     title={<Typography variant="h6">Email</Typography>}
                     subheader={info.email}
                   />
                 </Card>
               </Box>
-              <Box
-                sx={{ mt: 4, display: { xs: "none", md: "block" } }}
-              >
+              <Box sx={{ mt: 4, display: { xs: "none", md: "block" } }}>
                 <Typography
                   variant="h4"
                   component="p"
@@ -133,15 +128,27 @@ function Contact() {
                 >
                   Seguinos en nuestras redes
                 </Typography>
-                <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
                   <Box>
                     {info.redes?.map((red, index) => {
                       const iconMap = {
-                        instagram: <InstagramIcon fontSize="medium" color="action"/>,
-                        facebook: <FacebookIcon fontSize="medium" color="grey" />,
+                        instagram: (
+                          <InstagramIcon fontSize="medium" color="action" />
+                        ),
+                        facebook: (
+                          <FacebookIcon fontSize="medium" color="grey" />
+                        ),
                         tiktok: <TikTokIcon fontSize="medium" color="grey" />,
                         x: <XIcon fontSize="medium" color="action" />,
-                        youtube: <YouTubeIcon fontSize="medium"  color="action"/>,
+                        youtube: (
+                          <YouTubeIcon fontSize="medium" color="action" />
+                        ),
                       };
 
                       return (
@@ -178,7 +185,28 @@ function Contact() {
           </Grid>
         </Grid>
 
-        <Box sx={{ width: "100%", height: 300, bgcolor: "grey.300", mt: 8, overflow: "hidden", borderRadius: 1, }} > <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.411641042557!2d-58.64756598476149!3d-34.61315188046187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbee5c546e8c7%3A0xc3b446f2e245b63!2sBlas%20Parera%201206%2C%20B1712GUD%20Castelar%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1628178123456!5m2!1ses-419!2sar" width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Ubicación de la iglesia" ></iframe> </Box>
+        <Box
+          sx={{
+            width: "100%",
+            height: 300,
+            bgcolor: "grey.300",
+            mt: 8,
+            overflow: "hidden",
+            borderRadius: 1,
+          }}
+        >
+          {" "}
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.411641042557!2d-58.64756598476149!3d-34.61315188046187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbee5c546e8c7%3A0xc3b446f2e245b63!2sBlas%20Parera%201206%2C%20B1712GUD%20Castelar%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1628178123456!5m2!1ses-419!2sar"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Ubicación de la iglesia"
+          ></iframe>{" "}
+        </Box>
       </Box>
     </>
   );
