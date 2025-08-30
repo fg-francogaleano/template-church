@@ -90,22 +90,30 @@ const Events = () => {
   const [events, setEvents] = useState([]);
 
 useEffect(() => {
-    const query = `*[_type == "event" && date >= now()] 
-      | order(featured desc, date asc)[0...4] {
-        _id,
-        title,
-        date,
-        time,
-        location,
-        description,
-        attendees,
-        featured
-      }`;
+  const fetchEvents = async () => {
+    try {
+      const query = `*[_type == "event" && date >= now()] 
+        | order(featured desc, date asc)[0...4] {
+          _id,
+          title,
+          date,
+          time,
+          location,
+          description,
+          attendees,
+          featured
+        }`;
 
-    sanityClient.fetch(query).then((data) => {
+      const data = await sanityClient.fetch(query);
       setEvents(data);
-    });
-  }, []);
+    } catch (error) {
+      console.error("Error fetching events:", error);
+      setEvents([]);
+    }
+  };
+
+  fetchEvents();
+}, []);
 
   // ✅ Aseguramos que no reste días
   function formatDate(dateString) {

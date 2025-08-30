@@ -58,21 +58,28 @@ function Donate() {
   }
 
   useEffect(() => {
-    // Obtener datos bancarios
-    sanityClient
-      .fetch(`*[_type == "bankDetail"][0]`)
-      .then((data) => setBankDetail(data))
-      .catch((err) => console.error(err));
+  const fetchAllDetails = async () => {
+    try {
+      const [bankDetail, mpDetail] = await Promise.all([
+        sanityClient.fetch(`*[_type == "bankDetail"] | order(orderRank)[0]`),
+        sanityClient.fetch(`*[_type == "MercadoPago"][0]`),
+      ]);
 
-    // Obtener datos de MercadoPago
-    sanityClient
-      .fetch(`*[_type == "MercadoPago"][0]`)
-      .then((data) => {
-        const url = urlFor(data.qrImage);
-        setMpDetail({ url, email: data.mpEmail });
-      })
-      .catch((err) => console.error(err));
-  }, []);
+      setBankDetail(bankDetail);
+
+      if (mpDetail) {        
+        const url = urlFor(mpDetail.qrImage).url();
+        setMpDetail({ url, email: mpDetail.mpEmail });
+      }
+    } catch (error) {
+      console.error("Error fetching details:", error);
+      setBankDetail(null);
+      setMpDetail(null);
+    }
+  };
+
+  fetchAllDetails();
+}, []);
 
   const handleOpenMp = () => setOpenMp(true);
   const handleCloseMp = () => setOpenMp(false);
@@ -93,7 +100,8 @@ function Donate() {
       setSnackbarOpen(true);
     });
   };
-  if (!bankDetail && !mpDetail) return <p>Cargando...</p>;
+  
+  if (!bankDetail || !mpDetail) return <p>Cargando...</p>;
 
   return (
     <Box

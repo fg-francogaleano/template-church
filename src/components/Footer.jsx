@@ -34,7 +34,7 @@ const Footer = () => {
         const contactQuery = `*[_type == "contact"][0]{
           numero, calle, localidad, provincia, whatsapp, email, redes
         }`;
-        const schedulesQuery = '*[_type == "schedules"][0]';
+        const schedulesQuery = '*[_type == "schedules"] | order(orderRank)';
 
         const [schedulesResult, contactResult] = await Promise.all([
           sanityClient.fetch(schedulesQuery),
@@ -43,7 +43,7 @@ const Footer = () => {
         setSchedulesData(schedulesResult);
         setContactData(contactResult);
       } catch (error) {
-        console.error("Error al obtener los datos:", error);
+        console.error("Error fetching details:", error);
       }
     };
 
@@ -60,6 +60,7 @@ const Footer = () => {
   const { whatsapp, email, calle, numero, localidad, provincia, redes } =
     contactData || {}; // Usamos un objeto vacío por defecto para evitar errores si contactData es null/undefined
   const { horarios } = schedulesData || {}; // Igual aquí
+  
   return (
     <Box
       sx={{
@@ -230,7 +231,7 @@ const Footer = () => {
               <Typography variant="h6" gutterBottom>
                 CELEBRACIONES
               </Typography>
-              {horarios?.map((item, idx) => (
+              {schedulesData?.map((item, idx) => (
                 <Typography
                   variant="subtitle2"
                   gutterBottom

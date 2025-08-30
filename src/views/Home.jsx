@@ -21,19 +21,27 @@ function Home() {
 
   useEffect(() => {
     const fetchImages = async () => {
-      const query = `*[_type == "carousel"][0]{ carrusel }`;
-      const result = await sanityClient.fetch(query);
+      try {
+        const query = `*[_type == "carousel"] | order(orderRank)`;
+        const result = await sanityClient.fetch(query);
+        if (!result) {
+          setCarouselImages([]);
+          return;
+        }        
+        const urls = result.map((img) => {
+          try {
+            return urlFor(img.image).width(1600).url();
+          } catch (e) {
+            console.error("Error al generar la URL de la imagen:", img, e);
+            return null;
+          }
+        });
 
-      const urls = result.carrusel.map((img) => {
-        try {
-          return urlFor(img).width(1600).url();
-        } catch (e) {
-          console.error("Imagen inválida en Sanity:", img, e);
-          return null;
-        }
-      });
-
-      setCarouselImages(urls.filter(Boolean)); // filtra los null
+        setCarouselImages(urls.filter(Boolean));
+      } catch (error) {
+        console.error("Error fetching carousel images:", error);
+        setCarouselImages([]); 
+      }
     };
 
     fetchImages();
