@@ -69,7 +69,6 @@ const Dot = styled(Box, {
 
 // --- Componente principal del carrusel ---
 function Carousel({ images, autoPlay = true, autoPlayInterval = 3000 }) {
-  console.log(images);
   
   const [currentIndex, setCurrentIndex] = useState(0);
 

@@ -21,6 +21,7 @@ import LocationOnIcon from "../icons/LocationOnIcon";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import SpotifyIcon from "../icons/SpotifyIcon";
 import Logo from "../icons/Logo";
+import SocialMediaIcon from "../icons/SocialMediaIcon";
 
 const Footer = () => {
   const [schedulesData, setSchedulesData] = useState(null);
@@ -60,6 +61,7 @@ const Footer = () => {
   const { whatsapp, email, calle, numero, localidad, provincia, redes } =
     contactData || {}; // Usamos un objeto vacío por defecto para evitar errores si contactData es null/undefined
   const { horarios } = schedulesData || {}; // Igual aquí
+  console.log(redes);
   
   return (
     <Box
@@ -84,34 +86,8 @@ const Footer = () => {
                 justifyContent={{ xs: "center", md: "center" }}
                 gap={1}
               >
-                {contactData.redes?.map((red, index) => {
-                  const iconMap = {
-                    instagram: (
-                      <InstagramIcon
-                        fontSize="medium"
-                        color={theme.palette.primary[700]}
-                      />
-                    ),
-                    facebook: (
-                      <FacebookIcon
-                        fontSize="medium"
-                        color={theme.palette.primary[700]}
-                      />
-                    ),
-                    tiktok: (
-                      <SpotifyIcon
-                        fontSize="medium"
-                        color={theme.palette.primary[700]}
-                      />
-                    ),
-                    // x: <XIcon fontSize="medium" color="inherit" />,
-                    youtube: (
-                      <YouTubeIcon
-                        fontSize="medium"
-                        color={theme.palette.primary[700]}
-                      />
-                    ),
-                  };
+                {redes?.map((red, index) => {
+                 
 
                   return (
                     <IconButton
@@ -123,7 +99,7 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener"
                     >
-                      {iconMap[red.nombre.toLowerCase()] || null}
+                      <SocialMediaIcon color={theme.palette.primary[700]} socialMedia={red.nombre} />
                     </IconButton>
                   );
                 })}
