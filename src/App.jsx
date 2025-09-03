@@ -25,9 +25,9 @@ function App() {
         <Box component="section" id="eventos">
           <Events />
         </Box>
-        <Box component="section" id="predicas">
+        {/* <Box component="section" id="predicas">
           <Sermons />
-        </Box>
+        </Box> */}
         <Box component="section" id="ofrendar">
           <Donate />
         </Box>

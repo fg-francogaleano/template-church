@@ -62,7 +62,7 @@ function NavBar(props) {
   const navItems = [
     { name: "Inicio", href: "#inicio" },
     { name: "Nosotros", href: "#nosotros" },
-    { name: "Predicas", href: "#predicas" },
+    // { name: "Predicas", href: "#predicas" },
     { name: "Contacto", href: "#contacto" },
     { name: "Ofrendar", href: "#ofrendar" },
   ];
