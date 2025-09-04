@@ -61,7 +61,6 @@ const Footer = () => {
   const { whatsapp, email, calle, numero, localidad, provincia, redes } =
     contactData || {}; // Usamos un objeto vacío por defecto para evitar errores si contactData es null/undefined
   const { horarios } = schedulesData || {}; // Igual aquí
-  console.log(redes);
   
   return (
     <Box
