@@ -58,28 +58,28 @@ function Donate() {
   }
 
   useEffect(() => {
-  const fetchAllDetails = async () => {
-    try {
-      const [bankDetail, mpDetail] = await Promise.all([
-        sanityClient.fetch(`*[_type == "bankDetail"] | order(orderRank)[0]`),
-        sanityClient.fetch(`*[_type == "MercadoPago"][0]`),
-      ]);
+    const fetchAllDetails = async () => {
+      try {
+        const [bankDetail, mpDetail] = await Promise.all([
+          sanityClient.fetch(`*[_type == "bankDetail"] | order(orderRank)[0]`),
+          sanityClient.fetch(`*[_type == "MercadoPago"][0]`),
+        ]);
 
-      setBankDetail(bankDetail);
+        setBankDetail(bankDetail);
 
-      if (mpDetail) {        
-        const url = urlFor(mpDetail.qrImage).url();
-        setMpDetail({ url, email: mpDetail.mpEmail });
+        if (mpDetail) {
+          const url = urlFor(mpDetail.qrImage).url();
+          setMpDetail({ url, email: mpDetail.mpEmail });
+        }
+      } catch (error) {
+        console.error("Error fetching details:", error);
+        setBankDetail(null);
+        setMpDetail(null);
       }
-    } catch (error) {
-      console.error("Error fetching details:", error);
-      setBankDetail(null);
-      setMpDetail(null);
-    }
-  };
+    };
 
-  fetchAllDetails();
-}, []);
+    fetchAllDetails();
+  }, []);
 
   const handleOpenMp = () => setOpenMp(true);
   const handleCloseMp = () => setOpenMp(false);
@@ -100,7 +100,39 @@ function Donate() {
       setSnackbarOpen(true);
     });
   };
-  
+
+  const paymentMethods = [
+    {
+      id: "bank-transfer",
+      title: "Transferencia Bancaria",
+      subheader: "Realiza tu ofrenda mediante transferencia bancaria.",
+      icon: (
+        <AccountBalanceIcon
+          fontSize="small"
+          color={theme.palette.primary[800]}
+        />
+      ),
+      buttonText: "Ver Detalles",
+      onClick: handleOpenBank,
+    },
+    {
+      id: "mercadopago",
+      title: "Mercado Pago",
+      subheader: "Escanea el código QR para ofrendar digitalmente.",
+      icon: <QrCodeIcon fontSize="small" color={theme.palette.primary[800]} />,
+      buttonText: "Ver Código QR",
+      onClick: handleOpenMp,
+    },
+    {
+      id: "in-person",
+      title: "Ofrendá en Persona",
+      subheader: "Entrega tu ofrenda durante nuestras celebraciones.",
+      icon: <PersonIcon color={theme.palette.primary[800]} />,
+      buttonText: "Conócenos",
+      href: "#contacto",
+    },
+  ];
+
   if (!bankDetail || !mpDetail) return <p>Cargando...</p>;
 
   return (
@@ -111,139 +143,102 @@ function Donate() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        p: 3,
+        // p: 3,
         margin: "auto",
+        minHeight: "120vh", // Añadido para forzar el scroll y ver el efecto
       }}
     >
-      <Box margin="auto" width={{ xs: "100%", md: "70%" }}>
+      {/* Contenedor con la imagen de fondo y efecto parallax */}
+      <Box
+        margin="auto"
+        width={{ xs: "100%", md: "100%" }}
+        sx={{
+          backgroundImage:
+            "url(https://lacorriente.com/wp-content/uploads/2022/09/generosidad-dar-sin-esperar.jpg)", // URL de ejemplo, reemplázala con tu imagen
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed", // ¡La clave para el efecto parallax!
+          p: 4,
+          borderRadius: 2,
+          // Asegúrate de que este contenedor tenga una altura definida para que el efecto sea visible
+          minHeight: { xs: "300px", sm: "400px" },
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Typography
           variant="h3"
           component="h1"
           textAlign="center"
           gutterBottom
-          marginTop={6}
+          marginTop={2}
+          sx={{
+            color: "white",
+            textShadow: "1px 1px 2px rgba(0,0,0,0.8)",
+            fontWeight: "bold",
+          }}
         >
           Generosidad
         </Typography>
         <Typography
           align="center"
           fontSize={{ xs: "16px", md: "18px" }}
-          color="text.secondary"
+          color="white"
           mb={4}
+          sx={{
+            textShadow: "1px 1px 2px rgba(0,0,0,0.8)",
+            maxWidth: 800,
+            margin: "0 auto",
+          }}
         >
           Tu generosidad nos permite continuar con nuestra misión de servir a la
           comunidad y extender el amor de Dios. Elige el método que más te
           convenga.
         </Typography>
-      </Box>
-
-      <Grid container spacing={3} flexGrow={1} mt={2} justifyContent="center">
-        {/* Método 1: Transferencia Bancaria */}
-        <Grid size={{ xs: 12, md: 4 }}>
-          <Card
-            raised
-            sx={{
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box>
-              <CardHeader
-                avatar={<AccountBalanceIcon fontSize="small" color="grey" />}
-                title={
-                  <Typography variant="h6">Transferencia Bancaria</Typography>
-                }
-                subheader="Realiza tu ofrenda mediante transferencia bancaria."
-              />
-            </Box>
-            <CardContent
-              sx={{
-                flexGrow: 1,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Button variant="outlined" onClick={handleOpenBank}>
-                Ver Detalles
-              </Button>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        {/* Método 2: Mercado Pago */}
-        <Grid size={{ xs: 12, md: 4 }}>
-          <Card
-            raised
-            sx={{
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box>
-              <CardHeader
-                avatar={<QrCodeIcon fontSize="small" color="grey" />}
-                title={<Typography variant="h6">Mercado Pago</Typography>}
-                subheader="Escanea el código QR para ofrendar digitalmente."
-              />
-            </Box>
-
-            <CardContent
-              sx={{
-                flexGrow: 1,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Button
-                variant="outlined"
-                sx={{ borderRadius: "1px" }}
-                onClick={handleOpenMp}
+        <Grid container spacing={3} flexGrow={1} mt={2} justifyContent="center">
+          {paymentMethods.map((method) => (
+            <Grid key={method.id} size={{ xs: 12, md: 4 }}>
+              <Card
+                raised
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  backdropFilter: "blur(10px)",
+                }}
               >
-                Ver Código QR
-              </Button>
-            </CardContent>
-          </Card>
+                <Box>
+                  <CardHeader
+                    avatar={method.icon}
+                    title={<Typography variant="h6">{method.title}</Typography>}
+                    subheader={method.subheader}
+                  />
+                </Box>
+                <CardContent
+                  sx={{
+                    flexGrow: 1,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Button
+                    variant="outlined"
+                    onClick={method.onClick}
+                    href={method.href}
+                  >
+                    {method.buttonText}
+                  </Button>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
-
-        {/* Método 3: En Persona */}
-        <Grid size={{ xs: 12, md: 4 }}>
-          <Card
-            raised
-            sx={{
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box>
-              <CardHeader
-                avatar={<PersonIcon color="grey" />}
-                title={<Typography variant="h6">Ofrendá en Persona</Typography>}
-                subheader="Entrega tu ofrenda durante nuestras celebraciones."
-              />
-            </Box>
-            <CardContent
-              sx={{
-                flexGrow: 1,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Button variant="outlined" href="#contacto">
-                conocenos
-              </Button>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
+      </Box>
 
       <Box sx={{ textAlign: "center", py: 4, mt: 4 }}>
         <Box
