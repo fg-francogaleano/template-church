@@ -1,98 +1,72 @@
-import { delay, motion, scale } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 function Logo2({ logoPosition }) {
-  console.log(logoPosition);
-  
-  const [animatedLogoPosition, setAnimatedLogoPosition] = useState(null);
+  const [initialPosition, setInitialPosition] = useState(null);
   const [delta, setDelta] = useState({ x: 0, y: 0 });
+  const animatedLogoRef = useRef(null);
+  const controls = useAnimation();
 
-  const animatedLogoRef = useRef(null); // Ref para el SVG que se anima
-
-  // 1. Guarda la posición inicial del SVG
+  // Guardar posición inicial del SVG
   useEffect(() => {
-    console.log(animatedLogoRef.current);
-    
     if (animatedLogoRef.current) {
-      console.log("Entro aca");
-      
       const rect = animatedLogoRef.current.getBoundingClientRect();
-      setAnimatedLogoPosition({ x: rect.left, y: rect.top });
+      setInitialPosition({ x: rect.left, y: rect.top });
     }
   }, []);
 
-  // 2. Calcula el desplazamiento cuando ambas posiciones están disponibles
+  // Calcular delta al recibir logoPosition
   useEffect(() => {
-    if (animatedLogoPosition && logoPosition) {
-      const deltaX = logoPosition.x - animatedLogoPosition.x;
-      const deltaY = logoPosition.y - animatedLogoPosition.y;
+    if (initialPosition && logoPosition) {
+      const deltaX = logoPosition.x - initialPosition.x;
+      const deltaY = logoPosition.y - initialPosition.y;
       setDelta({ x: deltaX, y: deltaY });
     }
-  }, [animatedLogoPosition, logoPosition]);
+  }, [initialPosition, logoPosition]);
+
+  // Control secuencial de animaciones
+  useEffect(() => {
+    const runAnimation = async () => {
+      await controls.start("visible"); // Escala inicial
+      await controls.start("moveToTarget"); // Se mueve y vuelve a scale 1
+    };
+    if (initialPosition && logoPosition) runAnimation();
+  }, [controls, initialPosition, logoPosition]);
 
   const svgVariants = {
-    hidden: {
-      scale: 1,
-      x: 0,
-      y: 0,
-    },
+    hidden: { scale: 1, x: 0, y: 0 },
     visible: {
       scale: 2,
-      transition: {
-        duration: 5,
-        ease: "easeInOut",
-      },
+      transition: { duration: 3, ease: "easeInOut" },
     },
     moveToTarget: {
       x: delta.x,
       y: delta.y,
-      transition: {
-        delay: 5,
-        duration: 1,
-        ease: "easeInOut",
-      },
-    },
-    originalScala: {
-      scale: 1,
-      transition: {
-        delay: 6,
-        duration: 1,
-        ease: "easeInOut",
-      },
+      scale: 1, // ⬅️ simultáneamente vuelve al scale 1
+      transition: { duration: 1, ease: "easeInOut" },
     },
   };
 
   const pathVariants1 = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { duration: 8 },
-    },
+    visible: { opacity: 1, transition: { duration: 8 } },
   };
 
   const pathVariants2 = {
-    hidden: {
-      opacity: 0,
-      pathLength: 0,
-    },
+    hidden: { opacity: 0, pathLength: 0 },
     visible: {
       opacity: 1,
       pathLength: 1,
-      transition: {
-        duration: 3,
-        ease: "easeInOut",
-      },
+      transition: { duration: 3, ease: "easeInOut" },
     },
   };
-
-  console.log(delta.x, delta.y);
 
   return (
     <motion.svg
       ref={animatedLogoRef}
       variants={svgVariants}
       initial="hidden"
-      animate={["visible", "moveToTarget", "originalScala"]}
+      animate={controls}
       width="93"
       height="50"
       viewBox="0 0 389 210"
