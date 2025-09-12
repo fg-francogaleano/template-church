@@ -83,7 +83,6 @@ const Events = () => {
           }`;
         const data = await sanityClient.fetch(query);
         setEvents(data);
-        console.log(data);
         
       } catch (error) {
         console.error("Error fetching events:", error);

@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Container } from "@mui/material";
 import ImageCarousel from "../components/Carousel";
-import { sanityClient } from "../../lib/sanityClient";
-import imageUrlBuilder from "@sanity/image-url";
 
 // Tus imágenes de ejemplo (pueden ser URLs o importaciones si están en tu proyecto)
 // const carouselImages = [
@@ -12,40 +10,8 @@ import imageUrlBuilder from "@sanity/image-url";
 //   "https://w7.pngwing.com/pngs/947/809/png-transparent-people-inside-the-building-dancing-worship-church-service-christian-church-pastor-event-christianity-performance-stage.png",
 //   "https://images.unsplash.com/photo-1503978581482-e06dc278d5c2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Zm9uZG8lMjBkZSUyMGFkb3JhY2lvbnxlbnwwfHwwfHx8MA%3D%3D",
 // ];
-const builder = imageUrlBuilder(sanityClient);
-function urlFor(source) {
-  return builder.image(source);
-}
-function Home() {
-  const [carouselImages, setCarouselImages] = useState([]);
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const query = `*[_type == "carousel"] | order(orderRank)`;
-        const result = await sanityClient.fetch(query);
-        if (!result) {
-          setCarouselImages([]);
-          return;
-        }        
-        const urls = result.map((img) => {
-          try {
-            return urlFor(img.image).width(1600).url();
-          } catch (e) {
-            console.error("Error al generar la URL de la imagen:", img, e);
-            return null;
-          }
-        });
-
-        setCarouselImages(urls.filter(Boolean));
-      } catch (error) {
-        console.error("Error fetching carousel images:", error);
-        setCarouselImages([]); 
-      }
-    };
-
-    fetchImages();
-  }, []);
+function Home({carouselImages, setCarouselImages}) {
   return (
     <Box>
       <Box sx={{ position: "relative" }}>

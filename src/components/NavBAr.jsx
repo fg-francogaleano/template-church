@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useRef, forwardRef, useEffect } from "react";
 import {
   AppBar,
   Toolbar,
@@ -57,7 +57,8 @@ function ScrollTop(props) {
   );
 }
 
-function NavBar(props) {
+const NavBar = forwardRef((props, ref) => {
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const navItems = [
     { name: "Inicio", href: "#inicio" },
@@ -80,9 +81,8 @@ function NavBar(props) {
   const darkSolidBackground = "rgba(0, 0, 0, 0.9)";
 
   const gradientBackground = `linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0) 100%)`; // De negro opaco a transparente
-
   return (
-    <>
+    <div style={{visibility : props.hidden ? "hidden" : "visible"}}>
       <Toolbar
         id="back-to-top-anchor"
         sx={{
@@ -110,14 +110,8 @@ function NavBar(props) {
         }}
       >
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="home icon"
-            edge="start"
-            sx={{ ml: 3 }}
-          >
+        
             <Logo />
-          </IconButton>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -171,7 +165,7 @@ function NavBar(props) {
       </AppBar>
 
       {/* Drawer (menú lateral) para dispositivos móviles */}
-      <Box component="nav" >
+      <Box component="nav">
         <Drawer
           variant="temporary"
           open={mobileOpen}
@@ -232,8 +226,8 @@ function NavBar(props) {
           <KeyboardArrowUpIcon />
         </Button>
       </ScrollTop>
-    </>
+    </div>
   );
-}
+})
 
 export default NavBar;
