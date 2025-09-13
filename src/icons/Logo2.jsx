@@ -1,7 +1,7 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-function Logo2({ logoPosition }) {
+function Logo2({ logoPosition, onAnimationEnd  }) {
   const [initialPosition, setInitialPosition] = useState(null);
   const [delta, setDelta] = useState({ x: 0, y: 0 });
   const animatedLogoRef = useRef(null);
@@ -29,6 +29,8 @@ function Logo2({ logoPosition }) {
     const runAnimation = async () => {
       await controls.start("visible"); // Escala inicial
       await controls.start("moveToTarget"); // Se mueve y vuelve a scale 1
+
+      if (onAnimationEnd) onAnimationEnd();
     };
     if (initialPosition && logoPosition) runAnimation();
   }, [controls, initialPosition, logoPosition]);
