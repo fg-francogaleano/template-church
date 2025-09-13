@@ -6,11 +6,11 @@ import Sermons from "./views/Sermons";
 import Donate from "./views/Donate";
 import Contact from "./views/Contact";
 import Footer from "./components/Footer";
-import NavBar from "./components/NavBar";
 import Events from "./views/Events";
 import Landing from "./views/Landing";
 import { sanityClient } from "../lib/sanityClient";
 import imageUrlBuilder from "@sanity/image-url";
+import NavBar from "./components/NavBAr";
  
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
