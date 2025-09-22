@@ -18,7 +18,7 @@ import { sanityClient } from "../../lib/sanityClient";
 import EventModal from "../components/EventModal"
 
 const StyledSection = styled("section")(({ theme }) => ({
-  padding: theme.spacing(10, 0),
+  padding: theme.spacing(2, 0),
   backgroundColor: theme.palette.background.default,
 }));
 

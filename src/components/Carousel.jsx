@@ -1,4 +1,3 @@
-// src/components/ImageCarousel.jsx
 import React, { useState, useEffect, useCallback } from "react";
 import { Box, IconButton } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -9,7 +8,7 @@ import { styled } from "@mui/material/styles";
 // Usamos `styled` para aplicar estilos complejos y estados de hover al contenedor de la imagen
 const CarouselImageWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
-  minHeight: "100vh", // Altura fija para el carrusel
+  minHeight: "120vh", // Altura fija para el carrusel
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -17,6 +16,8 @@ const CarouselImageWrapper = styled(Box)(({ theme }) => ({
   position: "relative", // Para posicionar las flechas
   borderRadius: theme.shape.borderRadius, // Opcional: bordes redondeados
   boxShadow: theme.shadows[3], // Opcional: sombra para el carrusel
+  // Nuevo: corte oblicuo en la parte inferior
+  clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 95%)",
   [theme.breakpoints.down("sm")]: {
     height: "250px", // Altura más pequeña en móviles
   },
@@ -46,7 +47,7 @@ const DotContainer = styled(Box)({
   display: "flex",
   justifyContent: "center",
   position: "absolute",
-  bottom: "16px",
+  bottom: "50px",
   left: "50%",
   transform: "translateX(-50%)",
   zIndex: 2,
@@ -102,7 +103,7 @@ function Carousel({ images, autoPlay = true, autoPlayInterval = 3000 }) {
 
   return (
     <>
-      <Box sx={{ width: "100%", minHeight: "100vh" }}>
+      <Box sx={{ width: "100%", minHeight: "120vh" }}>
         <CarouselImageWrapper>
           {/* Botón de navegación anterior */}
           <NavigationButton onClick={goToPrevious} sx={{ left: 8 }}>

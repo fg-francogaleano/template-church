@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Container } from "@mui/material";
 import ImageCarousel from "../components/Carousel";
+import WelcomeTyped from "../components/WelcomeTyped";
 
 // Tus imágenes de ejemplo (pueden ser URLs o importaciones si están en tu proyecto)
 // const carouselImages = [
@@ -11,7 +12,12 @@ import ImageCarousel from "../components/Carousel";
 //   "https://images.unsplash.com/photo-1503978581482-e06dc278d5c2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Zm9uZG8lMjBkZSUyMGFkb3JhY2lvbnxlbnwwfHwwfHx8MA%3D%3D",
 // ];
 
-function Home({carouselImages, setCarouselImages}) {
+function Home({ carouselImages, setCarouselImages }) {
+  const welcomeTexts = [
+    "¡Bienvenidos!",
+    "Somos una comunidad",
+    "¡Únete a nuestra familia!",
+  ];
   return (
     <Box>
       <Box sx={{ position: "relative" }}>
@@ -21,24 +27,20 @@ function Home({carouselImages, setCarouselImages}) {
           autoPlayInterval={4000}
         />
       </Box>
-      <Box
+      {/* <Box
         sx={{
           position: "absolute",
           top: 0,
           left: 0,
           width: "100%",
-          minHeight: "100vh",
+          minHeight: "10vh",
           zIndex: "999",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
           backgroundColor: "rgba(0, 0, 0, 0.4)",
         }}
-      >
-        <Typography variant="h2" sx={{ color: "white" }}>
-          Bienvenido
-        </Typography>
-      </Box>
+      > */}
+        <WelcomeTyped strings={welcomeTexts} />
+        {/* <-- Usamos el nuevo componente */}
+      {/* </Box> */}
     </Box>
   );
 }

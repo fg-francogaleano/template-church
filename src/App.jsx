@@ -11,12 +11,12 @@ import Landing from "./views/Landing";
 import { sanityClient } from "../lib/sanityClient";
 import imageUrlBuilder from "@sanity/image-url";
 import NavBar from "./components/NavBAr";
- 
+
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
- 
+
 function App() {
   const [carouselImages, setCarouselImages] = useState([]);
   const [showLanding, setShowLanding] = useState(true);
@@ -24,13 +24,13 @@ function App() {
   const [activeSection, setActiveSection] = useState("inicio"); // 👈 Nuevo estado para la sección activa
   const navLogoRef = useRef(null);
   // console.log(logoPosition);
- 
+
   // Este useEffect maneja la lógica de la animación
   // useEffect(() => {
   //   const timer = setTimeout(() => setShowLanding(false), 9000);
   //   return () => clearTimeout(timer);
   // }, []);
- 
+
   useLayoutEffect(() => {
     const logoEl = document.getElementById("logo");
     if (logoEl) {
@@ -41,41 +41,43 @@ function App() {
       });
     }
   }, [showLanding]);
- 
+
   // 🚀 Lógica para detectar la sección activa usando Intersection Observer
-   // Lógica para el IntersectionObserver, se ha modificado la forma en que se maneja la intersección
+  // Lógica para el IntersectionObserver, se ha modificado la forma en que se maneja la intersección
   useEffect(() => {
     const sections = ["inicio", "nosotros", "eventos", "ofrendar", "contacto"];
-    
-    // Almacena las referencias a los observadores para poder limpiarlos
-    const observers = sections.map(id => {
-      const section = document.getElementById(id);
-      if (!section) return null;
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              setActiveSection(entry.target.id);
-            }
-          });
-        },
-        // Usamos un umbral pequeño para detectar la entrada al viewport más rápido
-        {
-          root: null,
-          rootMargin: "0px",
-          threshold: 0.2 // Se dispara cuando el 20% de la sección es visible
-        }
-      );
-      observer.observe(section);
-      return observer;
-    }).filter(Boolean);
+    // Almacena las referencias a los observadores para poder limpiarlos
+    const observers = sections
+      .map((id) => {
+        const section = document.getElementById(id);
+        if (!section) return null;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setActiveSection(entry.target.id);
+              }
+            });
+          },
+          // Usamos un umbral pequeño para detectar la entrada al viewport más rápido
+          {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.2, // Se dispara cuando el 20% de la sección es visible
+          }
+        );
+        observer.observe(section);
+        return observer;
+      })
+      .filter(Boolean);
 
     return () => {
-      observers.forEach(observer => observer.disconnect());
+      observers.forEach((observer) => observer.disconnect());
     };
   }, []);
- 
+
   // La lógica para la carga de imágenes se mantiene igual
   useEffect(() => {
     const fetchImages = async () => {
@@ -103,19 +105,23 @@ function App() {
     fetchImages();
   }, []);
   // console.log(logoPosition);
- 
+
   const handleFinish = () => {
-    setTimeout(()=> {
-      setShowLanding(false)
-    }, 0)
+    setTimeout(() => {
+      setShowLanding(false);
+    }, 0);
   };
- 
+
   return (
     <>
       <>
         <Box component="header">
           {/* 👈 Pasamos el estado de la sección activa como prop */}
-          <NavBar ref={navLogoRef} hidden={showLanding} activeSection={activeSection} />
+          <NavBar
+            ref={navLogoRef}
+            hidden={showLanding}
+            activeSection={activeSection}
+          />
         </Box>
       </>
       {showLanding ? (
@@ -125,7 +131,6 @@ function App() {
       ) : (
         <>
           <Box component="main">
-            {/* Asegúrate de que los IDs de las secciones coincidan con los de la lista en useEffect */}
             <Box component="section" id="inicio">
               <Home
                 carouselImages={carouselImages}
@@ -135,6 +140,7 @@ function App() {
             <Box component="section" id="nosotros">
               <About />
             </Box>
+
             <Box component="section" id="eventos">
               <Events />
             </Box>
@@ -153,5 +159,5 @@ function App() {
     </>
   );
 }
- 
+
 export default App;
