@@ -15,7 +15,7 @@ import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import PeopleIcon from "@mui/icons-material/People";
 import DirectionsWalkOutlinedIcon from "@mui/icons-material/DirectionsWalkOutlined";
 import CarouselAbout from "../components/CarouselAbout";
-import image from "../assets/Apostoles.png";
+import image from "../assets/apostoles.png";
 
 const values = [
   {
@@ -169,10 +169,7 @@ const About = () => {
                   variant="body1"
                   sx={{ color: "text.secondary", lineHeight: 1.6 }}
                 >
-                  Ser una comunidad de fe que irradie el amor de Cristo en
-                  nuestra ciudad y más allá: hogares restaurados, líderes
-                  transformados y una iglesia comprometida con la esperanza y la
-                  verdad del Evangelio.
+                  Nuestra visión en Puerta de Paz es simple y profundamente transformadora: <strong>Cristo</strong> .
                 </Typography>
               </Box>
             </Grid>
