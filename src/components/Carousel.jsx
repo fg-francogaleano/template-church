@@ -20,6 +20,7 @@ const CarouselImageWrapper = styled(Box)(({ theme }) => ({
   clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 95%)",
   [theme.breakpoints.down("sm")]: {
     height: "250px", // Altura más pequeña en móviles
+    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 98%)",
   },
 }));
 
