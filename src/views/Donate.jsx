@@ -146,6 +146,7 @@ function Donate() {
         // p: 3,
         margin: "auto",
         minHeight: "120vh", // Añadido para forzar el scroll y ver el efecto
+        mt:4 
       }}
     >
       {/* Contenedor con la imagen de fondo y efecto parallax */}

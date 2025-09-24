@@ -48,7 +48,7 @@ const About = () => {
   const theme = useTheme();
 
   return (
-    <Box sx={{ bgcolor: "background.default" }}>
+    <Box sx={{ bgcolor: theme.palette.primary[100] }}>
       <Box maxWidth="100%" sx={{ py: { xs: 8, md: 6 } }}>
         {/* Encabezado principal 1 */}
         <Box textAlign="center" sx={{ mb: { xs: 6, md: 10 } }}>
