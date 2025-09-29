@@ -24,11 +24,11 @@ import LocationOnIcon from "../icons/LocationOnIcon";
 
 import Form from "../components/Form";
 
-function Contact() {
+function Contact() { 
   const [info, setInfo] = useState(null);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
+  const { palette } = useTheme();
+  
   useEffect(() => {
     const fetchInfo = async () => {
       try {
@@ -46,28 +46,30 @@ function Contact() {
 
   if (!info) return <Typography>Cargando...</Typography>;
 
-  const gridPaddingCompensation = isMobile ? 2 : 4;
-
   return (
     <>
       <CssBaseline />
       <Box
         sx={{
-          minHeight: "100vh",
+          // minHeight: "100vh",
           width: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          padding: gridPaddingCompensation,
+          padding: { md: 4  },
           boxSizing: "border-box",
         }}
       >
-        <Box margin="auto" width={{ xs: "100%", md: "70%" }}>
+        <Box margin="auto">
           <Typography
-            variant="h3"
-            component="h1"
+            variant="h2"
+            component="p"
+            fontSize={{ xs: "2rem", md: "3rem" }}
+            fontWeight="bold"
+            letterSpacing="-0.02em"
             textAlign="center"
+            color={palette.primary[800]}
             gutterBottom
             marginTop={6}
           >
@@ -76,6 +78,7 @@ function Contact() {
           <Typography
             align="center"
             fontSize={{ xs: "16px", sm: "18px" }}
+           sx={{ maxWidth: 800, margin: "0 auto", color: "text.secondary" }}
             color="text.secondary"
             mb={4}
           >
@@ -195,7 +198,6 @@ function Contact() {
             borderRadius: 1,
           }}
         >
-          {" "}
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.411641042557!2d-58.64756598476149!3d-34.61315188046187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbee5c546e8c7%3A0xc3b446f2e245b63!2sBlas%20Parera%201206%2C%20B1712GUD%20Castelar%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1628178123456!5m2!1ses-419!2sar"
             width="100%"
@@ -205,7 +207,7 @@ function Contact() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Ubicación de la iglesia"
-          ></iframe>{" "}
+          ></iframe>
         </Box>
       </Box>
     </>

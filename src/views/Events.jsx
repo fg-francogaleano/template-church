@@ -18,7 +18,7 @@ import CalendarIcon from "../icons/CalendarIcon";
 import ClockIcon from "../icons/ClockIcon";
 import PeopleIcon from "../icons/PeopleIcon";
 import LocationOnIcon from "../icons/LocationOnIcon";
-import { maxWidth, minWidth, styled } from "@mui/system";
+import { Grid, maxWidth, minWidth, styled } from "@mui/system";
 import { sanityClient } from "../../lib/sanityClient";
 import EventModal from "../components/EventModal";
 
@@ -99,7 +99,8 @@ const NextArrow = ({ onClick }) => (
 );
 
 const Events = () => {
-  const theme = useTheme();
+  const { palette } = useTheme();
+
   const [openModal, setOpenModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [events, setEvents] = useState([]);
@@ -182,9 +183,13 @@ const Events = () => {
       <StyledContainer>
         <Box mb={8}>
           <Typography
-            variant="h3"
-            component="h1"
+            variant="h2"
+            component="p"
+            fontSize={ { xs: "2rem", md: "3rem" } }
+            fontWeight= "bold"
+            letterSpacing= "-0.02em"
             textAlign="center"
+            color= {palette.primary[800]}
             gutterBottom
             marginTop={6}
           >
@@ -201,9 +206,7 @@ const Events = () => {
         </Box>
 
         {events.length > 0 ? (
-          <Box
-            sx={{ maxWidth: 900, margin: "0 auto"}}
-          >
+          <Box sx={{ maxWidth: 900, margin: "0 auto" }}>
             <Slider {...sliderSettings}>
               {events.map((event, index) => (
                 <Box
@@ -211,7 +214,7 @@ const Events = () => {
                   sx={{
                     width: "100%",
                     padding: "10px 8px",
-                    mb: 1
+                    mb: 1,
                   }}
                 >
                   <StyledCard isFeatured={event.featured}>
@@ -239,7 +242,7 @@ const Events = () => {
                           sx={{
                             position: "relative",
                             width: "100%",
-                            paddingTop: theme.spacing(4), // Asegura espacio para el Chip en la esquina
+                            pt: 4, 
                           }}
                         >
                           {event.featured && (
@@ -251,7 +254,7 @@ const Events = () => {
                                 position: "absolute",
                                 top: 0,
                                 right: 0,
-                                zIndex: 1, // Asegura que el chip esté encima de otros elementos
+                                zIndex: 1, 
                                 fontWeight: "bold",
                               }}
                             />
@@ -263,7 +266,7 @@ const Events = () => {
                               color: "primary.main",
                               textAlign: "left",
                               width: "100%",
-                              fontSize: "1.5rem"
+                              fontSize: "1.5rem",
                             }}
                           >
                             {event.title}
@@ -276,50 +279,115 @@ const Events = () => {
                         sx={{
                           display: "flex",
                           flexDirection: "column",
-                          gap: { xs: 0.6, sm: 1.5 },
                           textAlign: "left",
                           color: "text.secondary",
                           mb: { xs: 0, sm: 2 },
                         }}
                       >
-                        <Box
-                          sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                        >
-                          <CalendarIcon fontSize="small" />
-                          <Typography
-                            sx={{ fontWeight: "bold", color: "secondary.main" }}
-                          >
-                            {`${formatDate(event.startDate)}${
-                              event.endDate
-                                ? ` - ${formatDate(event.endDate)}`
-                                : ""
-                            }`}
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                        >
-                          <ClockIcon fontSize="small" color="primary" />
-                          <Typography color={theme.palette.primary[700]}>
-                            {event.time} hs
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                        >
-                          <LocationOnIcon fontSize="small" color="primary" />
-                          <Typography color={theme.palette.primary[700]}>
-                            {event.location}
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                        >
-                          <PeopleIcon fontSize="small" color="primary" />
-                          <Typography color={theme.palette.primary[700]}>
-                            {event.attendees}
-                          </Typography>
-                        </Box>
+                        <Grid container>
+                          <Grid size={{ xs: 12, sm: 6 }}>
+                            <Box>
+                              <CardHeader
+                                avatar={
+                                  <CalendarIcon
+                                    fontSize="small"
+                                    color="primary"
+                                  />
+                                }
+                                title={
+                                  <Typography variant="body2">
+                                    Comienza
+                                  </Typography>
+                                }
+                                subheader={
+                                  <Typography
+                                    fontWeight="bold"
+                                    color={ palette.primary[700] }
+                                    variant="body1"
+                                  >
+                                    {formatDate(event.startDate)}
+                                  </Typography>
+                                }
+                                sx={{ padding: 2 }}
+                              />
+                            </Box>
+                            <Box>
+                              <CardHeader
+                                avatar={
+                                  <ClockIcon fontSize="small" color="primary" />
+                                }
+                                title={
+                                  <Typography variant="body2">
+                                    Horario
+                                  </Typography>
+                                }
+                                subheader={
+                                  <Typography
+                                    fontWeight="bold"
+                                    color={ palette.primary[700] }
+                                    variant="body1"
+                                  >
+                                    {event.time} hs
+                                  </Typography>
+                                }
+                                sx={{ padding: 2 }}
+                              />
+                            </Box>
+                          </Grid>
+
+                          <Grid size={{ xs: 12, sm: 6 }}>
+                            <Box>
+                              <CardHeader
+                                avatar={
+                                  <LocationOnIcon
+                                    fontSize="small"
+                                    color="primary"
+                                  />
+                                }
+                                title={
+                                  <Typography variant="body2">
+                                    Ubicación
+                                  </Typography>
+                                }
+                                subheader={
+                                  <Typography
+                                    fontWeight="bold"
+                                    color={ palette.primary[700] }
+                                    variant="body1"
+                                  >
+                                    {event.location}
+                                  </Typography>
+                                }
+                                sx={{ padding: 2 }}
+                              />
+                            </Box>
+                            <Box>
+                              <CardHeader
+                                avatar={
+                                  <PeopleIcon
+                                    fontSize="small"
+                                    color="primary"
+                                  />
+                                }
+                                title={
+                                  <Typography variant="body2">
+                                    Destinado
+                                  </Typography>
+                                }
+                                subheader={
+                                  <Typography
+                                    fontWeight="bold"
+                                    color={ palette.primary[700] }
+                                    variant="body1"
+                                  >
+                                    {event.attendees}
+                                  </Typography>
+                                }
+                                sx={{ padding: 2 }}
+                              />
+                            </Box>
+                          </Grid>
+                        </Grid>
                       </Box>
                     </CardContent>
                     <Button

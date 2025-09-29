@@ -63,9 +63,9 @@ const NavBar = forwardRef((props, ref) => {
   const navItems = [
     { name: "Inicio", href: "#inicio" },
     { name: "Nosotros", href: "#nosotros" },
-    // { name: "Predicas", href: "#predicas" },
-    { name: "Contacto", href: "#contacto" },
+    { name: "Predicas", href: "#predicas" },
     { name: "Ofrendar", href: "#ofrendar" },
+    { name: "Contacto", href: "#contacto" },
   ];
 
   const handleDrawerToggle = () => {

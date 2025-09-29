@@ -45,22 +45,22 @@ const values = [
 ];
 
 const About = () => {
-  const theme = useTheme();
+  const { palette } = useTheme();
 
   return (
-    <Box sx={{ bgcolor: theme.palette.primary[100] }}>
+    <Box sx={{ bgcolor: palette.primary[100] }}>
       <Box maxWidth="100%" sx={{ py: { xs: 8, md: 6 } }}>
         {/* Encabezado principal 1 */}
         <Box textAlign="center" sx={{ mb: { xs: 6, md: 10 } }}>
           <Typography
             variant="h2"
-            component="h2"
-            sx={{
-              fontSize: { xs: "2rem", md: "3rem" },
-              fontWeight: 700,
-              color: theme.palette.primary[800],
-              letterSpacing: "-0.02em",
-            }}
+            component="p"
+            fontSize={{ xs: "2rem", md: "3rem" }}
+            fontWeight="bold"
+            letterSpacing="-0.02em"
+            textAlign="center"
+            color={palette.primary[800]}
+            marginTop={6}
           >
             Sobre nosotros
           </Typography>
@@ -150,7 +150,7 @@ const About = () => {
                   bgcolor: "background.paper",
                   boxShadow: 1,
                   borderRadius: 3,
-                  border: `solid 1px ${theme.palette.primary[300]}`,
+                  border: `solid 1px ${palette.primary[300]}`,
                 }}
                 aria-labelledby="vision-heading"
               >
@@ -159,7 +159,7 @@ const About = () => {
                   variant="h4"
                   sx={{
                     fontWeight: 700,
-                    color: theme.palette.primary[800],
+                    color: palette.primary[800],
                     mb: 1,
                   }}
                 >
@@ -169,7 +169,8 @@ const About = () => {
                   variant="body1"
                   sx={{ color: "text.secondary", lineHeight: 1.6 }}
                 >
-                  Nuestra visión en Puerta de Paz es simple y profundamente transformadora: <strong>Cristo</strong> .
+                  Nuestra visión en Puerta de Paz es simple y profundamente
+                  transformadora: <strong>Cristo</strong> .
                 </Typography>
               </Box>
             </Grid>
@@ -185,7 +186,7 @@ const About = () => {
                   bgcolor: "background.paper",
                   boxShadow: 1,
                   borderRadius: 3,
-                  border: `solid 1px ${theme.palette.primary[300]}`,
+                  border: `solid 1px ${palette.primary[300]}`,
                 }}
                 aria-labelledby="mision-heading"
               >
@@ -194,7 +195,7 @@ const About = () => {
                   variant="h4"
                   sx={{
                     fontWeight: 700,
-                    color: theme.palette.primary[800],
+                    color: palette.primary[800],
                     mb: 1,
                   }}
                 >
@@ -208,7 +209,6 @@ const About = () => {
                   Nuestra misión se articula en cuatro pilares:{" "}
                   <strong>Ganar</strong>, <strong>Consolidar</strong>,{" "}
                   <strong>Discipular</strong> y <strong>Enviar</strong>.
-                  
                 </Typography>
               </Box>
             </Grid>
@@ -228,7 +228,7 @@ const About = () => {
                     sx={{
                       fontSize: { xs: "1.5rem", md: "2rem" },
                       fontWeight: 700,
-                      color: theme.palette.primary[800],
+                      color: palette.primary[800],
                       mb: 2,
                       maxWidth: 900,
                       mx: "auto",

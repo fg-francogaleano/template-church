@@ -174,7 +174,7 @@ function Donate() {
           component="h1"
           textAlign="center"
           gutterBottom
-          marginTop={2}
+          marginTop={6}
           sx={{
             color: "white",
             textShadow: "1px 1px 2px rgba(0,0,0,0.8)",

@@ -6,6 +6,7 @@ import {
   Grid,
   Button,
   Alert,
+  CardHeader,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import theme from "../MUI/Theme";
@@ -72,24 +73,24 @@ const EventModal = ({ open, handleClose, selectedEvent }) => {
   const eventData = [
     {
       icon: <CalendarIcon fontSize="small" />,
-      label: "",
+      label: "Fecha",
       content: `${formatDate(selectedEvent.startDate)}${
-        selectedEvent.endDate ? ` - ${formatDate(selectedEvent.endDate)}` : ""
+        selectedEvent.endDate ? ` al ${formatDate(selectedEvent.endDate)}` : ""
       }`,
     },
     {
       icon: <ClockIcon fontSize="small" color="primary" />,
-      label: "Horario:",
+      label: "Horario",
       content: `${selectedEvent.time} hs`,
     },
     {
       icon: <LocationOnIcon fontSize="small" color="primary" />,
-      label: "Lugar:",
+      label: "Ubicación",
       content: selectedEvent.location,
     },
     {
       icon: <PeopleIcon fontSize="small" color="primary" />,
-      label: "Dirigido a:",
+      label: "Destinado",
       content: selectedEvent.attendees,
     },
   ];
@@ -97,7 +98,7 @@ const EventModal = ({ open, handleClose, selectedEvent }) => {
   if (selectedEvent.cost) {
     eventData.push({
       icon: <WalletIcon fontSize="small" color="primary" />,
-      label: "Inversion:",
+      label: "Inversión",
       content: selectedEvent.costValue
         ? `$${selectedEvent.costValue}`
         : selectedEvent.cost,
@@ -107,15 +108,15 @@ const EventModal = ({ open, handleClose, selectedEvent }) => {
   if (selectedEvent.contactPhone) {
     eventData.push({
       icon: <PhoneIcon sx={iconStyle} />,
-      label: "Contacto:",
+      label: "Contacto",
       content: selectedEvent.contactPhone,
     });
   }
 
-    if (selectedEvent.guestName) {
+  if (selectedEvent.guestName) {
     eventData.push({
       icon: <PersonIcon fontSize="small" color="primary" />,
-      label: "Invitado:",
+      label: "Invitado",
       content: selectedEvent.guestName,
     });
   }
@@ -161,42 +162,53 @@ const EventModal = ({ open, handleClose, selectedEvent }) => {
         >
           {selectedEvent.description}
         </Typography>
+
         <Box sx={{ mt: 4 }}>
           <Grid container spacing={{ xs: 2, sm: 4 }}>
             <Grid size={{ xs: 12, md: 6 }}>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                 {firstHalf.map((item, index) => (
-                  <Box
-                    key={index}
-                    sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                  >
-                    {item.icon}
-                    {/* {item.label && <Typography variant="body2">{item.label}</Typography>} */}
-                    <Typography
-                      variant="body2"
-                      color={theme.palette.primary[700]}
-                    >
-                      {item.content}
-                    </Typography>
+                  <Box key={index} >
+                    <CardHeader
+                      avatar={item.icon}
+                      title={
+                        <Typography variant="body2">{item.label}</Typography>
+                      }
+                      subheader={
+                        <Typography
+                          fontWeight="bold"
+                          color={theme.palette.primary[700]}
+                          variant="body1"
+                        >
+                          {item.content}
+                        </Typography>
+                      }
+                      sx={{ padding: 0.5 }}
+                    />
                   </Box>
                 ))}
               </Box>
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                 {secondHalf.map((item, index) => (
-                  <Box
-                    key={index}
-                    sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                  >
-                    {item.icon}
-                    {/* {item.label && <Typography variant="body2">{item.label}</Typography>} */}
-                    <Typography
-                      variant="body2"
-                      color={theme.palette.primary[700]}
-                    >
-                      {item.content}
-                    </Typography>
+                  <Box key={index} >
+                    <CardHeader
+                      avatar={item.icon}
+                      title={
+                        <Typography variant="body2">{item.label}</Typography>
+                      }
+                      subheader={
+                        <Typography
+                          fontWeight="bold"
+                          color={theme.palette.primary[700]}
+                          variant="body1"
+                        >
+                          {item.content}
+                        </Typography>
+                      }
+                      sx={{ padding: 0.5 }}
+                    />
                   </Box>
                 ))}
               </Box>
