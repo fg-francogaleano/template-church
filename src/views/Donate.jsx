@@ -44,7 +44,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 function Donate() {
-  const theme = useTheme();
+  const { palette } = useTheme();
   const [openMp, setOpenMp] = useState(false);
   const [openBank, setOpenBank] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -107,10 +107,7 @@ function Donate() {
       title: "Transferencia Bancaria",
       subheader: "Realiza tu ofrenda mediante transferencia bancaria.",
       icon: (
-        <AccountBalanceIcon
-          fontSize="small"
-          color={theme.palette.primary[800]}
-        />
+        <AccountBalanceIcon fontSize="small" color={palette.primary[800]} />
       ),
       buttonText: "Ver Detalles",
       onClick: handleOpenBank,
@@ -119,7 +116,7 @@ function Donate() {
       id: "mercadopago",
       title: "Mercado Pago",
       subheader: "Escanea el código QR para ofrendar digitalmente.",
-      icon: <QrCodeIcon fontSize="small" color={theme.palette.primary[800]} />,
+      icon: <QrCodeIcon fontSize="small" color={palette.primary[800]} />,
       buttonText: "Ver Código QR",
       onClick: handleOpenMp,
     },
@@ -127,7 +124,7 @@ function Donate() {
       id: "in-person",
       title: "Ofrendá en Persona",
       subheader: "Entrega tu ofrenda durante nuestras celebraciones.",
-      icon: <PersonIcon color={theme.palette.primary[800]} />,
+      icon: <PersonIcon color={palette.primary[800]} />,
       buttonText: "Conócenos",
       href: "#contacto",
     },
@@ -146,7 +143,7 @@ function Donate() {
         // p: 3,
         margin: "auto",
         minHeight: "120vh", // Añadido para forzar el scroll y ver el efecto
-        mt:4 
+        mt: 4,
       }}
     >
       {/* Contenedor con la imagen de fondo y efecto parallax */}
@@ -158,10 +155,9 @@ function Donate() {
             "url(https://lacorriente.com/wp-content/uploads/2022/09/generosidad-dar-sin-esperar.jpg)", // URL de ejemplo, reemplázala con tu imagen
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundAttachment: "fixed", // ¡La clave para el efecto parallax!
+          backgroundAttachment: "fixed",
           p: 4,
           borderRadius: 2,
-          // Asegúrate de que este contenedor tenga una altura definida para que el efecto sea visible
           minHeight: { xs: "300px", sm: "400px" },
           display: "flex",
           flexDirection: "column",
@@ -170,15 +166,17 @@ function Donate() {
         }}
       >
         <Typography
-          variant="h3"
-          component="h1"
+          variant="h2"
+          component="p"
+          fontSize={{ xs: "2rem", md: "3rem" }}
+          color={palette.primary[100]}
+          fontWeight="bold"
+          letterSpacing="-0.02em"
           textAlign="center"
           gutterBottom
           marginTop={6}
           sx={{
-            color: "white",
             textShadow: "1px 1px 2px rgba(0,0,0,0.8)",
-            fontWeight: "bold",
           }}
         >
           Generosidad
@@ -244,7 +242,7 @@ function Donate() {
       <Box sx={{ textAlign: "center", py: 4, mt: 4 }}>
         <Box
           sx={{
-            border: `solid 1px ${theme.palette.primary[300]}`,
+            border: `solid 1px ${palette.primary[300]}`,
             bgcolor: "background.paper",
             borderRadius: "3px",
             p: 4,
@@ -330,7 +328,7 @@ function Donate() {
 
           <Box
             sx={{
-              border: `solid 1px ${theme.palette.primary[200]}`,
+              border: `solid 1px ${palette.primary[200]}`,
               borderRadius: "3px",
               padding: { xs: 2, sm: 4 },
               display: "flex",
@@ -527,7 +525,7 @@ function Donate() {
                 sx={{
                   width: 256,
                   height: 256,
-                  border: `solid 1px ${theme.palette.primary[200]}`,
+                  border: `solid 1px ${palette.primary[200]}`,
                   borderRadius: "3px",
                 }}
               />

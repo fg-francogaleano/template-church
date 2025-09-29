@@ -55,7 +55,7 @@ const StyledCard = styled("div")(({ theme, isFeatured }) => ({
   // Estilo para el breakpoint sm y superior
   [theme.breakpoints.down("md")]: {
     width: "85%",
-    minWidth: 300,
+    minWidth: 200,
   },
 }));
 
@@ -172,7 +172,7 @@ const Events = () => {
     autoplay: true,
     autoplaySpeed: 5000,
     pauseOnHover: true,
-    centerMode: true,
+    centerMode: false,
     centerPadding: "0",
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
@@ -185,11 +185,11 @@ const Events = () => {
           <Typography
             variant="h2"
             component="p"
-            fontSize={ { xs: "2rem", md: "3rem" } }
-            fontWeight= "bold"
-            letterSpacing= "-0.02em"
+            fontSize={{ xs: "2rem", md: "3rem" }}
+            fontWeight="bold"
+            letterSpacing="-0.02em"
             textAlign="center"
-            color= {palette.primary[800]}
+            color={palette.primary[800]}
             gutterBottom
             marginTop={6}
           >
@@ -207,201 +207,223 @@ const Events = () => {
 
         {events.length > 0 ? (
           <Box sx={{ maxWidth: 900, margin: "0 auto" }}>
-            <Slider {...sliderSettings}>
-              {events.map((event, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    width: "100%",
-                    padding: "10px 8px",
-                    mb: 1,
-                  }}
-                >
-                  <StyledCard isFeatured={event.featured}>
-                    <CardHeader
-                      sx={{ pb: 0, pt: 3 }}
-                      title={
-                        // <Box display={"flex"} justifyContent={"space-between"}>
-                        //   <Typography
-                        //     variant="h5"
-                        //     component="h3"
-                        //     sx={{ color: "primary.main" }}
-                        //   >
-                        //     {event.title}
-                        //   </Typography>
-                        //   {event.featured && (
-                        //     <Chip
-                        //       label="Evento Destacado"
-                        //       size="small"
-                        //       color="secondary"
-                        //       sx={{ mb: 1, fontWeight: "bold" }}
-                        //     />
-                        //   )}
-                        // </Box>
-                        <Box
-                          sx={{
-                            position: "relative",
-                            width: "100%",
-                            pt: 4, 
-                          }}
-                        >
-                          {event.featured && (
-                            <Chip
-                              label="Destacado"
-                              size="small"
-                              color="secondary"
-                              sx={{
-                                position: "absolute",
-                                top: 0,
-                                right: 0,
-                                zIndex: 1, 
-                                fontWeight: "bold",
-                              }}
-                            />
-                          )}
-                          <Typography
-                            variant="h5"
-                            component="h3"
+            <Box
+              sx={{
+                maxWidth: 900,
+                margin: "0 auto",
+                // 👇 SOLUCIÓN CLAVE para eliminar el scroll horizontal del slider
+                // "& .slick-list": {
+                //   // Obliga al listado de slides a no tener padding horizontal
+                //   padding: "0 !important",
+                // },
+                // OPCIONAL: Asegura que el contenedor no sobresalga
+                // "& .slick-track": {
+                //   marginLeft: "0 !important",
+                //   marginRight: "0 !important",
+                // },
+                // Asegura que el contenedor principal del slider oculte cualquier desbordamiento remanente
+                // overflowX: "hidden",
+              }}
+            >
+              <Slider {...sliderSettings}>
+                {events.map((event, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      width: "100%",
+                      padding: "10px 8px",
+                      mb: 1,
+                    }}
+                  >
+                    <StyledCard isFeatured={event.featured}>
+                      <CardHeader
+                        sx={{ pb: 0, pt: 3 }}
+                        title={
+                          // <Box display={"flex"} justifyContent={"space-between"}>
+                          //   <Typography
+                          //     variant="h5"
+                          //     component="h3"
+                          //     sx={{ color: "primary.main" }}
+                          //   >
+                          //     {event.title}
+                          //   </Typography>
+                          //   {event.featured && (
+                          //     <Chip
+                          //       label="Evento Destacado"
+                          //       size="small"
+                          //       color="secondary"
+                          //       sx={{ mb: 1, fontWeight: "bold" }}
+                          //     />
+                          //   )}
+                          // </Box>
+                          <Box
                             sx={{
-                              color: "primary.main",
-                              textAlign: "left",
+                              position: "relative",
                               width: "100%",
-                              fontSize: "1.5rem",
+                              paddingTop: 4,
                             }}
                           >
-                            {event.title}
-                          </Typography>
-                        </Box>
-                      }
-                    />
-                    <CardContent>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          textAlign: "left",
-                          color: "text.secondary",
-                          mb: { xs: 0, sm: 2 },
-                        }}
-                      >
-                        <Grid container>
-                          <Grid size={{ xs: 12, sm: 6 }}>
-                            <Box>
-                              <CardHeader
-                                avatar={
-                                  <CalendarIcon
-                                    fontSize="small"
-                                    color="primary"
-                                  />
-                                }
-                                title={
-                                  <Typography variant="body2">
-                                    Comienza
-                                  </Typography>
-                                }
-                                subheader={
-                                  <Typography
-                                    fontWeight="bold"
-                                    color={ palette.primary[700] }
-                                    variant="body1"
-                                  >
-                                    {formatDate(event.startDate)}
-                                  </Typography>
-                                }
-                                sx={{ padding: 2 }}
+                            {event.featured && (
+                              <Chip
+                                label="Destacado"
+                                size="small"
+                                color="secondary"
+                                sx={{
+                                  position: "absolute",
+                                  top: 0,
+                                  right: 0,
+                                  zIndex: 1,
+                                  fontWeight: "bold",
+                                }}
                               />
-                            </Box>
-                            <Box>
-                              <CardHeader
-                                avatar={
-                                  <ClockIcon fontSize="small" color="primary" />
-                                }
-                                title={
-                                  <Typography variant="body2">
-                                    Horario
-                                  </Typography>
-                                }
-                                subheader={
-                                  <Typography
-                                    fontWeight="bold"
-                                    color={ palette.primary[700] }
-                                    variant="body1"
-                                  >
-                                    {event.time} hs
-                                  </Typography>
-                                }
-                                sx={{ padding: 2 }}
-                              />
-                            </Box>
-                          </Grid>
+                            )}
+                            <Typography
+                              variant="h5"
+                              component="h3"
+                              sx={{
+                                color: "primary.main",
+                                textAlign: "left",
+                                width: "100%",
+                                fontSize: "1.5rem",
+                              }}
+                            >
+                              {event.title}
+                            </Typography>
+                          </Box>
+                        }
+                      />
+                      <CardContent>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textAlign: "left",
+                            color: "text.secondary",
+                            mb: { xs: 0, sm: 2 },
+                          }}
+                        >
+                          <Grid container>
+                            <Grid size={{ xs: 12, sm: 6 }}>
+                              <Box>
+                                <CardHeader
+                                  avatar={
+                                    <CalendarIcon
+                                      fontSize="small"
+                                      color="primary"
+                                    />
+                                  }
+                                  title={
+                                    <Typography variant="body2">
+                                      Comienza
+                                    </Typography>
+                                  }
+                                  subheader={
+                                    <Typography
+                                      fontWeight="bold"
+                                      color={palette.primary[700]}
+                                      variant="body1"
+                                    >
+                                      {formatDate(event.startDate)}
+                                    </Typography>
+                                  }
+                                  sx={{ padding: 2 }}
+                                />
+                              </Box>
+                              <Box>
+                                <CardHeader
+                                  avatar={
+                                    <ClockIcon
+                                      fontSize="small"
+                                      color="primary"
+                                    />
+                                  }
+                                  title={
+                                    <Typography variant="body2">
+                                      Horario
+                                    </Typography>
+                                  }
+                                  subheader={
+                                    <Typography
+                                      fontWeight="bold"
+                                      color={palette.primary[700]}
+                                      variant="body1"
+                                    >
+                                      {event.time} hs
+                                    </Typography>
+                                  }
+                                  sx={{ padding: 2 }}
+                                />
+                              </Box>
+                            </Grid>
 
-                          <Grid size={{ xs: 12, sm: 6 }}>
-                            <Box>
-                              <CardHeader
-                                avatar={
-                                  <LocationOnIcon
-                                    fontSize="small"
-                                    color="primary"
-                                  />
-                                }
-                                title={
-                                  <Typography variant="body2">
-                                    Ubicación
-                                  </Typography>
-                                }
-                                subheader={
-                                  <Typography
-                                    fontWeight="bold"
-                                    color={ palette.primary[700] }
-                                    variant="body1"
-                                  >
-                                    {event.location}
-                                  </Typography>
-                                }
-                                sx={{ padding: 2 }}
-                              />
-                            </Box>
-                            <Box>
-                              <CardHeader
-                                avatar={
-                                  <PeopleIcon
-                                    fontSize="small"
-                                    color="primary"
-                                  />
-                                }
-                                title={
-                                  <Typography variant="body2">
-                                    Destinado
-                                  </Typography>
-                                }
-                                subheader={
-                                  <Typography
-                                    fontWeight="bold"
-                                    color={ palette.primary[700] }
-                                    variant="body1"
-                                  >
-                                    {event.attendees}
-                                  </Typography>
-                                }
-                                sx={{ padding: 2 }}
-                              />
-                            </Box>
+                            <Grid size={{ xs: 12, sm: 6 }}>
+                              <Box>
+                                <CardHeader
+                                  avatar={
+                                    <LocationOnIcon
+                                      fontSize="small"
+                                      color="primary"
+                                    />
+                                  }
+                                  title={
+                                    <Typography variant="body2">
+                                      Ubicación
+                                    </Typography>
+                                  }
+                                  subheader={
+                                    <Typography
+                                      fontWeight="bold"
+                                      color={palette.primary[700]}
+                                      variant="body1"
+                                    >
+                                      {event.location}
+                                    </Typography>
+                                  }
+                                  sx={{ padding: 2 }}
+                                />
+                              </Box>
+                              <Box>
+                                <CardHeader
+                                  avatar={
+                                    <PeopleIcon
+                                      fontSize="small"
+                                      color="primary"
+                                    />
+                                  }
+                                  title={
+                                    <Typography variant="body2">
+                                      Destinado
+                                    </Typography>
+                                  }
+                                  subheader={
+                                    <Typography
+                                      fontWeight="bold"
+                                      color={palette.primary[700]}
+                                      variant="body1"
+                                    >
+                                      {event.attendees}
+                                    </Typography>
+                                  }
+                                  sx={{ padding: 2 }}
+                                />
+                              </Box>
+                            </Grid>
                           </Grid>
-                        </Grid>
-                      </Box>
-                    </CardContent>
-                    <Button
-                      variant="outlined"
-                      color={event.featured ? "secondary" : "primary"}
-                      sx={{ mb: { xs: 3, sm: 3 } }}
-                      onClick={() => handleOpenModal(event)}
-                    >
-                      Más Información
-                    </Button>
-                  </StyledCard>
-                </Box>
-              ))}
-            </Slider>
+                        </Box>
+                      </CardContent>
+                      <Button
+                        variant="outlined"
+                        color={event.featured ? "secondary" : "primary"}
+                        sx={{ mb: { xs: 3, sm: 3 } }}
+                        onClick={() => handleOpenModal(event)}
+                      >
+                        Más Información
+                      </Button>
+                    </StyledCard>
+                  </Box>
+                ))}
+              </Slider>
+            </Box>
           </Box>
         ) : (
           <Typography variant="body1" color="text.secondary" mt={4}>

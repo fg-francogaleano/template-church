@@ -131,23 +131,23 @@ function App() {
       ) : (
         <>
           <Box component="main">
-            <Box component="section" id="inicio">
+            <Box component="section" id="inicio" sx={{border: "solid 1px red"}}>
               <Home
                 carouselImages={carouselImages}
                 setCarouselImages={setCarouselImages}
               />
             </Box>
-            <Box component="section" id="nosotros">
+            <Box component="section" id="nosotros" >
               <About />
             </Box>
 
-            <Box component="section" id="eventos">
+            <Box component="section" id="eventos" >
               <Events />
             </Box>
-            <Box component="section" id="ofrendar">
+            <Box component="section" id="ofrendar"  >
               <Donate />
             </Box>
-            <Box component="section" id="contacto">
+            <Box component="section" id="contacto" >
               <Contact />
             </Box>
           </Box>

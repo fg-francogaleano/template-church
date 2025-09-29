@@ -51,7 +51,7 @@ function Contact() {
       <CssBaseline />
       <Box
         sx={{
-          // minHeight: "100vh",
+          minHeight: "100vh",
           width: "100%",
           display: "flex",
           flexDirection: "column",
@@ -61,15 +61,15 @@ function Contact() {
           boxSizing: "border-box",
         }}
       >
-        <Box margin="auto">
+        <Box margin="auto" width={{ xs: "100%", md: "70%" }}>
           <Typography
             variant="h2"
             component="p"
             fontSize={{ xs: "2rem", md: "3rem" }}
+            color={palette.primary[800]}
             fontWeight="bold"
             letterSpacing="-0.02em"
             textAlign="center"
-            color={palette.primary[800]}
             gutterBottom
             marginTop={6}
           >
@@ -78,7 +78,7 @@ function Contact() {
           <Typography
             align="center"
             fontSize={{ xs: "16px", sm: "18px" }}
-           sx={{ maxWidth: 800, margin: "0 auto", color: "text.secondary" }}
+            
             color="text.secondary"
             mb={4}
           >

@@ -54,7 +54,7 @@ const DotContainer = styled(Box)({
   zIndex: 2,
   backgroundColor: "rgba(0,0,0,0.3)", // Fondo semitransparente para los puntos
   borderRadius: "15px", // Bordes redondeados para el fondo de los puntos
-  padding: "5px 10px", // Padding interno
+  padding: "5px ", // Padding interno
 });
 
 const Dot = styled(Box, {

@@ -26,7 +26,7 @@ const WelcomeTyped = () => {
           alignItems: "flex-start",
           // Reservamos un espacio fijo para ambas frases
           minHeight: "150px", // Ajusta este valor si el texto es más grande
-          paddingLeft: { xs: 2, sm: 4, md: 8 }
+          // paddingLeft: { xs: 2, sm: 4, md: 8 }
         }}
       >
         <Typography variant="h2" sx={{ color: "white" }}>
