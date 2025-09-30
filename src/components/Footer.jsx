@@ -140,10 +140,10 @@ const Footer = () => {
                     gap: "10px",
                   }}
                 >
-                  <WhatsAppIcon
+                  {/* <WhatsAppIcon
                     fontSize="small"
                     sx={{ color: theme.palette.primary[400] }}
-                  />
+                  /> */}
                   <Typography
                     variant="subtitle2"
                     color={theme.palette.primary[400]}
@@ -158,11 +158,11 @@ const Footer = () => {
                     gap: "10px",
                   }}
                 >
-                  <LocationOnIcon
+                  {/* <LocationOnIcon
                     fontSize="small"
                     color={theme.palette.primary[400]}
                     sx={{ marginRight: "10px" }}
-                  />
+                  /> */}
                   <Typography
                     variant="subtitle2"
                     color={theme.palette.primary[400]}
@@ -177,10 +177,10 @@ const Footer = () => {
                     gap: "10px",
                   }}
                 >
-                  <MailOutlineIcon
+                  {/* <MailOutlineIcon
                     fontSize="small"
                     sx={{ color: theme.palette.primary[400] }}
-                  />
+                  /> */}
                   {/* Reemplazado ListItemText con Typography */}
                   <Typography
                     variant="subtitle2"

@@ -27,7 +27,8 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: { xs: "90%", sm: 400 },
-  bgcolor: "background.paper",
+  backgroundColor: "rgba(255, 255, 255, 0.1)",
+  backdropFilter: "blur(35px)",
   boxShadow: 24,
   p: 4,
   borderRadius: 2,
@@ -148,7 +149,7 @@ function Donate() {
     >
       {/* Contenedor con la imagen de fondo y efecto parallax */}
       <Box
-        margin="auto"
+        margin= "4rem auto"
         width={{ xs: "100%", md: "100%" }}
         sx={{
           backgroundImage:
@@ -207,7 +208,7 @@ function Donate() {
                   flexDirection: "column",
                   justifyContent: "space-between",
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  backdropFilter: "blur(10px)",
+                  backdropFilter: "blur(35px)",
                 }}
               >
                 <Box>
@@ -239,7 +240,7 @@ function Donate() {
         </Grid>
       </Box>
 
-      <Box sx={{ textAlign: "center", py: 4, mt: 4 }}>
+      <Box sx={{ textAlign: "center", px: 4, mt: 0 }}>
         <Box
           sx={{
             border: `solid 1px ${palette.primary[300]}`,
@@ -285,7 +286,8 @@ function Donate() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: { xs: "95%", sm: "450px" },
-            bgcolor: "background.paper",
+            backgroundColor: "rgba(255, 255, 255, 0.1)",
+            backdropFilter: "blur(35px)",
             borderRadius: "3px",
             boxShadow: 24,
             p: { xs: 2, sm: 4 },
@@ -300,7 +302,7 @@ function Donate() {
               position: "absolute",
               right: 8,
               top: 8,
-              color: "grey.700",
+              color: "grey.900",
             }}
           >
             <CloseIcon fontSize="small" />
@@ -328,7 +330,8 @@ function Donate() {
 
           <Box
             sx={{
-              border: `solid 1px ${palette.primary[200]}`,
+              // border: `solid 1px ${palette.primary[600]}`,
+              boxShadow: 2,
               borderRadius: "3px",
               padding: { xs: 2, sm: 4 },
               display: "flex",
@@ -494,7 +497,7 @@ function Donate() {
                 position: "absolute",
                 right: 8,
                 top: 8,
-                color: "grey.700",
+                color: "grey.900",
               }}
             >
               <CloseIcon fontSize="small" />
@@ -525,7 +528,8 @@ function Donate() {
                 sx={{
                   width: 256,
                   height: 256,
-                  border: `solid 1px ${palette.primary[200]}`,
+                  // border: `solid 1px ${palette.primary[200]}`,
+                  boxShadow: 3,
                   borderRadius: "3px",
                 }}
               />
@@ -536,7 +540,7 @@ function Donate() {
             color="text.secondary"
             sx={{ textAlign: "center" }}
           >
-            También puedes buscar: {mpDetail.email}
+            También podés buscar: {mpDetail.email}
           </Typography>
         </Box>
       </Modal>

@@ -55,7 +55,8 @@ const About = () => {
           <Typography
             variant="h2"
             component="p"
-            fontSize={{ xs: "2rem", md: "3rem" }}
+            // fontSize={{ xs: "2rem", md: "3rem" }}
+            fontSize="3rem" 
             fontWeight="bold"
             letterSpacing="-0.02em"
             textAlign="center"
