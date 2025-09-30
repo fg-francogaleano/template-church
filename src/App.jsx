@@ -131,7 +131,7 @@ function App() {
       ) : (
         <>
           <Box component="main">
-            <Box component="section" id="inicio" sx={{border: "solid 1px red"}}>
+            <Box component="section" id="inicio">
               <Home
                 carouselImages={carouselImages}
                 setCarouselImages={setCarouselImages}

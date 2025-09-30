@@ -24,11 +24,11 @@ import LocationOnIcon from "../icons/LocationOnIcon";
 
 import Form from "../components/Form";
 
-function Contact() { 
+function Contact() {
   const [info, setInfo] = useState(null);
 
   const { palette } = useTheme();
-  
+
   useEffect(() => {
     const fetchInfo = async () => {
       try {
@@ -57,7 +57,7 @@ function Contact() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          padding: { md: 4  },
+          padding: { md: 4 },
           boxSizing: "border-box",
         }}
       >
@@ -65,7 +65,7 @@ function Contact() {
           <Typography
             variant="h2"
             component="p"
-            fontSize={{ xs: "2rem", md: "3rem" }}
+            fontSize={"3rem"}
             color={palette.primary[800]}
             fontWeight="bold"
             letterSpacing="-0.02em"
@@ -78,7 +78,6 @@ function Contact() {
           <Typography
             align="center"
             fontSize={{ xs: "16px", sm: "18px" }}
-            
             color="text.secondary"
             mb={4}
           >
@@ -87,9 +86,9 @@ function Contact() {
           </Typography>
         </Box>
 
-        <Grid container spacing={6} flexGrow={1} mt={2} width={"100%"}>
-          {/* Grid Izquierdo: Información de Contacto */}
-          <Grid size={{ xs: 12, md: 6 }}>
+        {/* <Grid container spacing={6} flexGrow={1} mt={2} width={"100%"}> */}
+        {/* Grid Izquierdo: Información de Contacto */}
+        {/* <Grid size={{ xs: 12, md: 6 }}>
             <Box>
               <Typography
                 variant="h4"
@@ -172,10 +171,10 @@ function Contact() {
                 </Box>
               </Box>
             </Box>
-          </Grid>
+          </Grid> */}
 
-          {/* Grid Derecho: Formulario */}
-          <Grid size={{ xs: 12, md: 6 }}>
+        {/* Grid Derecho: Formulario */}
+        {/* <Grid size={{ xs: 12, md: 6 }}>
             <Typography
               variant="h4"
               component="p"
@@ -185,9 +184,20 @@ function Contact() {
               Envíanos un Mensaje
             </Typography>
             <Form />
-          </Grid>
-        </Grid>
+          </Grid> */}
+        {/* </Grid> */}
 
+        {/* <Typography
+          variant="h4"
+          component="p"
+          gutterBottom
+          textAlign={"center"}
+        >
+          Envíanos un Mensaje
+        </Typography> */}
+        <Box width="80%" >
+          <Form />
+        </Box>
         <Box
           sx={{
             width: "100%",

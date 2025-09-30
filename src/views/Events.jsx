@@ -65,7 +65,7 @@ const PrevArrow = ({ onClick }) => (
     onClick={onClick}
     sx={{
       position: "absolute",
-      left: -25,
+      left: -15,
       top: "50%",
       transform: "translateY(-50%)",
       zIndex: 1,
@@ -84,7 +84,7 @@ const NextArrow = ({ onClick }) => (
     onClick={onClick}
     sx={{
       position: "absolute",
-      right: -25,
+      right: -15,
       top: "50%",
       transform: "translateY(-50%)",
       zIndex: 1,
@@ -222,7 +222,7 @@ const Events = () => {
                 //   marginRight: "0 !important",
                 // },
                 // Asegura que el contenedor principal del slider oculte cualquier desbordamiento remanente
-                // overflowX: "hidden",
+                overflow: "hidden",
               }}
             >
               <Slider {...sliderSettings}>

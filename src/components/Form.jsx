@@ -73,7 +73,7 @@ function Form() {
   };
 
   return (
-    <Box sx={{ width: "100%", }}>
+    <Box width="100%">
       <Formik
         initialValues={initialValues}
         validate={(values) => validations(values)}
