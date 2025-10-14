@@ -144,7 +144,7 @@ const EventSlide = ({ event, onOpenModal }) => {
                 zIndex: 10, // Aseguramos que esté por encima de otros elementos
               }}
             >
-              <FeaturedBanner label="DESTACADO" sx={{ fontSize: { xs: "0.7rem", sm: "1.2rem" } }}/>
+              <FeaturedBanner label="DESTACADO" sx={{ fontSize: { xs: "0.7rem", sm: "1rem" } }}/>
             </Box>
           )}
 
