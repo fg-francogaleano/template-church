@@ -55,8 +55,8 @@ const About = () => {
           <Typography
             variant="h2"
             component="p"
-            // fontSize={{ xs: "2rem", md: "3rem" }}
-            fontSize="3rem" 
+            fontSize={{ xs: "2.5rem", md: "3rem" }}
+            // fontSize="3rem" 
             fontWeight="bold"
             letterSpacing="-0.02em"
             textAlign="center"
@@ -158,6 +158,7 @@ const About = () => {
                 <Typography
                   id="vision-heading"
                   variant="h4"
+                  fontSize={{ xs: "2rem", md: "2.5rem" }}
                   sx={{
                     fontWeight: 700,
                     color: palette.primary[800],

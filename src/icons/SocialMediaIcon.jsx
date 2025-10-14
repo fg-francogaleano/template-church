@@ -7,7 +7,7 @@ function SocialMediaIcon({ fontSize = "medium", color, socialMedia }) {
     large: "32px",
   };
   const finalSize = iconSizes[fontSize] || iconSizes.medium;
-  return <i className={`bi bi-${socialMedia}`} style={{ fontSize: finalSize, color }}></i>;
+  return <i className={`bi bi-${socialMedia}`} style={{ fontSize: finalSize, color, padding:"0px 7px" }}></i>;
 }
 
 export default SocialMediaIcon;

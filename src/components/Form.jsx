@@ -115,7 +115,7 @@ function Form() {
                 component="form"
                 onSubmit={handleSubmit}
               >
-                <Grid container spacing={1} sx={{ flexGrow: 1 }}>
+                <Grid container spacing={2} sx={{ flexGrow: 1 }}>
                   <Grid size={{ xs: 12, sm: 6 }}>
                     {/* NAME */}
                     <TextField
@@ -129,7 +129,7 @@ function Form() {
                       error={touched.name && Boolean(errors.name)}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      variant="filled"
+                      variant="standard"
                       required
                       fullWidth
                       margin="normal"
@@ -147,7 +147,7 @@ function Form() {
                       error={touched.lastName && Boolean(errors.lastName)}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      variant="filled"
+                      variant="standard"
                       required
                       fullWidth
                       margin="normal"
@@ -166,7 +166,7 @@ function Form() {
                   error={touched.email && Boolean(errors.email)}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  variant="filled"
+                  variant="standard"
                   required
                   fullWidth
                   margin="normal"
@@ -183,7 +183,7 @@ function Form() {
                   error={touched.subject && Boolean(errors.subject)}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  variant="filled"
+                  variant="standard"
                   required
                   fullWidth
                   margin="normal"
@@ -202,7 +202,7 @@ function Form() {
                   onBlur={handleBlur}
                   multiline
                   rows={4}
-                  variant="filled"
+                  variant="standard"
                   required
                   fullWidth
                   margin="normal"

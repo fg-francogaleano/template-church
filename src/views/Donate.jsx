@@ -169,7 +169,7 @@ function Donate() {
         <Typography
           variant="h2"
           component="p"
-          fontSize={{ xs: "2rem", md: "3rem" }}
+          fontSize={{ xs: "2.5rem", md: "3rem" }}
           color={palette.primary[100]}
           fontWeight="bold"
           letterSpacing="-0.02em"
@@ -265,10 +265,6 @@ function Donate() {
           >
             "Cada uno dé como propuso en su corazón: no con tristeza, ni por
             necesidad, porque Dios ama al dador alegre." - 2 Corintios 9:7
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Todas las ofrendas son voluntarias y se utilizan para el
-            mantenimiento del templo, programas comunitarios y obras de caridad.
           </Typography>
         </Box>
       </Box>
