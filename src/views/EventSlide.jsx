@@ -16,11 +16,13 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CalendarIcon from "../icons/CalendarIcon"; // Asumo que aún usas estos iconos
 import ClockIcon from "../icons/ClockIcon";
 import PeopleIcon from "../icons/PeopleIcon";
-import { styled } from "@mui/system";
+import { fontSize, styled } from "@mui/system";
 import CountdownTimer from "../components/CountdownTimer"; // Importamos el nuevo componente
+import FeaturedBanner from "../components/FeaturedBanner";
 
 // Componentes estilizados
 const StyledCard = styled("div")(({ theme, isFeatured }) => ({
+  position: "relative",
   transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
   margin: "0 auto",
   border: `solid 1px ${theme.palette.primary[300]}`,
@@ -62,48 +64,55 @@ const formatDate = (dateString) => {
 
 const EventSlide = ({ event, onOpenModal }) => {
   const { palette } = useTheme();
-  
+
   // Extraemos la información de la fecha para el diseño del bloque lateral
-  const eventDate = event.startDate ? new Date(event.startDate + "T00:00:00Z") : null;
+  const eventDate = event.startDate
+    ? new Date(event.startDate + "T00:00:00Z")
+    : null;
   const eventDay = eventDate ? eventDate.getUTCDate() : "--";
-  const eventMonth = eventDate ? eventDate.toLocaleDateString("es-ES", { month: "short", timeZone: "UTC" }).toUpperCase().replace('.', '') : "---";
+  const eventMonth = eventDate
+    ? eventDate
+        .toLocaleDateString("es-ES", { month: "short", timeZone: "UTC" })
+        .toUpperCase()
+        .replace(".", "")
+    : "---";
 
   return (
     <StyledCard isFeatured={event.featured}>
-      <Box 
-        sx={{ 
-          display: "flex", 
-          flexDirection: { xs: "column", lg: "row" }, 
-          alignItems: "center", 
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", lg: "row" },
+          alignItems: "center",
           justifyContent: "space-between",
           gap: 2,
-          p: { xs: 2, lg: 3 }
+          p: { xs: 2, lg: 3 },
         }}
       >
         {/* Bloque de Fecha (event_date) */}
-        <Box 
-          sx={{ 
-            display: "flex", 
-            flexDirection: "column", 
-            alignItems: "center", 
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
             justifyContent: "center",
             minWidth: { lg: 100 },
             p: 1,
-            bgcolor: event.featured ? 'secondary.light' : 'primary.main', // Estilo de fecha destacado
+            bgcolor: event.featured ? "secondary.light" : "primary.main", // Estilo de fecha destacado
             borderRadius: 1,
-            color: 'primary.contrastText',
+            color: "primary.contrastText",
           }}
         >
-          <Typography 
-            variant="h3" 
-            component="div" 
+          <Typography
+            variant="h3"
+            component="div"
             sx={{ fontWeight: "bold", lineHeight: 1 }}
           >
             {eventDay}
           </Typography>
-          <Typography 
-            variant="body1" 
-            component="div" 
+          <Typography
+            variant="body1"
+            component="div"
             sx={{ textTransform: "uppercase" }}
           >
             {eventMonth}
@@ -111,31 +120,46 @@ const EventSlide = ({ event, onOpenModal }) => {
         </Box>
 
         {/* Bloque de Contenido y Datos (event_content) */}
-        <Box 
-          sx={{ 
-            flexGrow: 1, 
+        <Box
+          sx={{
+            flexGrow: 1,
             textAlign: { xs: "center", lg: "left" },
-            px: { xs: 0, lg: 2 }
+            px: { xs: 0, lg: 2 },
           }}
         >
-          {event.featured && (
+          {/* {event.featured && (
             <Chip
               label="DESTACADO"
               size="small"
               color="secondary"
               sx={{ mb: 1, fontWeight: "bold", fontSize: '0.7rem' }}
             />
+          )} */}
+          {event.featured && (
+            <Box
+              sx={{
+                position: "absolute",
+                top: 5, // Posicionamos un poco debajo del borde superior
+                left: 5, // Posicionamos al borde izquierdo
+                zIndex: 10, // Aseguramos que esté por encima de otros elementos
+              }}
+            >
+              <FeaturedBanner label="DESTACADO" sx={{ fontSize: { xs: "0.7rem", sm: "1.2rem" } }}/>
+            </Box>
           )}
-          
+
           {/* Título del Evento */}
           <Typography
             variant="h5"
             component="h3"
-            sx={{ color: "primary.dark", mb: 1, fontWeight: 'bold' }}
+            sx={{ color: "primary.dark", mb: 1, fontWeight: "bold" }}
           >
-            <Link 
-              href="#" 
-              onClick={(e) => { e.preventDefault(); onOpenModal(event); }}
+            <Link
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                onOpenModal(event);
+              }}
               color="primary.main"
               underline="hover"
             >
@@ -144,20 +168,42 @@ const EventSlide = ({ event, onOpenModal }) => {
           </Typography>
 
           {/* Fila de Datos (event_row) */}
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mt: 1 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 1, mt: 1 }}>
             {/* Horario */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'text.secondary' }}>
-              <ClockIcon fontSize="small" color={event.featured ? palette.secondary.main : palette.primary[600]} />
-              <Typography variant="body2">
-                {event.time} hs
-              </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                color: "text.secondary",
+              }}
+            >
+              <ClockIcon
+                fontSize="small"
+                color={
+                  event.featured ? palette.secondary.main : palette.primary[600]
+                }
+              />
+              <Typography variant="body2">{event.time} hs</Typography>
             </Box>
             {/* Ubicación */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'text.secondary' }}>
-              <LocationOnIcon fontSize="small" sx={{ color: event.featured ? palette.secondary.main : palette.primary[600] }} />
-              <Typography variant="body2">
-                {event.location}
-              </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                color: "text.secondary",
+              }}
+            >
+              <LocationOnIcon
+                fontSize="small"
+                sx={{
+                  color: event.featured
+                    ? palette.secondary.main
+                    : palette.primary[600],
+                }}
+              />
+              <Typography variant="body2">{event.location}</Typography>
             </Box>
             {/* Destinado (Opcional, si quieres incluirlo del componente original) */}
             {/* {event.attendees && (
@@ -172,10 +218,10 @@ const EventSlide = ({ event, onOpenModal }) => {
         </Box>
 
         {/* Bloque de Cuenta Regresiva (event_timer_container) */}
-        <Box 
-          sx={{ 
-            mt: { xs: 2, lg: 0 }, 
-            minWidth: { lg: 250 } 
+        <Box
+          sx={{
+            mt: { xs: 2, lg: 0 },
+            minWidth: { lg: 250 },
           }}
         >
           <CountdownTimer endDate={event.startDate} />
@@ -183,7 +229,7 @@ const EventSlide = ({ event, onOpenModal }) => {
             variant="contained"
             color={event.featured ? "secondary" : "primary"}
             onClick={() => onOpenModal(event)}
-            sx={{ mt: 2, width: '100%' }}
+            sx={{ mt: 2, width: "100%" }}
           >
             Más Información
           </Button>

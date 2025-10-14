@@ -118,7 +118,7 @@ const CountdownTimer = ({ endDate }) => {
                 borderRadius: 1,
                 // p: 0.5,
                 mb: 0.5,
-                fontSize: "2.2rem",
+                fontSize: { xs: "1.9rem" , md: "2.2rem" },
               }}
             >
               {String(component.value).padStart(2, "0")}
@@ -132,7 +132,6 @@ const CountdownTimer = ({ endDate }) => {
             </Typography>
           </Box>
 
-          {/* 🔑 MODIFICACIÓN: Incluimos Divider excepto después del último elemento */}
           {index < timerComponents.length - 1 && (
             <Divider
               orientation="vertical"
@@ -141,7 +140,7 @@ const CountdownTimer = ({ endDate }) => {
                 // height: 40,
                 backgroundColor: "grey.400",
                 mx: 0, // Eliminamos el margen horizontal en el divisor para que toque los ítems
-                display: { xs: "none", sm: "block" }, // Ocultar en móviles si el espacio es limitado
+                // display: { xs: "none", sm: "block" }, // Ocultar en móviles si el espacio es limitado
               }}
             />
           )}
