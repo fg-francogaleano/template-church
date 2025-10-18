@@ -137,7 +137,7 @@ function App() {
                 setCarouselImages={setCarouselImages}
               />
             </Box>
-            <Box component="section" id="nosotros" >
+            <Box component="section" id="nosotros" sx={{ border: "solid 1px grey", my: 10, py: 10 }} >
               <About />
             </Box>
 

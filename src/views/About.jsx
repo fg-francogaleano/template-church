@@ -3,8 +3,6 @@ import {
   Box,
   Typography,
   Grid,
-  Card,
-  CardContent,
   Container,
   Stack,
   useTheme,
@@ -14,8 +12,10 @@ import PersonAddAlt1OutlinedIcon from "@mui/icons-material/PersonAddAlt1Outlined
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import PeopleIcon from "@mui/icons-material/People";
 import DirectionsWalkOutlinedIcon from "@mui/icons-material/DirectionsWalkOutlined";
-import CarouselAbout from "../components/CarouselAbout";
 import image from "../assets/apostoles.png";
+import { GiBullseye } from "react-icons/gi";
+import { LiaTelegramPlane } from "react-icons/lia";
+import { TbFishChristianity } from "react-icons/tb";
 
 const values = [
   {
@@ -48,22 +48,29 @@ const About = () => {
   const { palette } = useTheme();
 
   return (
-    <Box sx={{ bgcolor: palette.primary[100] }}>
-      <Box maxWidth="100%" sx={{ py: { xs: 8, md: 6 } }}>
-        {/* Encabezado principal 1 */}
-        <Box textAlign="center" sx={{ mb: { xs: 6, md: 10 } }}>
+    <Box>
+      <Box>
+        {/* ENCABEZADO PRINCIPAL */}
+        <Box textAlign="center">
+          <Box  width={"50%"} mx={"auto"}>
+            <Divider>
+              <Typography variant="caption" letterSpacing={5} color={palette.primary[500]} >
+                ACERCA DE
+              </Typography>
+            </Divider>
+          </Box>
           <Typography
             variant="h2"
             component="p"
             fontSize={{ xs: "2.5rem", md: "3rem" }}
-            // fontSize="3rem" 
-            fontWeight="bold"
-            letterSpacing="-0.02em"
+            // fontSize="3rem"
+            // fontWeight="bold"
+            // letterSpacing="-0.02em"
             textAlign="center"
             color={palette.primary[800]}
-            marginTop={6}
+            // marginTop={6}
           >
-            Sobre nosotros
+            Nosotros
           </Typography>
 
           <Typography
@@ -75,6 +82,7 @@ const About = () => {
               mx: "auto",
               mt: 2,
               lineHeight: 1.6,
+              px: 1,
             }}
           >
             Somos una iglesia comprometida a compartir el amor de Cristo,
@@ -83,64 +91,20 @@ const About = () => {
           </Typography>
         </Box>
 
-        {/* Encabezado principal 2 */}
-        {/* <Box
-          sx={{
-            position: "relative",
-            borderRadius: 2,
-            overflow: "hidden",
-            mb: { xs: 6, md: 8 },
-            boxShadow: 4,
-          }}
-        >
-          <Box
-            component="img"
-            src="https://www.churchleadership.com/wp-content/uploads/2021/08/3-key-components-effective-visitor-follow-up.png"
-            alt="Comunidad reunida"
-            loading="lazy"
-            sx={{
-              width: "100%",
-              height: { xs: 260, md: 300 },
-              objectFit: "cover",
-            }}
-          />
-          <Box
-            sx={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(180deg, rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.25) 100%)",
-              display: "flex",
-              alignItems: "flex-end",
-              p: { xs: 3, md: 6 },
-            }}
-            aria-hidden
-          >
-            <Typography
-              variant="h2"
-              component="h2"
-              sx={{
-                fontSize: { xs: "2rem", md: "5rem" },
-                fontWeight: 700,
-                color: theme.palette.primary[200],
-                letterSpacing: "-0.02em",
-                textShadow: 5,
-              }}
-            >
-              Sobre nosotros
-            </Typography>
-          </Box>
-        </Box> */}
-
-        <Container maxWidth="lg">
-          {/* Vision y Mision */}
+        <Container maxWidth={false} disableGutters>
+          {/* VALORES, MISION Y VISION */}
           <Grid
             container
             spacing={4}
             alignItems="stretch"
-            sx={{ mb: { xs: 6, md: 10 } }}
+            my={10}
+            sx={{
+              // mb: { xs: 6, md: 10 },
+              bgcolor: palette.primary[50],
+              // border: "solid 1px black",
+            }}
           >
-            <Grid size={{ xs: 12, md: 6 }}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Box
                 sx={{
                   height: "100%",
@@ -148,57 +112,27 @@ const About = () => {
                   flexDirection: "column",
                   justifyContent: "center",
                   p: { xs: 3, md: 6 },
-                  bgcolor: "background.paper",
-                  boxShadow: 1,
-                  borderRadius: 3,
-                  border: `solid 1px ${palette.primary[300]}`,
-                }}
-                aria-labelledby="vision-heading"
-              >
-                <Typography
-                  id="vision-heading"
-                  variant="h4"
-                  fontSize={{ xs: "2rem", md: "2.5rem" }}
-                  sx={{
-                    fontWeight: 700,
-                    color: palette.primary[800],
-                    mb: 1,
-                  }}
-                >
-                  Visión
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{ color: "text.secondary", lineHeight: 1.6 }}
-                >
-                  Nuestra visión en Puerta de Paz es simple y profundamente
-                  transformadora: <strong>Cristo</strong> .
-                </Typography>
-              </Box>
-            </Grid>
-
-            <Grid size={{ xs: 12, md: 6 }}>
-              <Box
-                sx={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  p: { xs: 3, md: 6 },
-                  bgcolor: "background.paper",
-                  boxShadow: 1,
-                  borderRadius: 3,
-                  border: `solid 1px ${palette.primary[300]}`,
                 }}
                 aria-labelledby="mision-heading"
               >
+                <Box
+                  sx={{
+                    mb: "10px",
+                    color: palette.secondary.main,
+                    display: "flex",
+                    justifyContent: "center",
+                    fontSize: "55px",
+                  }}
+                >
+                  <LiaTelegramPlane />
+                </Box>
                 <Typography
                   id="mision-heading"
                   variant="h4"
                   sx={{
-                    fontWeight: 700,
                     color: palette.primary[800],
                     mb: 1,
+                    textAlign: "center",
                   }}
                 >
                   Misión
@@ -206,7 +140,12 @@ const About = () => {
 
                 <Typography
                   variant="body1"
-                  sx={{ color: "text.secondary", lineHeight: 1.6, mb: 2 }}
+                  sx={{
+                    color: "text.secondary",
+                    lineHeight: 1.6,
+                    mb: 2,
+                    textAlign: "center",
+                  }}
                 >
                   Nuestra misión se articula en cuatro pilares:{" "}
                   <strong>Ganar</strong>, <strong>Consolidar</strong>,{" "}
@@ -214,14 +153,109 @@ const About = () => {
                 </Typography>
               </Box>
             </Grid>
+
+            <Grid size={{ xs: 12, md: 4 }}>
+              <Box
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  p: { xs: 3, md: 6 },
+                }}
+                aria-labelledby="mision-heading"
+              >
+                <Box
+                  sx={{
+                    mb: "10px",
+                    color: palette.secondary.main,
+                    display: "flex",
+                    justifyContent: "center",
+                    fontSize: "55px",
+                  }}
+                >
+                  <GiBullseye style={{ textAlign: "center" }} />
+                </Box>
+                <Typography
+                  id="mision-heading"
+                  variant="h4"
+                  sx={{
+                    color: palette.primary[800],
+                    mb: 1,
+                    textAlign: "center",
+                  }}
+                >
+                  Visión
+                </Typography>
+
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "text.secondary",
+                    lineHeight: 1.6,
+                    mb: 2,
+                    textAlign: "center",
+                  }}
+                >
+                  Nuestra visión en Puerta de Paz es simple y profundamente
+                  transformadora: <strong>Jesus</strong>.
+                </Typography>
+              </Box>
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 4 }}>
+              <Box
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  p: { xs: 3, md: 6 },
+                }}
+                aria-labelledby="vision-heading"
+              >
+                <Box
+                  sx={{
+                    mb: "10px",
+                    color: palette.secondary.main,
+                    display: "flex",
+                    justifyContent: "center",
+                    fontSize: "55px",
+                  }}
+                >
+                  <TbFishChristianity />
+                </Box>
+
+                <Typography
+                  id="vision-heading"
+                  variant="h4"
+                  // fontSize={{ xs: "2rem", md: "2.5rem" }}
+                  sx={{
+                    color: palette.primary[800],
+                    mb: 1,
+                    textAlign: "center",
+                  }}
+                >
+                  Valores
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "text.secondary",
+                    lineHeight: 1.6,
+                    textAlign: "center",
+                  }}
+                >
+                  Nuestros valores nacen del amor de <strong>Cristo</strong> y
+                  de la verdad de Su <strong>Palabra</strong>.
+                </Typography>
+              </Box>
+            </Grid>
           </Grid>
-          {/*  Líderes */}
-          <Grid
-            container
-            spacing={4}
-            alignItems="center"
-            // sx={{ mb: { xs: 6, md: 10 } }}
-          >
+        </Container>
+
+        <Container maxWidth="lg">
+          <Grid container spacing={4} alignItems="center">
             <Grid size={{ xs: 12, md: 6 }}>
               <Box>
                 <Box sx={{ mb: { xs: 6, md: 10 } }}>

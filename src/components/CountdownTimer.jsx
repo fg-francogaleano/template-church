@@ -94,8 +94,7 @@ const CountdownTimer = ({ endDate }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        gap: { xs: 1, sm: 0 }, // Reducimos el gap aquí para que los divisores estén más cerca
-        // border: "solid 1px red",
+        gap: { xs: 1, sm: 0 }, 
         p: 1,
       }}
     >
@@ -105,20 +104,17 @@ const CountdownTimer = ({ endDate }) => {
             sx={{
               textAlign: "center",
               minWidth: { xs: 40, sm: 50 },
-              mx: { xs: 0.5, sm: 1.5 }, // Añadimos margen horizontal para separar del divisor
+              mx: { xs: 0.5, sm: 1.5 }, 
             //   border: "solid 1px red",
             }}
           >
             <Typography
               variant="h5"
               component="div"
-              fontWeight="bold"
-              color="primary.main" // Mantenemos el color primario para el texto
               sx={{
                 borderRadius: 1,
-                // p: 0.5,
                 mb: 0.5,
-                fontSize: { xs: "1.9rem" , md: "2.2rem" },
+                fontSize: { xs: "1.9rem" , md: "2.5rem" },
               }}
             >
               {String(component.value).padStart(2, "0")}
@@ -128,7 +124,7 @@ const CountdownTimer = ({ endDate }) => {
               color="text.secondary"
               sx={{ textTransform: "uppercase" }}
             >
-              {component.label}
+              {component.label} 
             </Typography>
           </Box>
 
@@ -136,11 +132,9 @@ const CountdownTimer = ({ endDate }) => {
             <Divider
               orientation="vertical"
               flexItem
-              sx={{
-                // height: 40,
+              sx={{             
                 backgroundColor: "grey.400",
-                mx: 0, // Eliminamos el margen horizontal en el divisor para que toque los ítems
-                // display: { xs: "none", sm: "block" }, // Ocultar en móviles si el espacio es limitado
+                mx: 0, 
               }}
             />
           )}

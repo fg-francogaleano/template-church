@@ -17,7 +17,7 @@ const CarouselImageWrapper = styled(Box)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius, // Opcional: bordes redondeados
   boxShadow: theme.shadows[3], // Opcional: sombra para el carrusel
   // Nuevo: corte oblicuo en la parte inferior
-  clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 95%)",
+  clipPath: "polygon(0% 0%, 100% 0%, 100% 90%, 70% 100%, 0% 90%)",
   [theme.breakpoints.down("sm")]: {
     height: "250px", // Altura más pequeña en móviles
     clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 98%)",

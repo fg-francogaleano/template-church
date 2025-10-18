@@ -89,7 +89,7 @@ const EventSlide = ({ event, onOpenModal }) => {
           p: { xs: 2, lg: 3 },
         }}
       >
-        {/* Bloque de Fecha (event_date) */}
+        {/* BLOQUE DE FECHA */}
         <Box
           sx={{
             display: "flex",
@@ -106,7 +106,7 @@ const EventSlide = ({ event, onOpenModal }) => {
           <Typography
             variant="h3"
             component="div"
-            sx={{ fontWeight: "bold", lineHeight: 1 }}
+            sx={{ lineHeight: 1 }}
           >
             {eventDay}
           </Typography>
@@ -127,32 +127,24 @@ const EventSlide = ({ event, onOpenModal }) => {
             px: { xs: 0, lg: 2 },
           }}
         >
-          {/* {event.featured && (
-            <Chip
-              label="DESTACADO"
-              size="small"
-              color="secondary"
-              sx={{ mb: 1, fontWeight: "bold", fontSize: '0.7rem' }}
-            />
-          )} */}
           {event.featured && (
             <Box
               sx={{
                 position: "absolute",
-                top: 5, // Posicionamos un poco debajo del borde superior
-                left: 5, // Posicionamos al borde izquierdo
-                zIndex: 10, // Aseguramos que esté por encima de otros elementos
+                top: 5, 
+                left: 5, 
+                zIndex: 10, 
               }}
             >
               <FeaturedBanner label="DESTACADO" sx={{ fontSize: { xs: "0.7rem", sm: "1rem" } }}/>
             </Box>
           )}
 
-          {/* Título del Evento */}
+          {/* TíTULO DEL EVENTO */}
           <Typography
             variant="h5"
             component="h3"
-            sx={{ color: "primary.dark", mb: 1, fontWeight: "bold" }}
+            sx={{ color: "primary.dark", mb: 1 }}
           >
             <Link
               href="#"
@@ -167,9 +159,8 @@ const EventSlide = ({ event, onOpenModal }) => {
             </Link>
           </Typography>
 
-          {/* Fila de Datos (event_row) */}
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1, mt: 1 }}>
-            {/* Horario */}
+            {/* HORARIO */}
             <Box
               sx={{
                 display: "flex",
@@ -186,7 +177,7 @@ const EventSlide = ({ event, onOpenModal }) => {
               />
               <Typography variant="body2">{event.time} hs</Typography>
             </Box>
-            {/* Ubicación */}
+            {/* UBICACIÓN */}
             <Box
               sx={{
                 display: "flex",
@@ -205,19 +196,10 @@ const EventSlide = ({ event, onOpenModal }) => {
               />
               <Typography variant="body2">{event.location}</Typography>
             </Box>
-            {/* Destinado (Opcional, si quieres incluirlo del componente original) */}
-            {/* {event.attendees && (
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'text.secondary' }}>
-                <PeopleIcon fontSize="small" color={palette.secondary.main} />
-                <Typography variant="body2">
-                  {event.attendees}
-                </Typography>
-              </Box>
-            )} */}
           </Box>
         </Box>
 
-        {/* Bloque de Cuenta Regresiva (event_timer_container) */}
+        {/* CUENTA REGRESIVA */}
         <Box
           sx={{
             mt: { xs: 2, lg: 0 },
