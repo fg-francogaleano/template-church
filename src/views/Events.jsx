@@ -2,12 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import {
-  Typography,
-  IconButton,
-  useTheme,
-  Box,
-} from "@mui/material";
+import { Typography, IconButton, useTheme, Box, Divider } from "@mui/material";
 import {
   ArrowBackIosNew as ArrowBackIosNewIcon,
   ArrowForwardIos as ArrowForwardIosIcon,
@@ -16,7 +11,7 @@ import {
 import { styled } from "@mui/system";
 import { sanityClient } from "../../lib/sanityClient";
 import EventModal from "../components/EventModal";
-import EventSlide from "../views/EventSlide"; 
+import EventSlide from "../views/EventSlide";
 
 // Componentes estilizados
 const StyledSection = styled("section")(({ theme }) => ({
@@ -74,6 +69,7 @@ const Events = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [events, setEvents] = useState([]);
+  const { palette } = useTheme();
 
   const handleOpenModal = (event) => {
     setSelectedEvent(event);
@@ -138,8 +134,33 @@ const Events = () => {
   return (
     <StyledSection id="eventos">
       <StyledContainer>
+        <Box mb={4}>
+          <Box width={{ xs: "300px", md: "380px" }} mx={"auto"}>
+            <Divider>
+              <Typography
+                variant="caption"
+                letterSpacing={5}
+                color={palette.primary[500]}
+              >
+                NUESTROS
+              </Typography>
+            </Divider>
+          </Box>
+          <Typography
+            variant="h2"
+            component="p"
+            fontSize={{ xs: "2.5rem", md: "3rem" }}
+            textAlign="center"
+            color={palette.primary[800]}
+            // marginTop={6}
+          >
+           Próximos Eventos
+          </Typography>
+        </Box>
         {events.length > 0 ? (
-          <Box sx={{ maxWidth: 1000, margin: "0 auto" }}> {/* Aumentamos el ancho máximo para el slider */}
+          <Box sx={{ maxWidth: 1000, margin: "0 auto" }}>
+            {" "}
+            {/* Aumentamos el ancho máximo para el slider */}
             <Box
               sx={{
                 maxWidth: 1000,

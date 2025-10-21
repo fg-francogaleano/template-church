@@ -52,10 +52,10 @@ const About = () => {
       <Box>
         {/* ENCABEZADO PRINCIPAL */}
         <Box textAlign="center">
-          <Box  width={"50%"} mx={"auto"}>
+          <Box  width={{ xs: "160px", md: "190px" }} mx={"auto"}>
             <Divider>
               <Typography variant="caption" letterSpacing={5} color={palette.primary[500]} >
-                ACERCA DE
+                SOBRE
               </Typography>
             </Divider>
           </Box>
@@ -63,9 +63,6 @@ const About = () => {
             variant="h2"
             component="p"
             fontSize={{ xs: "2.5rem", md: "3rem" }}
-            // fontSize="3rem"
-            // fontWeight="bold"
-            // letterSpacing="-0.02em"
             textAlign="center"
             color={palette.primary[800]}
             // marginTop={6}
@@ -83,6 +80,7 @@ const About = () => {
               mt: 2,
               lineHeight: 1.6,
               px: 1,
+              fontWeight : 300
             }}
           >
             Somos una iglesia comprometida a compartir el amor de Cristo,
@@ -263,7 +261,6 @@ const About = () => {
                     variant="h3"
                     sx={{
                       fontSize: { xs: "1.5rem", md: "2rem" },
-                      fontWeight: 700,
                       color: palette.primary[800],
                       mb: 2,
                       maxWidth: 900,

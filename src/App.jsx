@@ -137,17 +137,17 @@ function App() {
                 setCarouselImages={setCarouselImages}
               />
             </Box>
-            <Box component="section" id="nosotros" sx={{ border: "solid 1px grey", my: 10, py: 10 }} >
+            <Box component="section" id="nosotros" sx={{ my: 10, py: 10 }} >
               <About />
             </Box>
 
             <Box component="section" id="eventos" >
               <Events />
             </Box>
-            <Box component="section" id="ofrendar"  >
+            <Box component="section" id="ofrendar" >
               <Donate />
             </Box>
-            <Box component="section" id="contacto" >
+            <Box component="section" id="contacto" sx={{ my: 10, py: 10 }} border={"solid 1px red"} >
               <Contact />
             </Box>
           </Box>

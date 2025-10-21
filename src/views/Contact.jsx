@@ -9,6 +9,7 @@ import {
   Link,
   CardHeader,
   Card,
+  Divider,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -59,16 +60,24 @@ function Contact() {
         }}
       >
         <Box margin="auto" width={{ xs: "100%", md: "70%" }}>
+          <Box width={{ xs: "230px", md: "280px" }} mx={"auto"}>
+            <Divider>
+              <Typography
+                variant="caption"
+                letterSpacing={5}
+                color={palette.primary[500]}
+              >
+                CONTACTO
+              </Typography>
+            </Divider>
+          </Box>
           <Typography
             variant="h2"
             component="p"
             fontSize={{ xs: "2.5rem", md: "3rem" }}
             color={palette.primary[800]}
-            fontWeight="bold"
-            letterSpacing="-0.02em"
-            textAlign="center"
+            textAlign={"center"}
             gutterBottom
-            marginTop={6}
           >
             Contactanos
           </Typography>
@@ -169,7 +178,10 @@ function Contact() {
                         </Typography>
                       }
                       subheader={
-                        <Typography variant="body2" color={theme.palette.primary[400]}>
+                        <Typography
+                          variant="body2"
+                          color={theme.palette.primary[400]}
+                        >
                           {`${info.calle} ${info.numero}, ${info.localidad}, ${info.provincia}`}
                         </Typography>
                       }
@@ -200,7 +212,10 @@ function Contact() {
                           color="inherit"
                           underline="hover"
                         >
-                          <Typography variant="body2" color={theme.palette.primary[400]}>
+                          <Typography
+                            variant="body2"
+                            color={theme.palette.primary[400]}
+                          >
                             {info.email}
                           </Typography>
                         </Link>
@@ -234,7 +249,10 @@ function Contact() {
                           color="inherit"
                           underline="hover"
                         >
-                          <Typography variant="body2" color={theme.palette.primary[500]}>
+                          <Typography
+                            variant="body2"
+                            color={theme.palette.primary[500]}
+                          >
                             {info.whatsapp}
                           </Typography>
                         </Link>

@@ -10,6 +10,7 @@ import {
   IconButton,
   CardHeader,
   Snackbar,
+  Divider,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import AccountBalanceIcon from "../icons/AccountBalanceIcon";
@@ -27,8 +28,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: { xs: "90%", sm: 400 },
-  backgroundColor: "rgba(255, 255, 255, 0.1)",
-  backdropFilter: "blur(35px)",
+  bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
   borderRadius: 2,
@@ -108,7 +108,7 @@ function Donate() {
       title: "Transferencia Bancaria",
       subheader: "Realiza tu ofrenda mediante transferencia bancaria.",
       icon: (
-        <AccountBalanceIcon fontSize="small" color={palette.primary[800]} />
+        <AccountBalanceIcon fontSize="small" color={palette.primary[500]} />
       ),
       buttonText: "Ver Detalles",
       onClick: handleOpenBank,
@@ -117,7 +117,7 @@ function Donate() {
       id: "mercadopago",
       title: "Mercado Pago",
       subheader: "Escanea el código QR para ofrendar digitalmente.",
-      icon: <QrCodeIcon fontSize="small" color={palette.primary[800]} />,
+      icon: <QrCodeIcon fontSize="small" color={palette.primary[500]} />,
       buttonText: "Ver Código QR",
       onClick: handleOpenMp,
     },
@@ -125,7 +125,7 @@ function Donate() {
       id: "in-person",
       title: "Ofrendá en Persona",
       subheader: "Entrega tu ofrenda durante nuestras celebraciones.",
-      icon: <PersonIcon color={palette.primary[800]} />,
+      icon: <PersonIcon color={palette.primary[500]} />,
       buttonText: "Conócenos",
       href: "#contacto",
     },
@@ -141,63 +141,112 @@ function Donate() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        // p: 3,
         margin: "auto",
-        minHeight: "120vh", // Añadido para forzar el scroll y ver el efecto
+        minHeight: "120vh",
         mt: 4,
       }}
     >
-      {/* Contenedor con la imagen de fondo y efecto parallax */}
+      {/* CONTENEDOR IMAGEN DE FONDO - EFECTO PARALLAX*/}
       <Box
-        margin= "4rem auto"
+        margin="auto"
         width={{ xs: "100%", md: "100%" }}
         sx={{
           backgroundImage:
-            "url(https://lacorriente.com/wp-content/uploads/2022/09/generosidad-dar-sin-esperar.jpg)", // URL de ejemplo, reemplázala con tu imagen
+            "url(https://lacorriente.com/wp-content/uploads/2022/09/generosidad-dar-sin-esperar.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
-          p: 4,
           borderRadius: 2,
-          minHeight: { xs: "300px", sm: "400px" },
+          minHeight: { xs: "300px", sm: "340px" },
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          position: "relative",
         }}
       >
-        <Typography
-          variant="h2"
-          component="p"
-          fontSize={{ xs: "2.5rem", md: "3rem" }}
-          color={palette.primary[100]}
-          fontWeight="bold"
-          letterSpacing="-0.02em"
-          textAlign="center"
-          gutterBottom
-          marginTop={6}
+        {/* CAPA SEMITRANSPARENTE OSCURA */}
+        <Box
           sx={{
-            textShadow: "1px 1px 2px rgba(0,0,0,0.8)",
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: 4,
+            borderRadius: 2,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
           }}
         >
-          Generosidad
-        </Typography>
-        <Typography
-          align="center"
-          fontSize={{ xs: "16px", md: "18px" }}
-          color="white"
-          mb={4}
+          {/* ENCABEZADO PRINCIPAL */}
+          <Box width={{ xs: "230px", md: "280px" }} mx={"auto"}>
+            <Divider
+              sx={{
+                "&::before, &::after": {
+                  borderColor: palette.primary[600]
+                },
+              }}
+            >
+              <Typography
+                variant="caption"
+                letterSpacing={5}
+                color={palette.primary[500]}
+              >
+                COMPARTIR
+              </Typography>
+            </Divider>
+          </Box>
+          <Typography
+            variant="h2"
+            component="p"
+            fontSize={{ xs: "2.5rem", md: "3rem" }}
+            color={palette.primary[100]}
+            gutterBottom
+          >
+            Generosidad
+          </Typography>
+          <Typography
+            align="center"
+            variant="caption"
+            fontSize={{ xs: "16px", md: "18px" }}
+            color={palette.primary[400]}
+            fontWeight={300}
+            mb={4}
+            sx={{
+              maxWidth: 800,
+              margin: "0 auto",
+            }}
+          >
+            Tu generosidad nos permite continuar con nuestra misión de servir a
+            la comunidad y extender el amor de Dios. Elige el método que más te
+            convenga.
+          </Typography>
+        </Box>
+
+        {/* TARJETAS DE METODOS DE PAGO */}
+        <Grid
+          container
+          spacing={3}
+          flexGrow={1}
+          mt={4}
+          justifyContent="center"
+          display={{ xs: "none", md: "flex" }}
           sx={{
-            textShadow: "1px 1px 2px rgba(0,0,0,0.8)",
-            maxWidth: 800,
-            margin: "0 auto",
+            position: "absolute",
+            bottom: 0, // Posiciona el contenedor de las tarjetas en la parte inferior
+            left: 0,
+            right: 0,
+            transform: "translateY(50%)", // Mueve el contenedor hacia abajo el 50% de su propia altura
+            width: { xs: "90%", md: "80%" }, // Le damos un ancho específico para centrarlo
+            margin: "0 auto", // Para centrarlo horizontalmente (aunque left/right 0 y position absolute con un width menor a 100% también funciona)
+            px: { xs: 2, md: 0 }, // Añade padding horizontal para móviles
           }}
         >
-          Tu generosidad nos permite continuar con nuestra misión de servir a la
-          comunidad y extender el amor de Dios. Elige el método que más te
-          convenga.
-        </Typography>
-        <Grid container spacing={3} flexGrow={1} mt={2} justifyContent="center">
           {paymentMethods.map((method) => (
             <Grid key={method.id} size={{ xs: 12, md: 4 }}>
               <Card
@@ -207,14 +256,24 @@ function Donate() {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  backdropFilter: "blur(35px)",
+                  // backgroundColor: "rgba(255, 255, 255, 0.15)",
+                  // border: `solid 1px ${palette.primary[500]}`,
+                  // backdropFilter: "blur(35px)",
+                  bgcolor: "background.paper",
                 }}
               >
                 <Box>
                   <CardHeader
                     avatar={method.icon}
-                    title={<Typography variant="h6">{method.title}</Typography>}
+                    title={
+                      <Typography
+                        variant="h6"
+                        fontWeight={300}
+                        color={palette.primary[800]}
+                      >
+                        {method.title}
+                      </Typography>
+                    }
                     subheader={method.subheader}
                   />
                 </Box>
@@ -240,7 +299,72 @@ function Donate() {
         </Grid>
       </Box>
 
-      <Box sx={{ textAlign: "center", px: 4, mt: 0 }}>
+      {/* DISPOSITIVOS MOVILES */}
+      <Grid
+        container
+        spacing={3}
+        flexGrow={1}
+        mt={1}
+        justifyContent="center"
+        display={{ xs: "flex", md: "none" }}
+        sx={{
+          width: { xs: "90%", md: "80%" },
+          margin: "0 auto",
+          px: { xs: 2, md: 0 },
+        }}
+      >
+        {paymentMethods.map((method) => (
+          <Grid key={method.id} size={{ xs: 12, md: 4 }}>
+            <Card
+              raised
+              sx={{
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                bgcolor: "background.paper",
+              }}
+            >
+              <Box>
+                <CardHeader
+                  avatar={method.icon}
+                  title={
+                    <Typography
+                      variant="h6"
+                      fontWeight={300}
+                      color={palette.primary[800]}
+                    >
+                      {method.title}
+                    </Typography>
+                  }
+                  subheader={method.subheader}
+                />
+              </Box>
+              <CardContent
+                sx={{
+                  flexGrow: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Button
+                  variant="outlined"
+                  onClick={method.onClick}
+                  href={method.href}
+                >
+                  {method.buttonText}
+                </Button>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+
+      {/* PALABRA DE GRATITUD */}
+      <Box
+        sx={{ textAlign: "center", px: 4, mt: { xs: "150px", sm: "150px" } }}
+      >
         <Box
           sx={{
             border: `solid 1px ${palette.primary[300]}`,
@@ -269,7 +393,7 @@ function Donate() {
         </Box>
       </Box>
 
-      {/* Modal para Transferencia Bancaria */}
+      {/* MODAL TRANSFERENCIA BANCARIA */}
       <Modal
         open={openBank}
         onClose={handleCloseBank}
@@ -282,8 +406,9 @@ function Donate() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: { xs: "95%", sm: "450px" },
-            backgroundColor: "rgba(255, 255, 255, 0.1)",
-            backdropFilter: "blur(35px)",
+            // backgroundColor: "rgba(255, 255, 255, 0.1)",
+            // backdropFilter: "blur(35px)",
+            bgcolor: "background.paper",
             borderRadius: "3px",
             boxShadow: 24,
             p: { xs: 2, sm: 4 },
@@ -462,22 +587,7 @@ function Donate() {
         </Box>
       </Modal>
 
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      >
-        <Alert
-          onClose={handleCloseSnackbar}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
-
-      {/* Modal para Mercado Pago */}
+      {/* MODAL TRANSFERENCIA MERCADO PAGO */}
       <Modal
         open={openMp}
         onClose={handleCloseMp}
@@ -540,6 +650,22 @@ function Donate() {
           </Typography>
         </Box>
       </Modal>
+
+      {/* Snackbar (Sin cambios) */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
