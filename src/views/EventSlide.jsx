@@ -13,9 +13,12 @@ import {
   Grid,
 } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { HiLocationMarker } from "react-icons/hi";
 import CalendarIcon from "../icons/CalendarIcon"; // Asumo que aún usas estos iconos
 import ClockIcon from "../icons/ClockIcon";
 import PeopleIcon from "../icons/PeopleIcon";
+import { IoTime } from "react-icons/io5";
+import { RiTimeFill } from "react-icons/ri";
 import { fontSize, styled } from "@mui/system";
 import CountdownTimer from "../components/CountdownTimer"; // Importamos el nuevo componente
 import FeaturedBanner from "../components/FeaturedBanner";
@@ -29,6 +32,7 @@ const StyledCard = styled("div")(({ theme, isFeatured }) => ({
   backgroundColor: theme.palette.background.paper,
   borderRadius: "3px",
   padding: "0 15px",
+  // width: 500,
   maxWidth: 800,
   "&:hover": {
     transform: "translateY(-4px)",
@@ -39,8 +43,11 @@ const StyledCard = styled("div")(({ theme, isFeatured }) => ({
     background: `linear-gradient(to bottom right, ${theme.palette.background.paper}, ${theme.palette.secondary.light}15)`,
   }),
   [theme.breakpoints.down("md")]: {
-    width: "85%",
+    width: "auto",
     minWidth: 200,
+  },
+  [theme.breakpoints.down("lg")]: {
+    maxWidth: 500,
   },
 }));
 
@@ -86,7 +93,7 @@ const EventSlide = ({ event, onOpenModal }) => {
           alignItems: "center",
           justifyContent: "space-between",
           gap: 2,
-          p: { xs: 2, lg: 3 },
+            p: { xs: 2, lg: 3 },
         }}
       >
         {/* BLOQUE DE FECHA */}
@@ -103,11 +110,7 @@ const EventSlide = ({ event, onOpenModal }) => {
             color: "primary.contrastText",
           }}
         >
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ lineHeight: 1 }}
-          >
+          <Typography variant="h3" component="div" sx={{ lineHeight: 1 }}>
             {eventDay}
           </Typography>
           <Typography
@@ -131,12 +134,15 @@ const EventSlide = ({ event, onOpenModal }) => {
             <Box
               sx={{
                 position: "absolute",
-                top: 5, 
-                left: 5, 
-                zIndex: 10, 
+                top: 5,
+                left: 5,
+                zIndex: 10,
               }}
             >
-              <FeaturedBanner label="DESTACADO" sx={{ fontSize: { xs: "0.7rem", sm: "1rem" } }}/>
+              <FeaturedBanner
+                label="DESTACADO"
+                sx={{ fontSize: { xs: "0.7rem", sm: "1rem" } }}
+              />
             </Box>
           )}
 
@@ -169,8 +175,13 @@ const EventSlide = ({ event, onOpenModal }) => {
                 color: "text.secondary",
               }}
             >
-              <ClockIcon
+              {/* <ClockIcon
                 fontSize="small"
+                color={
+                  event.featured ? palette.secondary.main : palette.primary[600]
+                }
+              /> */}
+              <RiTimeFill
                 color={
                   event.featured ? palette.secondary.main : palette.primary[600]
                 }
@@ -186,13 +197,18 @@ const EventSlide = ({ event, onOpenModal }) => {
                 color: "text.secondary",
               }}
             >
-              <LocationOnIcon
+              {/* <LocationOnIcon
                 fontSize="small"
                 sx={{
                   color: event.featured
                     ? palette.secondary.main
                     : palette.primary[600],
                 }}
+              /> */}
+              <HiLocationMarker
+                color={
+                  event.featured ? palette.secondary.main : palette.primary[600]
+                }
               />
               <Typography variant="body2">{event.location}</Typography>
             </Box>

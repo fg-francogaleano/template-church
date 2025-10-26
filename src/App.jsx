@@ -147,7 +147,7 @@ function App() {
             <Box component="section" id="ofrendar" >
               <Donate />
             </Box>
-            <Box component="section" id="contacto" sx={{ my: 10, py: 10 }} border={"solid 1px red"} >
+            <Box component="section" id="contacto" sx={{ mt: 10, pt: 10 }} >
               <Contact />
             </Box>
           </Box>

@@ -21,6 +21,9 @@ import MuiAlert from "@mui/material/Alert";
 import { useTheme } from "@mui/material/styles";
 import { sanityClient } from "../../lib/sanityClient";
 import imageUrlBuilder from "@sanity/image-url";
+import { FaQrcode } from "react-icons/fa";
+import { BsBank2 } from "react-icons/bs";
+import { IoPerson } from "react-icons/io5";
 
 const style = {
   position: "absolute",
@@ -157,7 +160,7 @@ function Donate() {
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
           borderRadius: 2,
-          minHeight: { xs: "300px", sm: "340px" },
+          minHeight: { xs: 260, sm: 220, md: 250, lg: 340 },
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -188,7 +191,7 @@ function Donate() {
             <Divider
               sx={{
                 "&::before, &::after": {
-                  borderColor: palette.primary[600]
+                  borderColor: palette.primary[600],
                 },
               }}
             >
@@ -235,20 +238,20 @@ function Donate() {
           flexGrow={1}
           mt={4}
           justifyContent="center"
-          display={{ xs: "none", md: "flex" }}
+          display={{ xs: "none", lg: "flex" }}
           sx={{
             position: "absolute",
-            bottom: 0, // Posiciona el contenedor de las tarjetas en la parte inferior
+            bottom: 0,
             left: 0,
             right: 0,
-            transform: "translateY(50%)", // Mueve el contenedor hacia abajo el 50% de su propia altura
-            width: { xs: "90%", md: "80%" }, // Le damos un ancho específico para centrarlo
-            margin: "0 auto", // Para centrarlo horizontalmente (aunque left/right 0 y position absolute con un width menor a 100% también funciona)
-            px: { xs: 2, md: 0 }, // Añade padding horizontal para móviles
+            transform: "translateY(50%)",
+            width: { xs: "90%", md: "80%" },
+            margin: "0 auto",
+            px: { xs: 2, md: 0 },
           }}
         >
           {paymentMethods.map((method) => (
-            <Grid key={method.id} size={{ xs: 12, md: 4 }}>
+            <Grid key={method.id} size={{ xs: 12, lg: 4 }}>
               <Card
                 raised
                 sx={{
@@ -277,6 +280,7 @@ function Donate() {
                     subheader={method.subheader}
                   />
                 </Box>
+
                 <CardContent
                   sx={{
                     flexGrow: 1,
@@ -286,7 +290,8 @@ function Donate() {
                   }}
                 >
                   <Button
-                    variant="outlined"
+                    color="secondary"
+                    variant="text"
                     onClick={method.onClick}
                     href={method.href}
                   >
@@ -304,17 +309,19 @@ function Donate() {
         container
         spacing={3}
         flexGrow={1}
-        mt={1}
+        mt={3}
+        mx={"auto"}
         justifyContent="center"
-        display={{ xs: "flex", md: "none" }}
+        display={{ xs: "flex", lg: "none" }}
         sx={{
-          width: { xs: "90%", md: "80%" },
-          margin: "0 auto",
-          px: { xs: 2, md: 0 },
+          width: { xs: "90%", md: "60%" },
+          maxWidth: 600,
+          // margin: "0 auto",
+          // px: { xs: 2, md: 0 },
         }}
       >
         {paymentMethods.map((method) => (
-          <Grid key={method.id} size={{ xs: 12, md: 4 }}>
+          <Grid key={method.id} size={12}>
             <Card
               raised
               sx={{

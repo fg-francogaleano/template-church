@@ -10,12 +10,20 @@ import {
   CardHeader,
   Card,
   Divider,
+  CardContent,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import { RiPhoneFill } from "react-icons/ri";
+import { HiLocationMarker } from "react-icons/hi";
+import { IoIosMail } from "react-icons/io";
+import { MdOutlineEmail } from "react-icons/md";
+import { FaPhoneAlt } from "react-icons/fa";
+import EmailIcon from "@mui/icons-material/Email";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import LocationOnIcon from "../icons/LocationOnIcon";
+// import LocationOnIcon from "../icons/LocationOnIcon";
 import PhoneIcon from "@mui/icons-material/Phone";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 import Form from "../components/Form";
 import SocialMediaIcon from "../icons/SocialMediaIcon";
@@ -55,10 +63,11 @@ function Contact() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          // padding: { md: 4 },
+          padding: { md: 4 },
           boxSizing: "border-box",
         }}
       >
+        {/* ENCABEZADO PRINCIPAL */}
         <Box margin="auto" width={{ xs: "100%", md: "70%" }}>
           <Box width={{ xs: "230px", md: "280px" }} mx={"auto"}>
             <Divider>
@@ -92,201 +101,315 @@ function Contact() {
           </Typography>
         </Box>
 
-        <Grid container flexGrow={1} mt={2} width={"100%"} boxShadow={2}>
-          {/* Grid izquierdo: Formulario */}
-          {/* <Grid size={{ xs: 12, md: 5 }} bgcolor={"background.paper"}>
-            <Typography
-              variant="h4"
-              component="p"
-              textAlign={"center"}
-              marginTop={4}
-            >
-              Enviá un mensaje
-            </Typography>
-            <Box display={"flex"} width={"100%"}>
-              <Box alignSelf={"center"} px={1}>
-                {info.redes?.map((red, index) => {
-                  return (
-                    <Box display={"flex"} key={index}>
-                      <IconButton
-                        key={index}
-                        color="inherit"
-                        aria-label={red.nombre}
-                        component={Link}
-                        href={red.url}
-                        target="_blank"
-                        rel="noopener"
-                      >
-                        <SocialMediaIcon
-                          color={theme.palette.primary[600]}
-                          socialMedia={red.nombre}
-                          fontSize="medium"
-                        />
-                      </IconButton>
-                    </Box>
-                  );
-                })}
-              </Box>
-              <Box paddingRight={3} pb={4} width={"100%"}>
-                <Form />
-              </Box>
-            </Box>
-          </Grid> */}
-
-          {/* Grid derecho: mapa */}
-          <Grid size={{ xs: 12, md: 7 }}>
+        <Grid container flexGrow={1} width={"100%"}>
+          <Grid
+            size={{ xs: 12, lg: 6 }}
+            display={{ xs: "none", md: "flex" }}
+            justifyContent={"center"}
+          >
             <Box
-              sx={{
-                width: "100%",
-                height: "100%",
-                // height: 300,
-                bgcolor: "grey.300",
-                overflow: "hidden",
-                position: "relative",
-              }}
+              display={"flex"}
+              flexDirection={{ xs: "column", sm: "row", lg: "column" }}
+              justifyContent={"center"}
+              // border={"solid 1px black"}
+              my={{ xs: 4, lg: 0 }}
             >
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  background: `linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.25) 90%, rgba(0,0,0,0) 100%)`,
-                  zIndex: 1, // Por encima del iframe
-                  display: "flex",
-                  alignItems: "center", // Centra verticalmente el contenido
-                  pointerEvents: "none",
-                }}
-              >
-                <Grid container spacing={2} zIndex={2}>
-                  {/* Dirección */}
-                  <Grid item size={{ xs: 12 }}>
-                    <CardHeader
-                      avatar={
-                        <LocationOnIcon
-                          color={theme.palette.secondary.main}
-                          fontSize="large"
-                        />
-                      }
-                      title={
-                        <Typography
-                          variant="h6"
-                          color={theme.palette.primary[300]}
-                        >
-                          Dirección
-                        </Typography>
-                      }
-                      subheader={
-                        <Typography
-                          variant="body2"
-                          color={theme.palette.primary[400]}
-                        >
-                          {`${info.calle} ${info.numero}, ${info.localidad}, ${info.provincia}`}
-                        </Typography>
-                      }
-                    />
-                  </Grid>
-                  {/* Email */}
-                  <Grid item size={{ xs: 12 }}>
-                    <CardHeader
-                      avatar={
-                        <MailOutlineIcon
-                          sx={{
-                            color: theme.palette.secondary.main,
-                            fontSize: "large",
-                          }}
-                        />
-                      }
-                      title={
-                        <Typography
-                          variant="h6"
-                          color={theme.palette.primary[300]}
-                        >
-                          Email
-                        </Typography>
-                      }
-                      subheader={
-                        <Link
-                          href={`mailto:${info.email}`}
-                          color="inherit"
-                          underline="hover"
-                        >
-                          <Typography
-                            variant="body2"
-                            color={theme.palette.primary[400]}
-                          >
-                            {info.email}
-                          </Typography>
-                        </Link>
-                      }
-                    />
-                  </Grid>
-                  {/* WhatsApp */}
-                  <Grid item size={{ xs: 12 }}>
-                    <CardHeader
-                      avatar={
-                        <PhoneIcon
-                          sx={{
-                            color: theme.palette.secondary.main,
-                            fontSize: "large",
-                          }}
-                        />
-                      }
-                      title={
-                        <Typography
-                          variant="h6"
-                          color={theme.palette.primary[400]}
-                        >
-                          Teléfono
-                        </Typography>
-                      }
-                      subheader={
-                        <Link
-                          href={`https://wa.me/${info.whatsapp}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          color="inherit"
-                          underline="hover"
-                        >
-                          <Typography
-                            variant="body2"
-                            color={theme.palette.primary[500]}
-                          >
-                            {info.whatsapp}
-                          </Typography>
-                        </Link>
-                      }
-                    />
-                  </Grid>
-                </Grid>
-              </Box>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.411641042557!2d-58.64756598476149!3d-34.61315188046187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbee5c546e8c7%3A0xc3b446f2e245b63!2sBlas%20Parera%201206%2C%20B1712GUD%20Castelar%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1628178123456!5m2!1ses-419!2sar"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Ubicación de la iglesia"
-              ></iframe>
+              <CardHeader
+                avatar={
+                  <Box
+                    sx={{
+                      bgcolor: palette.secondary.main,
+                      padding: { xs: 1.5, md: 1.5 },
+                      borderRadius: "50%",
+                    }}
+                  >
+                    <Box fontSize={{ xs: 20, md: 20 }}>
+                      <HiLocationMarker color={palette.primary[100]} />
+                    </Box>
+                  </Box>
+                }
+                title={
+                  <Typography
+                    variant="p"
+                    fontSize={18}
+                    fontWeight={300}
+                    color={theme.palette.primary}
+                  >
+                    Dirección
+                  </Typography>
+                }
+                subheader={
+                  <Typography
+                    variant="body2"
+                    color={theme.palette.primary[500]}
+                  >
+                    {`${info.calle} ${info.numero}, ${info.localidad}, ${info.provincia}`}
+                  </Typography>
+                }
+              />
+              <CardHeader
+                avatar={
+                  <Box
+                    sx={{
+                      bgcolor: palette.secondary.main,
+                      padding: { xs: 1.5, md: 1.5 },
+                      borderRadius: "50%",
+                    }}
+                  >
+                    <Box fontSize={{ xs: 20, md: 20 }}>
+                      <IoIosMail color={palette.primary[100]} />
+                    </Box>
+                  </Box>
+                }
+                title={
+                  <Typography
+                    variant="p"
+                    fontSize={18}
+                    fontWeight={300}
+                    color={theme.palette.primary}
+                  >
+                    Email
+                  </Typography>
+                }
+                subheader={
+                  <Link
+                    href={`mailto:${info.email}`}
+                    color="inherit"
+                    underline="hover"
+                  >
+                    <Typography
+                      variant="body2"
+                      color={theme.palette.primary[500]}
+                    >
+                      {info.email}
+                    </Typography>
+                  </Link>
+                }
+              />
+              <CardHeader
+                avatar={
+                  <Box
+                    sx={{
+                      bgcolor: palette.secondary.main,
+                      padding: { xs: 1.5, md: 1.5 },
+                      borderRadius: "50%",
+                    }}
+                  >
+                    <Box fontSize={{ xs: 20, md: 20 }}>
+                      <RiPhoneFill color={palette.primary[100]} />
+                    </Box>
+                  </Box>
+                }
+                title={
+                  <Typography
+                    variant="p"
+                    fontSize={18}
+                    fontWeight={300}
+                    color={theme.palette.primary}
+                  >
+                    Teléfono
+                  </Typography>
+                }
+                subheader={
+                  <Link
+                    href={`https://wa.me/${info.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    color="inherit"
+                    underline="hover"
+                  >
+                    <Typography
+                      variant="body2"
+                      color={theme.palette.primary[500]}
+                    >
+                      {info.whatsapp}
+                    </Typography>
+                  </Link>
+                }
+              />
             </Box>
           </Grid>
 
-          <Grid size={{ xs: 12, md: 5 }} bgcolor={"background.paper"}>
-            <Typography
-              variant="h4"
-              component="p"
-              textAlign={"center"}
-              marginTop={4}
+          <Grid display={{ xs: "flex", md: "none" }} size={{ xs: 12, lg: 6 }}>
+            <Grid
+              container
+              flexGrow={1}
+              width={"100%"}
             >
+              <Grid size={{ xs: 12, sm: 4 }}>
+                <CardContent>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column", // Apila los elementos verticalmente
+                      alignItems: "center", // Centra todo horizontalmente
+                      textAlign: "center", // Asegura que el texto esté centrado
+                      py: 2,
+                    }}
+                  >
+                    {/* 1. AVATAR */}
+                    <Box
+                      sx={{
+                        bgcolor: palette.secondary.main,
+                        padding: { xs: 1.5, md: 1.5 },
+                        borderRadius: "50%",
+                        mb: 2,
+                      }}
+                    >
+                      <Box fontSize={{ xs: 20, md: 20 }}>
+                        <HiLocationMarker color={palette.primary[100]} />
+                      </Box>
+                    </Box>
+
+                    {/* 2. TITLE */}
+                    <Typography
+                      variant="h6"
+                      fontSize={18}
+                      fontWeight={300}
+                      color={theme.palette.primary}
+                      mb={0.5}
+                    >
+                      Dirección
+                    </Typography>
+
+                    {/* 3. SUBHEADER */}
+                    <Typography
+                      variant="body2"
+                      color={theme.palette.primary[500]}
+                    >
+                      {`${info.calle} ${info.numero}, ${info.localidad}, ${info.provincia}`}
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Grid>
+
+              {/* ---------------------------------------------------------------------- */}
+
+              {/* BLOQUE 2: EMAIL (NUEVO) */}
+              <Grid size={{ xs: 12, sm: 4 }}>
+                <CardContent>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      textAlign: "center",
+                      py: 2,
+                    }}
+                  >
+                    {/* 1. AVATAR */}
+                    <Box
+                      sx={{
+                        bgcolor: palette.secondary.main,
+                        padding: { xs: 1.5, md: 1.5 },
+                        borderRadius: "50%",
+                        mb: 2,
+                      }}
+                    >
+                      <Box fontSize={{ xs: 20, md: 20 }}>
+                        <IoIosMail color={palette.primary[100]} />
+                      </Box>
+                    </Box>
+
+                    {/* 2. TITLE */}
+                    <Typography
+                      variant="h6"
+                      fontSize={18}
+                      fontWeight={300}
+                      color={theme.palette.primary}
+                      mb={0.5}
+                    >
+                      Email
+                    </Typography>
+
+                    {/* 3. SUBHEADER (CON LINK 'mailto:') */}
+                    <Link
+                      href={`mailto:${info.email}`}
+                      color="inherit"
+                      underline="hover"
+                    >
+                      <Typography
+                        variant="body2"
+                        color={theme.palette.primary[500]}
+                      >
+                        {info.email}
+                      </Typography>
+                    </Link>
+                  </Box>
+                </CardContent>
+              </Grid>
+
+              {/* ---------------------------------------------------------------------- */}
+
+              {/* BLOQUE 3: TELÉFONO (NUEVO) */}
+              <Grid size={{ xs: 12, sm: 4 }}>
+                <CardContent>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      textAlign: "center",
+                      py: 2,
+                    }}
+                  >
+                    {/* 1. AVATAR */}
+                    <Box
+                      sx={{
+                        bgcolor: palette.secondary.main,
+                        padding: { xs: 1.5, md: 1.5 },
+                        borderRadius: "50%",
+                        mb: 2,
+                      }}
+                    >
+                      <Box fontSize={{ xs: 20, md: 20 }}>
+                        <RiPhoneFill color={palette.primary[100]} />
+                      </Box>
+                    </Box>
+
+                    {/* 2. TITLE */}
+                    <Typography
+                      variant="h6"
+                      fontSize={18}
+                      fontWeight={300}
+                      color={theme.palette.primary}
+                      mb={0.5}
+                    >
+                      Teléfono
+                    </Typography>
+
+                    {/* 3. SUBHEADER (CON LINK DE WHATSAPP) */}
+                    <Link
+                      href={`https://wa.me/${info.whatsapp}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      color="inherit"
+                      underline="hover"
+                    >
+                      <Typography
+                        variant="body2"
+                        color={theme.palette.primary[500]}
+                      >
+                        {info.whatsapp}
+                      </Typography>
+                    </Link>
+                  </Box>
+                </CardContent>
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <Grid size={{ xs: 12, lg: 6 }}>
+            <Typography variant="h4" component="p" textAlign={"center"} my={4}>
               Enviá un mensaje
             </Typography>
-            <Box display={"flex"} width={"100%"}>
-              <Box paddingLeft={5} pb={4} width={"100%"}>
+            <Box display={"flex"}>
+              {/* FORMULARIO */}
+              <Box paddingLeft={5} pb={4} width={"100%"} mx={"auto"}>
                 <Form />
               </Box>
+
+              {/* SOCIAL MEDIA */}
               <Box alignSelf={"center"} px={1}>
                 {info.redes?.map((red, index) => {
                   return (
@@ -313,6 +436,28 @@ function Contact() {
             </Box>
           </Grid>
         </Grid>
+
+        {/* MAPA */}
+        <Box
+          sx={{
+            width: "100%",
+            height: "350px",
+            bgcolor: "grey.300",
+            overflow: "hidden",
+            position: "relative",
+          }}
+        >
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.411641042557!2d-58.64756598476149!3d-34.61315188046187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbee5c546e8c7%3A0xc3b446f2e245b63!2sBlas%20Parera%201206%2C%20B1712GUD%20Castelar%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1628178123456!5m2!1ses-419!2sar"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Ubicación de la iglesia"
+          ></iframe>
+        </Box>
       </Box>
     </>
   );

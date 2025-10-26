@@ -8,7 +8,7 @@ function PersonIcon({ fontSize = "medium", color }) {
     large: "32px",
   };
   const finalSize = iconSizes[fontSize] || iconSizes.medium;
-  return <i className="bi bi-person" style={{ fontSize: finalSize, color }}></i>;
+  return <i className="bi bi-person-fill" style={{ fontSize: finalSize, color }}></i>;
 }
 
 export default PersonIcon;
