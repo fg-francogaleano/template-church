@@ -12,6 +12,7 @@ import {
   ListItemButton,
   ListItemText,
   useScrollTrigger,
+  useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -58,11 +59,12 @@ function ScrollTop(props) {
 }
 
 const NavBar = forwardRef((props, ref) => {
-
+    const { palette } = useTheme()
   const [mobileOpen, setMobileOpen] = useState(false);
   const navItems = [
     { name: "Inicio", href: "#inicio" },
     { name: "Nosotros", href: "#nosotros" },
+    { name: "Eventos", href: "#eventos" },
     { name: "Predicas", href: "#predicas" },
     { name: "Ofrendar", href: "#ofrendar" },
     { name: "Contacto", href: "#contacto" },
@@ -78,11 +80,11 @@ const NavBar = forwardRef((props, ref) => {
   });
 
   const transparentBackground = "transparent";
-  const darkSolidBackground = "rgba(0, 0, 0, 0.9)";
+  const darkSolidBackground = palette.primary.main;
 
   const gradientBackground = `linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0) 100%)`; // De negro opaco a transparente
   return (
-    <div style={{visibility : props.hidden ? "hidden" : "visible"}}>
+    <div style={{ visibility: props.hidden ? "hidden" : "visible" }}>
       <Toolbar
         id="back-to-top-anchor"
         sx={{
@@ -110,8 +112,7 @@ const NavBar = forwardRef((props, ref) => {
         }}
       >
         <Toolbar>
-        
-            <Logo />
+          <Logo />
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -125,9 +126,9 @@ const NavBar = forwardRef((props, ref) => {
           <Box
             sx={{
               display: { xs: "none", sm: "flex" },
-              gap: "15px",
-              marginRight: { sm: "20px" },
+              gap: { xs: 1.2, md: 2 },
               ml: "auto",
+              px: 1.5
             }}
           >
             {navItems.map((item) => (
@@ -228,6 +229,6 @@ const NavBar = forwardRef((props, ref) => {
       </ScrollTop>
     </div>
   );
-})
+});
 
 export default NavBar;

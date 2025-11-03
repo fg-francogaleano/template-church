@@ -7,6 +7,7 @@ import {
   Button,
   Alert,
   CardHeader,
+  useTheme,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import theme from "../MUI/Theme";
@@ -18,6 +19,10 @@ import PersonIcon from "../icons/PersonIcon";
 import PhoneIcon from "@mui/icons-material/Phone";
 import WhatsappInvitationButton from "../components/WhatsappInvitationButton";
 import WalletIcon from "../icons/WalletIcon";
+import { RiPhoneFill, RiTimeFill } from "react-icons/ri";
+import { HiLocationMarker } from "react-icons/hi";
+import { IoCalendarNumberSharp, IoPeopleSharp, IoPerson, IoWallet } from "react-icons/io5";
+import { BsFillPersonFill, BsPeopleFill } from "react-icons/bs";
 
 const modalStyle = {
   position: "absolute",
@@ -66,30 +71,33 @@ function formatDate(dateString) {
 }
 
 const EventModal = ({ open, handleClose, selectedEvent }) => {
+
+  const { palette } = useTheme()
+
   if (!selectedEvent) {
     return null;
   }
 
   const eventData = [
     {
-      icon: <CalendarIcon fontSize="small" />,
+      icon: <IoCalendarNumberSharp size={25}  color={palette.secondary.main} />,
       label: "Fecha",
       content: `${formatDate(selectedEvent.startDate)}${
         selectedEvent.endDate ? ` al ${formatDate(selectedEvent.endDate)}` : ""
       }`,
     },
     {
-      icon: <ClockIcon fontSize="small" color="primary" />,
+      icon: <RiTimeFill size={25} color={palette.secondary.main} />,
       label: "Horario",
       content: `${selectedEvent.time} hs`,
     },
     {
-      icon: <LocationOnIcon fontSize="small" color="primary" />,
+      icon: <HiLocationMarker size={25} color={palette.secondary.main} />,
       label: "Ubicación",
       content: selectedEvent.location,
     },
     {
-      icon: <PeopleIcon fontSize="small" color="primary" />,
+      icon: <BsPeopleFill size={25} color={palette.secondary.main} />,
       label: "Destinado",
       content: selectedEvent.attendees,
     },
@@ -97,7 +105,7 @@ const EventModal = ({ open, handleClose, selectedEvent }) => {
 
   if (selectedEvent.cost) {
     eventData.push({
-      icon: <WalletIcon fontSize="small" color="primary" />,
+      icon: <IoWallet size={25} color={palette.secondary.main} />,
       label: "Inversión",
       content: selectedEvent.costValue
         ? `$${selectedEvent.costValue}`
@@ -107,7 +115,7 @@ const EventModal = ({ open, handleClose, selectedEvent }) => {
 
   if (selectedEvent.contactPhone) {
     eventData.push({
-      icon: <PhoneIcon sx={iconStyle} />,
+      icon: <RiPhoneFill size={25} color={palette.secondary.main} />,
       label: "Contacto",
       content: selectedEvent.contactPhone,
     });
@@ -115,7 +123,7 @@ const EventModal = ({ open, handleClose, selectedEvent }) => {
 
   if (selectedEvent.guestName) {
     eventData.push({
-      icon: <PersonIcon fontSize="small" color="primary" />,
+      icon: <BsFillPersonFill size={25} color={palette.secondary.main} />,
       label: "Invitado",
       content: selectedEvent.guestName,
     });
@@ -176,7 +184,7 @@ const EventModal = ({ open, handleClose, selectedEvent }) => {
                       }
                       subheader={
                         <Typography
-                          fontWeight="bold"
+                          fontWeight={200}
                           color={theme.palette.primary[700]}
                           variant="body1"
                         >
@@ -200,7 +208,7 @@ const EventModal = ({ open, handleClose, selectedEvent }) => {
                       }
                       subheader={
                         <Typography
-                          fontWeight="bold"
+                          fontWeight={200}
                           color={theme.palette.primary[700]}
                           variant="body1"
                         >

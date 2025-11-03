@@ -129,7 +129,7 @@ function Donate() {
       title: "Ofrendá en Persona",
       subheader: "Entrega tu ofrenda durante nuestras celebraciones.",
       icon: <PersonIcon color={palette.primary[500]} />,
-      buttonText: "Conócenos",
+      buttonText: "Conocenos",
       href: "#contacto",
     },
   ];
@@ -211,7 +211,7 @@ function Donate() {
             color={palette.primary[100]}
             gutterBottom
           >
-            Generosidad
+            GENEROSIDAD
           </Typography>
           <Typography
             align="center"
@@ -290,8 +290,7 @@ function Donate() {
                   }}
                 >
                   <Button
-                    color="secondary"
-                    variant="text"
+                    variant="outlined"
                     onClick={method.onClick}
                     href={method.href}
                   >
@@ -374,17 +373,18 @@ function Donate() {
       >
         <Box
           sx={{
-            border: `solid 1px ${palette.primary[300]}`,
+            border: `solid 2px ${palette.secondary.main}`,
             bgcolor: "background.paper",
             borderRadius: "3px",
             p: 4,
             mx: "auto",
+            maxWidth: 750
           }}
         >
           <Typography
             variant="h5"
             component="h4"
-            sx={{ fontWeight: "bold", mb: 2 }}
+            sx={{ fontWeight: 500, mb: 2 }}
           >
             Palabra de Gratitud
           </Typography>
@@ -395,7 +395,10 @@ function Donate() {
             sx={{ mb: 2 }}
           >
             "Cada uno dé como propuso en su corazón: no con tristeza, ni por
-            necesidad, porque Dios ama al dador alegre." - 2 Corintios 9:7
+            necesidad, porque Dios ama al dador alegre." 
+          </Typography>
+          <Typography textAlign={"center"} fontWeight={400}>
+            2 Corintios 9:7
           </Typography>
         </Box>
       </Box>

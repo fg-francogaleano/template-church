@@ -8,23 +8,13 @@ import {
   Grid,
   Link,
   CardHeader,
-  Card,
   Divider,
   CardContent,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { RiPhoneFill } from "react-icons/ri";
 import { HiLocationMarker } from "react-icons/hi";
 import { IoIosMail } from "react-icons/io";
-import { MdOutlineEmail } from "react-icons/md";
-import { FaPhoneAlt } from "react-icons/fa";
-import EmailIcon from "@mui/icons-material/Email";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-// import LocationOnIcon from "../icons/LocationOnIcon";
-import PhoneIcon from "@mui/icons-material/Phone";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-
 import Form from "../components/Form";
 import SocialMediaIcon from "../icons/SocialMediaIcon";
 
@@ -50,7 +40,6 @@ function Contact() {
   }, []);
 
   if (!info) return <Typography>Cargando...</Typography>;
-  console.log(info);
 
   return (
     <>
@@ -63,8 +52,9 @@ function Contact() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          padding: { md: 4 },
+          // padding: { md: 4 },
           boxSizing: "border-box",
+          // background: palette.background.default1
         }}
       >
         {/* ENCABEZADO PRINCIPAL */}
@@ -88,7 +78,7 @@ function Contact() {
             textAlign={"center"}
             gutterBottom
           >
-            Contactanos
+            CONTACTANOS
           </Typography>
           <Typography
             align="center"
@@ -401,7 +391,7 @@ function Contact() {
 
           <Grid size={{ xs: 12, lg: 6 }}>
             <Typography variant="h4" component="p" textAlign={"center"} my={4}>
-              Enviá un mensaje
+              ENVIÁ UN MENSAJE
             </Typography>
             <Box display={"flex"}>
               {/* FORMULARIO */}

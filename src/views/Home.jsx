@@ -19,7 +19,15 @@ function Home({ carouselImages, setCarouselImages }) {
     "¡Únete a nuestra familia!",
   ];
   return (
-    <Box>
+    <Box
+      sx={{
+        clipPath: {
+          xs: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 98%)",
+          sm: "polygon(0% 0%, 100% 0%, 100% 90%, 70% 100%, 0% 90%)",
+        },
+        backgroundColor: "rgba(0, 0, 0, 0.6)",
+      }}
+    >
       <Box sx={{ position: "relative" }}>
         <ImageCarousel
           images={carouselImages}
@@ -27,20 +35,23 @@ function Home({ carouselImages, setCarouselImages }) {
           autoPlayInterval={4000}
         />
       </Box>
-      {/* <Box
+      <Box
         sx={{
           position: "absolute",
           top: 0,
+          // left: { xs: 10, sm: 20 },
           left: 0,
           width: "100%",
-          minHeight: "10vh",
-          zIndex: "999",
-          backgroundColor: "rgba(0, 0, 0, 0.4)",
+          minHeight: "100vh",
+          display: "flex",
+          justifyContent: "start",
+          alignItems: "center",
+          zIndex: 999,
         }}
-      > */}
+      >
         <WelcomeTyped strings={welcomeTexts} />
         {/* <-- Usamos el nuevo componente */}
-      {/* </Box> */}
+      </Box>
     </Box>
   );
 }

@@ -17,10 +17,10 @@ const CarouselImageWrapper = styled(Box)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius, // Opcional: bordes redondeados
   boxShadow: theme.shadows[3], // Opcional: sombra para el carrusel
   // Nuevo: corte oblicuo en la parte inferior
-  clipPath: "polygon(0% 0%, 100% 0%, 100% 90%, 70% 100%, 0% 90%)",
+  // clipPath: "polygon(0% 0%, 100% 0%, 100% 90%, 70% 100%, 0% 90%)",
   [theme.breakpoints.down("sm")]: {
     height: "250px", // Altura más pequeña en móviles
-    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 98%)",
+    // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 98%)",
   },
 }));
 
@@ -107,9 +107,9 @@ function Carousel({ images, autoPlay = true, autoPlayInterval = 3000 }) {
       <Box sx={{ width: "100%", minHeight: "120vh" }}>
         <CarouselImageWrapper>
           {/* Botón de navegación anterior */}
-          <NavigationButton onClick={goToPrevious} sx={{ left: 8 }}>
+          {/* <NavigationButton onClick={goToPrevious} sx={{ left: 8 }}>
             <ArrowBackIosNewIcon />
-          </NavigationButton>
+          </NavigationButton> */}
 
           {/* Imagen actual del carrusel */}
           {images.map((image, index) => (
@@ -125,9 +125,9 @@ function Carousel({ images, autoPlay = true, autoPlayInterval = 3000 }) {
           ))}
 
           {/* Botón de navegación siguiente */}
-          <NavigationButton onClick={goToNext} sx={{ right: 8 }}>
+          {/* <NavigationButton onClick={goToNext} sx={{ right: 8 }}>
             <ArrowForwardIosIcon />
-          </NavigationButton>
+          </NavigationButton> */}
         </CarouselImageWrapper>
 
         {/* Indicadores de puntos (dots) */}

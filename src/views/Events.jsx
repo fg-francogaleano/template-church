@@ -15,8 +15,8 @@ import EventSlide from "../views/EventSlide";
 
 // Componentes estilizados
 const StyledSection = styled("section")(({ theme }) => ({
-  padding: theme.spacing(4, 0), // Aumentamos el padding para mejor espaciado
-  backgroundColor: theme.palette.background.default,
+  // padding: theme.spacing(4, 0), // Aumentamos el padding para mejor espaciado
+  // backgroundColor: theme.palette.background.default1,
 }));
 
 const StyledContainer = styled(Box)(({ theme }) => ({
@@ -154,7 +154,7 @@ const Events = () => {
             color={palette.primary[800]}
             // marginTop={6}
           >
-           Próximos Eventos
+           PRÓXIMOS EVENTOS
           </Typography>
         </Box>
         {events.length > 0 ? (

@@ -2,15 +2,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import ShareIcon from '@mui/icons-material/Share';
+import { useTheme } from '@emotion/react';
 
 const WhatsappInvitationButton = ({ phoneNumber= "541154718471", message, buttonText, sx, ...props }) => {
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-
+const { palette } = useTheme()
   return (
     <Button
       variant="outlined"
-      startIcon={<WhatsAppIcon />}
+      color='secondary'
+      startIcon={<ShareIcon />}
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"

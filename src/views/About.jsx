@@ -67,7 +67,7 @@ const About = () => {
             color={palette.primary[800]}
             // marginTop={6}
           >
-            Nosotros
+            NOSOTROS
           </Typography>
 
           <Typography
@@ -133,7 +133,7 @@ const About = () => {
                     textAlign: "center",
                   }}
                 >
-                  Misión
+                  MISIÓN
                 </Typography>
 
                 <Typography
@@ -183,7 +183,7 @@ const About = () => {
                     textAlign: "center",
                   }}
                 >
-                  Visión
+                  VISIÓN
                 </Typography>
 
                 <Typography
@@ -234,7 +234,7 @@ const About = () => {
                     textAlign: "center",
                   }}
                 >
-                  Valores
+                  VALORES
                 </Typography>
                 <Typography
                   variant="body1"
@@ -267,7 +267,7 @@ const About = () => {
                       mx: "auto",
                     }}
                   >
-                    Una Familia de Fe
+                    UNA FAMILIA DE FÉ
                   </Typography>
 
                   <Typography
@@ -322,7 +322,7 @@ const About = () => {
                     sx={{ objectFit: "cover" }}
                   />
                   <Box>
-                    <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
+                    <Typography variant="h6" sx={{ fontWeight: 400, mb: 1 }}>
                       Nuestros Apóstoles
                     </Typography>
 
