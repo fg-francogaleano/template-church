@@ -154,9 +154,27 @@ const Events = () => {
             color={palette.primary[800]}
             // marginTop={6}
           >
-           PRÓXIMOS EVENTOS
+            PRÓXIMOS EVENTOS
           </Typography>
         </Box>
+
+        <Typography
+          variant="body1"
+          sx={{
+            fontSize: { xs: "1rem", md: "1.125rem" },
+            color: "text.secondary",
+            maxWidth: 900,
+            mx: "auto",
+            my: 4,
+            lineHeight: 1.6,
+            fontWeight: 300,
+          }}
+        >
+          Explorá nuestros próximos eventos, unite a nuestras actividades y
+          descubrí cómo podes usar tus dones para el Reino. No te pierdas lo que
+          Dios está haciendo en medio de nosotros.
+        </Typography>
+
         {events.length > 0 ? (
           <Box sx={{ maxWidth: 1000, margin: "0 auto" }}>
             {" "}

@@ -97,8 +97,9 @@ function Sermons() {
         sx={{
           maxWidth: { xs: "95%", md: "800px" },
           mx: "auto",
-          px: { xs: 1, md: 0 },
+          // px: { xs: 1, md: 0 },
           mb: 10,
+          border: `solid 1px ${palette.primary[400]}`,
         }}
       >
         <Card
@@ -132,6 +133,25 @@ function Sermons() {
             ></iframe>
           </Box>
         </Card>
+
+        <CardContent
+          sx={{
+            flexGrow: 1,
+            textAlign: "left",
+          }}
+        >
+          <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
+            {latestPredica.title}
+          </Typography>
+
+          <Typography variant="body2" color="text.secondary" gutterBottom>
+            {latestPredica.minister?.name}
+          </Typography>
+
+          <Typography variant="body2" color="text.secondary">
+            {formatDate(latestPredica.date)}
+          </Typography>
+        </CardContent>
       </Box>
 
       {/* 3️⃣ OTRAS 3 PREDICAS */}
@@ -145,21 +165,62 @@ function Sermons() {
           RECIENTES
         </Typography>
 
-        <Grid container spacing={3} justifyContent="center">
+        <Grid
+          container
+          spacing={2}
+          justifyContent="center"
+          alignItems="stretch"
+          px={2} 
+        >
           {otherPredicas.map((predica, index) => (
-            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
+            <Grid size={{ sm: 12, md: 4 }} key={index} display={"flex"} >
               <Box
                 sx={{
-                  height: "100%",
+                  // height: "100%",
                   display: "flex",
                   flexDirection: "column",
                   borderRadius: 2,
                   position: "relative",
                   border: `solid 1px ${palette.primary[400]}`,
+                  maxWidth: { xs: "95%", md: "800px" },
+                  mx: "auto",
+                  flexGrow: 1, 
                 }}
               >
                 {/* Imagen de YouTube */}
-                <CardMedia
+                <Card
+                  sx={{
+                    border: "none",
+                    boxShadow: theme.shadows[6],
+                    overflow: "hidden",
+                    borderRadius: theme.shape.borderRadius,
+                  }}
+                >
+                  <Box
+                    sx={{
+                      position: "relative",
+                      width: "100%",
+                      paddingTop: "56.25%", // 16:9
+                    }}
+                  >
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${predica.youtubeId}`}
+                      title={predica.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        border: 0,
+                      }}
+                    ></iframe>
+                  </Box>
+                </Card>
+
+                {/* <CardMedia
                   component="img"
                   image={`https://i1.ytimg.com/vi/${predica.youtubeId}/hqdefault.jpg`}
                   alt={predica.title}
@@ -167,7 +228,7 @@ function Sermons() {
                     height: 180,
                     objectFit: "cover",
                   }}
-                />
+                /> */}
 
                 <CardContent
                   sx={{
