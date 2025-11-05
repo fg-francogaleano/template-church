@@ -42,22 +42,20 @@ function Sermons() {
 
   if (!latestPredica) return null; // evita render antes de cargar
 
-  // ✅ Formato de fecha dd/mm/aaaa
-  // ✅ Formato de fecha: "3 Octubre 2025"
   const formatDate = (dateString) => {
     if (!dateString) return "";
 
-    const date = new Date(dateString);
+    // Evitar el problema de UTC interpretando mal la fecha
+    const [year, month, day] = dateString.split("-");
+    const date = new Date(year, month - 1, day); // ← crea la fecha en horario local
+
     const options = { day: "numeric", month: "long", year: "numeric" };
 
     // Formatear en español
     const formatted = new Intl.DateTimeFormat("es-ES", options).format(date);
 
-    // Capitalizar la primera letra del mes
-    return formatted.replace(
-      /(\p{L}+)/u, // busca la primera palabra (el mes)
-      (match) => match.charAt(0).toUpperCase() + match.slice(1)
-    );
+    // Convertir a mayúsculas
+    return formatted.toUpperCase();
   };
 
   return (
@@ -170,10 +168,10 @@ function Sermons() {
           spacing={2}
           justifyContent="center"
           alignItems="stretch"
-          px={2} 
+          px={2}
         >
           {otherPredicas.map((predica, index) => (
-            <Grid size={{ sm: 12, md: 4 }} key={index} display={"flex"} >
+            <Grid size={{ sm: 12, md: 4 }} key={index} display={"flex"}>
               <Box
                 sx={{
                   // height: "100%",
@@ -184,7 +182,7 @@ function Sermons() {
                   border: `solid 1px ${palette.primary[400]}`,
                   maxWidth: { xs: "95%", md: "800px" },
                   mx: "auto",
-                  flexGrow: 1, 
+                  flexGrow: 1,
                 }}
               >
                 {/* Imagen de YouTube */}
