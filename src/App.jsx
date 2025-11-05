@@ -11,6 +11,7 @@ import Landing from "./views/Landing";
 import { sanityClient } from "../lib/sanityClient";
 import imageUrlBuilder from "@sanity/image-url";
 import NavBar from "./components/NavBAr";
+import OfflineAlert from "./views/OfflineAlert";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -22,6 +23,8 @@ function App() {
   const [showLanding, setShowLanding] = useState(true);
   const [logoPosition, setLogoPosition] = useState(null);
   const [activeSection, setActiveSection] = useState("inicio"); // 👈 Nuevo estado para la sección activa
+  const [isOnline, setIsOnline] = useState(navigator.onLine); // 👈 Estado para conexión
+
   const navLogoRef = useRef(null);
   // console.log(logoPosition);
 
@@ -30,6 +33,19 @@ function App() {
   //   const timer = setTimeout(() => setShowLanding(false), 9000);
   //   return () => clearTimeout(timer);
   // }, []);
+
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
 
   useLayoutEffect(() => {
     const logoEl = document.getElementById("logo");
@@ -114,20 +130,19 @@ function App() {
 
   return (
     <>
-      <>
-        <Box component="header">
-          {/* 👈 Pasamos el estado de la sección activa como prop */}
-          <NavBar
-            ref={navLogoRef}
-            hidden={showLanding}
-            activeSection={activeSection}
-          />
-        </Box>
-      </>
+      {/* 🔔 Muestra el aviso solo cuando no hay conexión */}
+      {!isOnline && <OfflineAlert />}
+
+      <Box component="header">
+        <NavBar
+          ref={navLogoRef}
+          hidden={showLanding}
+          activeSection={activeSection}
+        />
+      </Box>
+
       {showLanding ? (
-        <>
-          <Landing logoPosition={logoPosition} onFinish={handleFinish} />
-        </>
+        <Landing logoPosition={logoPosition} onFinish={handleFinish} />
       ) : (
         <>
           <Box component="main">
@@ -137,42 +152,19 @@ function App() {
                 setCarouselImages={setCarouselImages}
               />
             </Box>
-            <Box
-              component="section"
-              id="nosotros"
-              sx={{ py: 10, my: 5 }}
-              // border={"solid 1px blue"}
-            >
+            <Box component="section" id="nosotros" sx={{ py: 10, my: 5 }}>
               <About />
             </Box>
-
-            <Box
-              component="section"
-              id="eventos"
-              sx={{ py: 10, my: 5 }}
-              // border={"solid 1px green"}
-            >
+            <Box component="section" id="eventos" sx={{ py: 10, my: 5 }}>
               <Events />
             </Box>
-
-            <Box
-              component="section"
-              id="predicas"
-              sx={{ py: 10, my: 5 }}
-              // border={"solid 1px red"}
-            >
+            <Box component="section" id="predicas" sx={{ py: 10, my: 5 }}>
               <Sermons />
             </Box>
-
             <Box component="section" id="ofrendar">
               <Donate />
             </Box>
-            <Box
-              component="section"
-              id="contacto"
-              sx={{ mt: 5, pt: 10 }}
-              // border={"solid 1px black"}
-            >
+            <Box component="section" id="contacto" sx={{ mt: 5, pt: 10 }}>
               <Contact />
             </Box>
           </Box>

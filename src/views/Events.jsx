@@ -8,7 +8,7 @@ import {
   ArrowForwardIos as ArrowForwardIosIcon,
 } from "@mui/icons-material";
 // Asegúrate de que los imports de Sanity y EventModal sean correctos
-import { styled } from "@mui/system";
+import { styled, useMediaQuery } from "@mui/system";
 import { sanityClient } from "../../lib/sanityClient";
 import EventModal from "../components/EventModal";
 import EventSlide from "../views/EventSlide";
@@ -37,9 +37,9 @@ const PrevArrow = ({ onClick }) => (
       transform: "translateY(-50%)",
       zIndex: 1,
       color: "grey",
-      "&:hover": {
-        backgroundColor: "rgba(255, 255, 255, 0.9)",
-      },
+      // "&:hover": {
+      //   backgroundColor: "rgba(255, 255, 255, 0.9)",
+      // },
     }}
   >
     <ArrowBackIosNewIcon fontSize="large" />
@@ -56,9 +56,9 @@ const NextArrow = ({ onClick }) => (
       transform: "translateY(-50%)",
       zIndex: 1,
       color: "grey",
-      "&:hover": {
-        backgroundColor: "rgba(255, 255, 255, 0.9)",
-      },
+      // "&:hover": {
+      //   backgroundColor: "rgba(255, 255, 255, 0.9)",
+      // },
     }}
   >
     <ArrowForwardIosIcon fontSize="large" />
@@ -69,8 +69,8 @@ const Events = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [events, setEvents] = useState([]);
-  const { palette } = useTheme();
-
+  const theme = useTheme();
+  const { palette } = theme;
   const handleOpenModal = (event) => {
     setSelectedEvent(event);
     setOpenModal(true);
@@ -115,6 +115,8 @@ const Events = () => {
     fetchEvents();
   }, []);
 
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   // Configuración de react-slick
   const sliderSettings = {
     dots: true,
@@ -127,8 +129,8 @@ const Events = () => {
     pauseOnHover: true,
     centerMode: false,
     centerPadding: "0",
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
+    prevArrow: isMobile ? null : <PrevArrow />, // 👈 Ocultamos en mobile
+    nextArrow: isMobile ? null : <NextArrow />, // 👈 Ocultamos en mobile
   };
 
   return (

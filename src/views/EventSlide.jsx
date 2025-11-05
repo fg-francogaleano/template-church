@@ -12,14 +12,10 @@ import {
   Link,
   Grid,
 } from "@mui/material";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { HiLocationMarker } from "react-icons/hi";
-import CalendarIcon from "../icons/CalendarIcon"; // Asumo que aún usas estos iconos
-import ClockIcon from "../icons/ClockIcon";
-import PeopleIcon from "../icons/PeopleIcon";
-import { IoTime } from "react-icons/io5";
+
 import { RiTimeFill } from "react-icons/ri";
-import { fontSize, styled } from "@mui/system";
+import { styled } from "@mui/system";
 import CountdownTimer from "../components/CountdownTimer"; // Importamos el nuevo componente
 import FeaturedBanner from "../components/FeaturedBanner";
 
