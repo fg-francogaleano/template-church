@@ -373,7 +373,7 @@ function Donate() {
       >
         <Box
           sx={{
-            border: `solid 2px ${palette.secondary.main}`,
+            border: `solid 1px ${palette.primary[400]}`,
             bgcolor: "background.paper",
             borderRadius: "3px",
             p: 4,
